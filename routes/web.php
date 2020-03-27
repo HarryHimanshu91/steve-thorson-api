@@ -11,6 +11,31 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::redirect('/', '/login');
+Route::get('/home', function () {
+    if (session('status')) {
+        return redirect()->route('admin.home')->with('status', session('status'));
+    }
+
+    return redirect()->route('admin.home');
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
+    Route::get('/', 'HomeController@index')->name('home');
+
+    // Users
+    Route::resource('roles','RoleController')->except([
+        'show','destroy'
+    ]);
+    Route::resource('users','UserController')->except([
+        'show'
+    ]);
+
+    // Change Password
+    Route::get('change-password', 'ChangePasswordController@index')->name('change-password');
+
 });
