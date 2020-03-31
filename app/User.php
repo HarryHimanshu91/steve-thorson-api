@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'role_id','name', 'email', 'password','status'
+        'firstname', 'lastname', 'phone', 'password', 'is_verified', 'region', 'center'
     ];
 
     /**
@@ -39,12 +39,4 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    /**
-     * User has one role relationship
-     *
-     * @return relations
-     */
-    public function role(){
-        return $this->hasOne(Role::class, 'id','role_id');
-    }
 }

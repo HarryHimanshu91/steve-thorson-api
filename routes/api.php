@@ -18,8 +18,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('login','Api\V1\UserController@checkUserLogin'); 
+Route::post('register','Api\V1\UserController@register'); 
 
 Route::middleware('auth:api')->group( function () {
- 
+
+    
 
 });

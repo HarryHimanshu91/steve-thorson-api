@@ -18,7 +18,7 @@ class LoginUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email|exists:users,email',
+            'phone' => 'required|exists:users,phone',
             'password' => 'required'
         ];
     }
@@ -32,9 +32,8 @@ class LoginUserRequest extends FormRequest
     public function messages()
     {
         return [
-            'email.required' => 'Oops! Please enter email address.',
-            'email.exists' => "Oops! The email address you entered is not in our system. Please go back and select the green 'Sign Up with Email' button.",
-            'email.email' => 'Oops! The email address you entered is not valid.'
+            'phone.required' => 'Oops! Please enter email address.',
+            'phone.exists' => "Oops! The email address you entered is not in our system. Please go back and select the green 'Sign Up with Email' button.",
         ];
     }
 
@@ -46,7 +45,7 @@ class LoginUserRequest extends FormRequest
     public function loginData(): array
     {
         return [
-            'email' => $this->get('email'),
+            'phone' => $this->get('phone'),
             'password' => $this->get('password')
         ];
     }
