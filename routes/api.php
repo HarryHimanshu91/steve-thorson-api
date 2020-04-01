@@ -22,6 +22,6 @@ Route::post('register','Api\V1\UserController@register');
 
 Route::middleware('auth:api')->group( function () {
 
-    
+    Route::post('change-password','Api\V1\ChangePasswordController@updatePassword');
 
 });

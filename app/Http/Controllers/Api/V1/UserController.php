@@ -88,7 +88,7 @@ class UserController extends Controller
                     $tokenResult->token->expires_at
                 )->toDateTimeString();   
 
-                $success['data'] = User::with('role')->find($user->id);
+                $success['data'] = $user;
                 // $success['data']->store = Store::with('locations')->find(User::find($user->id)->pluck('store_id'))->first();
                 return response()->json($success, 200);
             }else{

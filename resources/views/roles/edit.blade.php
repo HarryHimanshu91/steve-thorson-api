@@ -1,4 +1,4 @@
-@extends('layouts.dashboard_app')
+@extends('layouts.mainc')
 
 @section('content')
   <!-- Content Wrapper. Contains page content -->
@@ -14,14 +14,14 @@
                                 <h3 class="card-title">Edit Role</h3>
                             </div>
                             <div class="col-6 text-right">
-                                <a href="{{ route('roles.index') }}" class="btn btn-primary btn-small">Back</a>
+                                <a href="{{ route('admin.roles.index') }}" class="btn btn-primary btn-small">Back</a>
                             </div>
                         </div> 
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
                     <div class="card-body">
-                        <form role="form" method="POST" action="{{ route('roles.update',$role->id) }}">
+                        <form role="form" method="POST" action="{{ route('admin.roles.update',$role->id) }}">
                             @csrf
                             @method('PUT')
                             <div class="card-body">

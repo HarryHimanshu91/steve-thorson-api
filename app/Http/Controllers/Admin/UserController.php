@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\Admin\StoreUserRequest;
 use Illuminate\Http\Request;
-use App\User;
+use App\Admin;
 use App\Models\Role;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NewUser;
@@ -20,7 +20,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::with('role')->get();
+        $users = Admin::with('role')->get();
         return view('users.view')->with('users',$users);
     }
 
@@ -31,7 +31,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::whereStatus(1)->get();
+        $roles = Admin::whereStatus(1)->get();
         return view('users.create')->with(['roles'=>$roles]);
     }
 
@@ -43,7 +43,7 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {  
-        $user = User::create($request->userData());
+        $user = Admin::create($request->userData());
         
         if($user){
             // Mail::to($user->email)->send(new NewUser($request->get('email'), env('NEW_USER_DEFAULT_PASSWORD')));
@@ -67,10 +67,11 @@ class UserController extends Controller
      * @param  User  $user
      * @return view
      */
-    public function edit(User $user)
+    public function edit($id)
     {
+        $admin = Admin::whereId($id)->first();
         $roles = Role::whereStatus(1)->get();
-        return view('users.edit')->with(['user'=>$user,'roles'=>$roles]);
+        return view('users.edit')->with(['user'=>$admin,'roles'=>$roles]);
     }
 
     /**
@@ -80,11 +81,11 @@ class UserController extends Controller
      * @param  User  $user
      * @return \Illuminate\Http\Redirect
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
-            'email' => ['required','email','unique:users,email,'.$user->id]
+            'email' => ['required','email','unique:admins,email,'.$id]
         ],
         [
             'name.required' => 'Oops! Please enter name.',
@@ -94,17 +95,17 @@ class UserController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('admin.users.edit', $user->id)
+            return redirect()->route('admin.users.edit', $id)
                         ->withErrors($validator)
                         ->withInput();
         }
 
-        $user->fill([
+        Admin::whereId($id)->update([
             'name' => $request->get('name'),
             'email' => $request->get('email'),
             'role_id' => $request->get('role'),
             'status' => $request->get('status')
-        ])->save();
+        ]);
 
         $notification = array(
             'message' => 'Success ! User has been updated successfully', 
@@ -119,7 +120,7 @@ class UserController extends Controller
      * @param  User $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Admin $admin)
     {
         $user->delete();
         $data = array(
