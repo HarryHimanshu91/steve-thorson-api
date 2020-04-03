@@ -2,13 +2,14 @@
 
 namespace App\Http\Requests\Api\V1;
 
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\ValidatePassword;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\ValidationException;
 
-class LoginUserRequest extends FormRequest
+class StoreChangePasswordRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -18,8 +19,9 @@ class LoginUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'phone' => 'required|exists:users,phone',
-            'password' => 'required'
+            'opass' => ['required', new ValidatePassword ],
+            'npass' => 'required',
+            'cpass' => 'required|same:npass'
         ];
     }
 
@@ -32,21 +34,10 @@ class LoginUserRequest extends FormRequest
     public function messages()
     {
         return [
-            'phone.required' => 'Oops! Please enter email address.',
-            'phone.exists' => "Oops! The email address you entered is not in our system. Please go back and select the green 'Sign Up with Email' button.",
-        ];
-    }
-
-    /**
-     * Data required to login from request
-     *
-     * @return array
-     */
-    public function loginData(): array
-    {
-        return [
-            'phone' => $this->get('phone'),
-            'password' => $this->get('password')
+            'opass.required' => 'Oops! Please enter old password.',
+            'npass.required' => "Oops! Please enter new password.",
+            'cpass.required' => 'Oops! Please enter confirm password.',
+            'cpass.same' => 'Oops! The confirm password is not matched with new password.'
         ];
     }
 
@@ -63,5 +54,4 @@ class LoginUserRequest extends FormRequest
             response()->json(['errors' => $errors], JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
         );
     }
-
 }

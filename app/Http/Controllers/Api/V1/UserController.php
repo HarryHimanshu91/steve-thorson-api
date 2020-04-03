@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Http\Requests\Api\V1\Register\StoreRegisterRequest;
 use App\Http\Requests\Api\V1\LoginUserRequest;
 use App\User;
 use Carbon\Carbon;
@@ -33,6 +34,39 @@ class UserController extends Controller
     }
 
     /**
+     * register api
+     * 
+     * @param StoreRegisterRequest $request
+     * @return JsonResponse
+     * 
+     */
+
+    public function register(StoreRegisterRequest $request){
+        try{
+            if($request->registerData()['is_verified']){
+                $user = User::create($request->registerData());
+                $user = User::find($user->id)->first();
+                $tokenResult = $user->createToken(env('APP_NAME'));
+                $token = $tokenResult->token;
+                $token->expires_at = Carbon::now()->addWeeks(1);
+                $token->save();
+                $success['token'] = $tokenResult->accessToken;
+                $success['token_type'] = "Bearer";
+                $success['expires_at'] = Carbon::parse(
+                    $tokenResult->token->expires_at
+                )->toDateTimeString();
+
+                $success['data'] = $user;
+                return response()->json($success, 200);
+            }else{
+                return response()->json(['error' => 'Oops! Phone number is not verified.'], 422);
+            }
+        }catch(\Exception $e){
+            return response()->json(['error' => $e->getMessage()], 403);
+        }
+    }
+
+    /**
      *  This function is create to check the user role.
      * 
      * @param LoginUserRequest $request
@@ -44,25 +78,21 @@ class UserController extends Controller
         try {
             if(Auth::attempt($request->loginData())){ 
                 $user = Auth::user();
-                if($user->status){
-                    $tokenResult = $user->createToken(env('APP_NAME'));
-                    $token = $tokenResult->token;
-                    $token->expires_at = Carbon::now()->addWeeks(1);
-                    $token->save();
-                    $success['token'] = $tokenResult->accessToken;
-                    $success['token_type'] = "Bearer";
-                    $success['expires_at'] = Carbon::parse(
-                        $tokenResult->token->expires_at
-                    )->toDateTimeString();   
+                $tokenResult = $user->createToken(env('APP_NAME'));
+                $token = $tokenResult->token;
+                $token->expires_at = Carbon::now()->addWeeks(1);
+                $token->save();
+                $success['token'] = $tokenResult->accessToken;
+                $success['token_type'] = "Bearer";
+                $success['expires_at'] = Carbon::parse(
+                    $tokenResult->token->expires_at
+                )->toDateTimeString();   
 
-                    $success['data'] = User::with('role')->find($user->id);
-                    // $success['data']->store = Store::with('locations')->find(User::find($user->id)->pluck('store_id'))->first();
-                    return response()->json($success, 200);
-                }else{
-                    return response()->json(['errors' => array('email' => ['Oops! email address is inactive. Please contact administrator'])], 401);
-                }
+                $success['data'] = $user;
+                // $success['data']->store = Store::with('locations')->find(User::find($user->id)->pluck('store_id'))->first();
+                return response()->json($success, 200);
             }else{
-                return response()->json(['errors' => array('email' => ['Oops! Either the email address or password you entered is incorrect.'])], 401);
+                return response()->json(['errors' => array('phone' => ['Oops! Either the phone number or password you entered is incorrect.'])], 401);
             }
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 403);
