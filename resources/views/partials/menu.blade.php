@@ -49,6 +49,28 @@
                 </li>
             </ul>
         </li> 
+
+        <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-user-cog"></i>
+                <p>Content Management
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{ route('admin.category.index') }}" class="nav-link {{ request()->segment('2') == 'roles' && request()->segment('3') == ''  ? 'active' : '' }}">
+                        <p>View</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.category.create') }}" class="nav-link {{ request()->segment('2') == 'roles' && request()->segment('3') == 'create' ? 'active' : '' }}">
+                        <p>Add</p>
+                    </a>
+                </li>
+            </ul>
+        </li>  
+
     </ul>
 </nav>
 <!-- /.sidebar-menu -->

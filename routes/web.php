@@ -38,4 +38,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Change Password
     Route::get('change-password', 'ChangePasswordController@index')->name('change-password');
 
+    // Category
+    Route::resource('category','CategoryController');
+
 });

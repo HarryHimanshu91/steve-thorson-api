@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/enlarge.css') }}" />
+    <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.css') }} ">
   </head>
   <body class="hold-transition sidebar-mini">
     <div class="wrapper">
@@ -104,6 +105,19 @@
     <script src="{{ asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+
+    <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
+		<script>
+		  $(function () {
+			// Summernote
+		   	$('.textarea').summernote({
+          height: 200,
+          focus: true
+         });
+         
+		  })
+		</script>
+
     <script>
 
         $(function () {
@@ -120,6 +134,7 @@
           });
         })
 
+        
         $(document).ready(function() {
             $('#example2').DataTable({
               "order": [[ 0, "desc" ]]
@@ -135,6 +150,20 @@
 
         $(document).ready(function () {
           bsCustomFileInput.init();
+        });
+
+
+        $(document).ready(function(){
+             $('.delete_form').on('submit', function(){
+                if(confirm("Are you sure you want to delete it?"))
+                  {
+                      return true;
+                  }
+                  else
+                  {
+                    return false;
+                  }
+            });
         });
         
         @if(Session::has('message'))

@@ -23,7 +23,7 @@ class UserController extends Controller
         $users = User::with('role')->get();
         return view('users.view')->with('users',$users);
     }
-
+ 
     /**
      * Show the form for creating a new user.
      *
