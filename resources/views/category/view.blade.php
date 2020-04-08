@@ -40,7 +40,7 @@
                  <tr>
                         <td>{{ $i++  }}</td>
                         <td>{{ $category->title }}</td>
-                        <td>{{ $category->description }}</td>
+                        <td>{{ Str::limit($category->description,250) }}</td>
                         <td>{{ $category->cat_name }}</td>
                         <td class="{{ $category->status ? 'text-danger text-bold' : 'text-success text-bold'}}">{{ $category->status? "Inactive" : "Active" }}</td>
                         <td>{{ $category->created_at }}</td>
@@ -48,6 +48,8 @@
                         <td>
                           <div class="btn-group btn-group-sm">
                             <a title="Edit" href="{{ route('admin.category.edit', $category->id) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                          &nbsp;
+                          <a title="View" href="{{ route('admin.category.show', $category->id) }}" class="btn btn-primary"><i class="fa fa-eye"></i></a>
                           &nbsp;
                             <form method="post" class="delete_form" action="{{ route('admin.category.destroy', $category->id )}}">
                             {{csrf_field()}}

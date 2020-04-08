@@ -40,5 +40,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Category
     Route::resource('category','CategoryController');
+    // Frontenduser list
+    Route::resource('userlists','FrontendUserController');
+   
 
 });

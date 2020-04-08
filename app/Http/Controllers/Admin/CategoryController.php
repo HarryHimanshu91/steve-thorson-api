@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\Admin\StoreCategoryRequest;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -64,7 +65,9 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+       $data = Category::where('id', $id )->first();
+       return view('category.show',compact('data'));
+        
     }
 
     /**

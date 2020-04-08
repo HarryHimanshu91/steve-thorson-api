@@ -9,4 +9,6 @@ class Category extends Model
     protected $fillable = [
         'title', 'description', 'cat_name'
     ];
+
+    protected $table ='contents';
 }

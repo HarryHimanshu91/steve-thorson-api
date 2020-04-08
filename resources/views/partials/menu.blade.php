@@ -32,7 +32,7 @@
         <li class="nav-item has-treeview {{ request()->segment('2') == 'users' ? 'menu-open' : '' }}">
             <a href="#" class="nav-link {{ request()->segment('2') == 'users' ? 'active' : '' }}">
                 <i class="nav-icon fas fa-users"></i>
-                <p>User Management
+                <p>Admin Management
                     <i class="right fas fa-angle-left"></i>
                 </p>
             </a>
@@ -70,6 +70,26 @@
                 </li>
             </ul>
         </li>  
+
+
+        <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-user-cog"></i>
+                <p>Member Management
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{ route('admin.userlists.index') }}" class="nav-link {{ request()->segment('2') == 'roles' && request()->segment('3') == ''  ? 'active' : '' }}">
+                        <p>View</p>
+                    </a>
+                </li>
+              
+            </ul>
+        </li>  
+
+
 
     </ul>
 </nav>

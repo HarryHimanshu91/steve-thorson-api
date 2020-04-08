@@ -11,11 +11,9 @@
             <div class="card-header">
               <div class="row align-items-center">
                   <div class="col-6">
-                      <h3 class="card-title">Admin List</h3>
+                      <h3 class="card-title">Member List</h3>
                   </div>
-                  <div class="col-6 text-right">
-                      <a href="{{ route('admin.users.create') }}" class="btn btn-primary btn-small">Add Admin</a>
-                  </div>
+                
               </div> 
             </div>
             <!-- /.card-header -->
@@ -23,11 +21,11 @@
               <table id="example2" class="table table-bordered table-hover dataTable" >
                 <thead>
                     <tr>
-                        <th>Unique ID</th>
-                        <th>Email ID</th>
-                        <th>Name</th>
-                        <th>Role</th>
-                        <th>Status</th>
+                        <th> ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Phone</th>
+                        <th>Region</th>
                         <th>Created At</th>
                         <th>Updated At</th>
                         <th>Action</th>
@@ -37,19 +35,19 @@
                    @foreach($users as $user)
                     <tr>
                         <td>{{ $user->id }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->role['name'] }}</td>
-                        <td class="{{ $user->status ? 'text-success text-bold' : 'text-danger text-bold'}}">{{ $user->status ? 'Active' : 'Inactive' }}</td>
+                        <td>{{ $user->firstname }}</td>
+                        <td>{{ $user->lastname }}</td>
+                        <td>{{ $user->phone }}</td>
+                        <td>{{ $user->region  }} </td>
                         <td>{{ $user->created_at }}</td>
                         <td>{{ $user->updated_at }}</td>
                         <td>
                           <div class="btn-group btn-group-sm">
-                            <a title="Edit" href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                            <a title="Delete" href="javascript:void(0)" onclick="onDeleteUser({{ $user->id }})" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                            <a title="View User" href="{{ route('admin.userlists.show', $user->id) }}" class="btn btn-primary"><i style="color:#fff;" class="fa fa-eye"></i></a>
                           </div>
                         </td>
                     </tr>
+ 
                    @endforeach
                 </tbody>
               </table> 
