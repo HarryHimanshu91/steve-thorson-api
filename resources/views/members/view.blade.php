@@ -22,10 +22,11 @@
                 <thead>
                     <tr>
                         <th> ID</th>
+                        <th>Region</th>
+                        <th>Center</th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Phone</th>
-                        <th>Region</th>
                         <th>Created At</th>
                         <th>Updated At</th>
                         <th>Action</th>
@@ -34,11 +35,12 @@
                 <tbody>
                    @foreach($users as $user)
                     <tr>
-                        <td>{{ $user->id }}</td>
+                        <td>{{ $user->id }}</td>                        
+                        <td>{{ $user->region['region']  }} </td>
+                        <td>{{ $user->center['title']  }} </td>
                         <td>{{ $user->firstname }}</td>
                         <td>{{ $user->lastname }}</td>
                         <td>{{ $user->phone }}</td>
-                        <td>{{ $user->region  }} </td>
                         <td>{{ $user->created_at }}</td>
                         <td>{{ $user->updated_at }}</td>
                         <td>

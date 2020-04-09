@@ -45,7 +45,7 @@ class UserController extends Controller
         try{
             if($request->registerData()['is_verified']){
                 $user = User::create($request->registerData());
-                $user = User::find($user->id)->first();
+                $user = User::find($user->id)->with('region','center')->first();
                 $tokenResult = $user->createToken(env('APP_NAME'));
                 $token = $tokenResult->token;
                 $token->expires_at = Carbon::now()->addWeeks(1);
@@ -87,7 +87,7 @@ class UserController extends Controller
                 $success['expires_at'] = Carbon::parse(
                     $tokenResult->token->expires_at
                 )->toDateTimeString();   
-
+                $user = User::find($user->id)->with('region','center')->first();
                 $success['data'] = $user;
                 // $success['data']->store = Store::with('locations')->find(User::find($user->id)->pluck('store_id'))->first();
                 return response()->json($success, 200);

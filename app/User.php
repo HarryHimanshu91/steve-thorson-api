@@ -6,6 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use App\Models\Region;
+use App\Models\Community;
 
 class User extends Authenticatable
 {
@@ -37,5 +39,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+   
+    /**
+     * User has one role relationship
+     *
+     * @return relations
+     */
+    public function region(){
+        return $this->hasOne(Region::class, 'id','region_id');
+    }
+
+    /**
+     * User has one role relationship
+     *
+     * @return relations
+     */
+    public function center(){
+        return $this->hasOne(Community::class, 'id','center_id');
+    }
 
 }
