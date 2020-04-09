@@ -46,7 +46,7 @@ class LoginUserRequest extends FormRequest
     {
         return [
             'phone' => $this->get('phone'),
-            'password' => $this->get('password')
+            'password' => $this->get('password'),
         ];
     }
 

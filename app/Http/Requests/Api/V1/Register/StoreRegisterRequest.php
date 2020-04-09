@@ -60,8 +60,8 @@ class StoreRegisterRequest extends FormRequest
             'lastname' => $this->get('lastname'),
             'phone' => $this->get('phone'),
             'password' => \Hash::make($this->get('password')),
-            'region' => $this->get('region'),
-            'center' => $this->get('center'),
+            'region_id' => $this->get('region'),
+            'center_id' => $this->get('center'),
             'is_verified' => $this->get('is_verified')
         ];
     }
