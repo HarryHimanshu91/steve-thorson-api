@@ -21,7 +21,7 @@ class UserController extends Controller
     public function index()
     {
         $users = Admin::with('role')->get();
-        return view('users.view')->with('users',$users);
+        return view('admins.view')->with('users',$users);
     }
  
     /**
@@ -32,7 +32,7 @@ class UserController extends Controller
     public function create()
     {
         $roles = Admin::whereStatus(1)->get();
-        return view('users.create')->with(['roles'=>$roles]);
+        return view('admins.create')->with(['roles'=>$roles]);
     }
 
     /**
@@ -71,7 +71,7 @@ class UserController extends Controller
     {
         $admin = Admin::whereId($id)->first();
         $roles = Role::whereStatus(1)->get();
-        return view('users.edit')->with(['user'=>$admin,'roles'=>$roles]);
+        return view('admins.edit')->with(['user'=>$admin,'roles'=>$roles]);
     }
 
     /**

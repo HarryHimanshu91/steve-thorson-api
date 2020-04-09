@@ -4,100 +4,97 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Requests\Admin\StoreCategoryRequest;
+use App\Http\Requests\Admin\StoreContentRequest;
 use Illuminate\Http\Request;
-use App\Models\Category;
+use App\Models\Content;
 use Illuminate\Support\Str;
 
-class CategoryController extends Controller
+class ContentController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the contents.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $categories = Category::all();
-        return view('category.view' ,compact('categories') );
+        $contents = Content::all();
+        return view('content.view' ,compact('contents') );
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new content.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {  
-        return view('category.create');
+        return view('content.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created content in database.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCategoryRequest $request)
+    public function store(StoreContentRequest $request)
     {
-        $category = Category::create($request->categoryData());
+        $content = Content::create($request->contentData());
 
-        if($category){
+        if($content){
             $notification = array(
                 'message' => 'Success ! Content has been added successfully', 
                 'alert-type' => 'success'
             );
-            return redirect()->route('admin.category.create')->with($notification);
+            return redirect()->route('admin.content.create')->with($notification);
         }else{
             $notification = array(
                 'message' => 'Error ! Something went wrong', 
                 'alert-type' => 'error'
             );
-            return redirect()->route('admin.category.create')->with($notification)->withInput();
+            return redirect()->route('admin.content.create')->with($notification)->withInput();
         }
     }
 
     /**
-     * Display the specified resource.
+     * Show the content with unique Id.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-       $data = Category::where('id', $id )->first();
-       return view('category.show',compact('data'));
+       $content = Content::where('id', $id )->first();
+       return view('content.show',compact('content'));
         
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified content.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $category = Category::where('id', $id )->first();
-        return view('category.edit', compact('category'));
+        $content = Content::where('id', $id )->first();
+        return view('content.edit', compact('content'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified content in database.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Content $content)
     {
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'description' => 'required',
             'cat_name' => 'required',
-
-
-            // 'email' => ['required','email','unique:users,email,'.$category->id]
         ],
         [
             'title.required' => 'Oops! Please enter content title.',
@@ -106,12 +103,12 @@ class CategoryController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('admin.category.edit', $category->id)
+            return redirect()->route('admin.content.edit', $content->id)
                         ->withErrors($validator)
                         ->withInput();
         }
 
-        $category->fill([
+        $content->fill([
             'title' => $request->get('title'),
             'description' => $request->get('description'),
             'cat_name' => $request->get('cat_name')
@@ -122,23 +119,23 @@ class CategoryController extends Controller
             'message' => 'Success ! Content has been updated successfully', 
             'alert-type' => 'success'
         );
-        return redirect()->route('admin.category.index')->with($notification);
+        return redirect()->route('admin.content.index')->with($notification);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified content from database.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $category = Category::find($id);
-        $category->delete();
+        $content = Content::find($id);
+        $content->delete();
         $notification = array(
             'message' => 'Success ! Content has been Deleted successfully', 
             'alert-type' => 'success'
         );
-        return redirect()->route('admin.category.index')->with($notification);
+        return redirect()->route('admin.content.index')->with($notification);
     }
 }

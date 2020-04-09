@@ -14,7 +14,7 @@
                       <h3 class="card-title">Content List</h3>
                   </div>
                   <div class="col-6 text-right">
-                      <a href="{{ route('admin.category.create') }}" class="btn btn-primary btn-small">Add Content </a>
+                      <a href="{{ route('admin.content.create') }}" class="btn btn-primary btn-small">Add Content </a>
                   </div>
               </div> 
             </div>
@@ -35,23 +35,23 @@
                 </thead>
                 <tbody>
                  @php  $i=1; @endphp
-                 @foreach($categories as $category)
+                 @foreach($contents as $content)
               
                  <tr>
                         <td>{{ $i++  }}</td>
-                        <td>{{ $category->title }}</td>
-                        <td>{{ Str::limit($category->description,250) }}</td>
-                        <td>{{ $category->cat_name }}</td>
-                        <td class="{{ $category->status ? 'text-danger text-bold' : 'text-success text-bold'}}">{{ $category->status? "Inactive" : "Active" }}</td>
-                        <td>{{ $category->created_at }}</td>
-                        <td>{{ $category->updated_at }}</td>
+                        <td>{{ $content->title }}</td>
+                        <td> {!! Str::limit($content->description,250) !!} </td>
+                        <td>{{ $content->cat_name }}</td>
+                        <td class="{{ $content->status ? 'text-danger text-bold' : 'text-success text-bold'}}">{{ $content->status? "Inactive" : "Active" }}</td>
+                        <td>{{ $content->created_at }}</td>
+                        <td>{{ $content->updated_at }}</td>
                         <td>
                           <div class="btn-group btn-group-sm">
-                            <a title="Edit" href="{{ route('admin.category.edit', $category->id) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                            <a title="Edit" href="{{ route('admin.content.edit', $content->id) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
                           &nbsp;
-                          <a title="View" href="{{ route('admin.category.show', $category->id) }}" class="btn btn-primary"><i class="fa fa-eye"></i></a>
+                          <a title="View" href="{{ route('admin.content.show', $content->id) }}" class="btn btn-primary"><i class="fa fa-eye"></i></a>
                           &nbsp;
-                            <form method="post" class="delete_form" action="{{ route('admin.category.destroy', $category->id )}}">
+                            <form method="post" class="delete_form" action="{{ route('admin.content.destroy', $content->id )}}">
                             {{csrf_field()}}
                             <input type="hidden" name="_method" value="DELETE" />
                             <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>

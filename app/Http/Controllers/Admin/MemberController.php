@@ -6,17 +6,17 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 
-class FrontendUserController extends Controller
+class MemberController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the Members.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
       $users = User::all();
-      return view('users.frontenduser' , compact('users'));
+      return view('members.view' , compact('users'));
     }
 
     /**
@@ -41,7 +41,7 @@ class FrontendUserController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified member.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -49,7 +49,7 @@ class FrontendUserController extends Controller
     public function show($id)
     {
         $data = User::where('id', $id )->first();
-        return view('users.viewFrontEndUser',compact('data'));
+        return view('members.show',compact('data'));
     }
 
     /**

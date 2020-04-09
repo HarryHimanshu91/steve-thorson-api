@@ -38,10 +38,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Change Password
     Route::get('change-password', 'ChangePasswordController@index')->name('change-password');
 
-    // Category
-    Route::resource('category','CategoryController');
-    // Frontenduser list
-    Route::resource('userlists','FrontendUserController');
+    
+    // Content Route
+    Route::resource('content','ContentController');
+    // Members Route
+    Route::resource('members','MemberController');
    
 
 });
