@@ -43,7 +43,7 @@
                         <td>{{ $user->updated_at }}</td>
                         <td>
                           <div class="btn-group btn-group-sm">
-                            <a title="View User" href="{{ route('admin.userlists.show', $user->id) }}" class="btn btn-primary"><i style="color:#fff;" class="fa fa-eye"></i></a>
+                            <a title="View User" href="{{ route('admin.members.show', $user->id) }}" class="btn btn-primary"><i style="color:#fff;" class="fa fa-eye"></i></a>
                           </div>
                         </td>
                     </tr>

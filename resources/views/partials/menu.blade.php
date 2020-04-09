@@ -59,12 +59,12 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="{{ route('admin.category.index') }}" class="nav-link {{ request()->segment('2') == 'roles' && request()->segment('3') == ''  ? 'active' : '' }}">
+                    <a href="{{ route('admin.content.index') }}" class="nav-link {{ request()->segment('2') == 'roles' && request()->segment('3') == ''  ? 'active' : '' }}">
                         <p>View</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.category.create') }}" class="nav-link {{ request()->segment('2') == 'roles' && request()->segment('3') == 'create' ? 'active' : '' }}">
+                    <a href="{{ route('admin.content.create') }}" class="nav-link {{ request()->segment('2') == 'roles' && request()->segment('3') == 'create' ? 'active' : '' }}">
                         <p>Add</p>
                     </a>
                 </li>
@@ -81,7 +81,7 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="{{ route('admin.userlists.index') }}" class="nav-link {{ request()->segment('2') == 'roles' && request()->segment('3') == ''  ? 'active' : '' }}">
+                    <a href="{{ route('admin.members.index') }}" class="nav-link {{ request()->segment('2') == 'roles' && request()->segment('3') == ''  ? 'active' : '' }}">
                         <p>View</p>
                     </a>
                 </li>

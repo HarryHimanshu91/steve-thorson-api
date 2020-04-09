@@ -15,14 +15,14 @@
                             <div class="card-header">
                                 <h3 class="card-title">
                                
-                               Title- {{ $data-> title }}
+                               Title- {{ $content-> title }}
                                 </h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <dl>
-                                <dt> Category - {{ $data->cat_name }}</dt>
-                                <dd><b> Description- </b>{{ $data->description }}</dd>
+                                <dt> Category - {{ $content->cat_name }}</dt>
+                                <dd><b> Description- </b>{!! $content->description !!}</dd>
                                
                                 </dl>
                             </div>
