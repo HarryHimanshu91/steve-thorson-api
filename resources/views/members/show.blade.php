@@ -38,12 +38,12 @@
                     </tr>
                     <tr>
                       <td><b> Region  </b> </td>
-                      <td> {{ $data->region }}</td>
+                      <td> {{ $data->region['region']  }}</td>
                      
                     </tr>
                     <tr>
                       <td><b> Center </b> </td>
-                      <td> {{ $data->center }}</td>
+                      <td> {{ $data->center['title'] }}</td>
                      
                     </tr>
                     <tr>

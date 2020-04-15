@@ -19,6 +19,26 @@
     <link rel="stylesheet" href="{{ asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/enlarge.css') }}" />
     <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.css') }} ">
+    <style>
+      ul.custom-navbar {
+        display: inline-block;
+        width: 100%; padding-left: 0;
+        background-color: #f8f8f8;
+        border-color: #e7e7e7;
+      }
+      ul.custom-navbar li {
+        display: block;
+        float: left;
+        margin: 10px;
+        padding: 10px;
+    }
+    li.custom-link.active {
+      background: #007bff;
+    }
+    li.custom-link.active a {
+      color: #fff;
+    }
+    </style>
   </head>
   <body class="hold-transition sidebar-mini">
     <div class="wrapper">
@@ -105,9 +125,10 @@
     <script src="{{ asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
-
     <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
-		<script>
+    
+	 
+    	<script>
 		  $(function () {
 			// Summernote
 		   	$('.textarea').summernote({
@@ -132,6 +153,9 @@
           $('.select2bs4').select2({
             theme: 'bootstrap4',
           });
+
+         // $('#notification_date').daterangepicker()
+
         })
 
         
@@ -203,7 +227,14 @@
         $("#exampleInputFile").change(function() {
           readURL(this);
         });
+
+       
+
+
     </script>
+
+   
+
     @yield('scripts')
     <!-- AdminLTE App -->
     <script src="{{ asset('js/adminlte.min.js') }}"></script>

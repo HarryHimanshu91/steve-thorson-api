@@ -50,8 +50,8 @@
             </ul>
         </li> 
 
-        <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+        <li class="nav-item has-treeview {{ request()->segment('2') == 'content' ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link {{ request()->segment('2') == 'content' ? 'active' : '' }}">
                 <i class="nav-icon fas fa-user-cog"></i>
                 <p>Content Management
                     <i class="right fas fa-angle-left"></i>
@@ -59,12 +59,12 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="{{ route('admin.content.index') }}" class="nav-link {{ request()->segment('2') == 'roles' && request()->segment('3') == ''  ? 'active' : '' }}">
+                    <a href="{{ route('admin.content.index') }}" class="nav-link {{ request()->segment('2') == 'content' && request()->segment('3') == ''  ? 'active' : '' }}">
                         <p>View</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.content.create') }}" class="nav-link {{ request()->segment('2') == 'roles' && request()->segment('3') == 'create' ? 'active' : '' }}">
+                    <a href="{{ route('admin.content.create') }}" class="nav-link {{ request()->segment('2') == 'content' && request()->segment('3') == 'create' ? 'active' : '' }}">
                         <p>Add</p>
                     </a>
                 </li>
@@ -72,8 +72,8 @@
         </li>  
 
 
-        <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+        <li class="nav-item has-treeview {{ request()->segment('2') == 'members' ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link {{ request()->segment('2') == 'members' ? 'active' : '' }}">
                 <i class="nav-icon fas fa-user-cog"></i>
                 <p>Member Management
                     <i class="right fas fa-angle-left"></i>
@@ -81,13 +81,23 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="{{ route('admin.members.index') }}" class="nav-link {{ request()->segment('2') == 'roles' && request()->segment('3') == ''  ? 'active' : '' }}">
+                    <a href="{{ route('admin.members.index') }}" class="nav-link {{ request()->segment('2') == 'members' && request()->segment('3') == ''  ? 'active' : '' }}">
                         <p>View</p>
                     </a>
                 </li>
               
             </ul>
         </li>  
+
+        <li class="nav-item">
+            <a href="{{ route('admin.community') }}" class="nav-link {{ request()->segment('2') == 'community' ? 'active' : '' }}">
+              <i class="nav-icon fas fa-user-cog"></i>
+              <p>
+                Community
+            
+              </p>
+            </a>
+          </li> 
 
 
 
