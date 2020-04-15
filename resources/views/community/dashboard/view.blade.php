@@ -21,7 +21,7 @@
                   @include('community.communityNavbar')
                   <div class="row">
                     <div class="col-12">
-                      <p> Map Data View under constructon. We are working on it..</p>
+                      <p> Dashboard View under constructon. We are working on it..</p>
                     </div>
                   </div>
             </div>
