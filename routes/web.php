@@ -43,6 +43,30 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('content','ContentController');
     // Members Route
     Route::resource('members','MemberController');
+     // Community Route
+    // Route::resource('community','Community\CommunityController');
+
    
+    
+    Route::get('community','Community\CommunityController@index')->name('community');
+    Route::get('/community/{id?}','Community\CommunityController@showCommunity')->name('showCommunity');
+   
+    
+
+   
+
+    Route::group(['prefix' => 'community', 'as' => 'community.', 'namespace' => 'Community'], function () {
+      
+        Route::get('/dashboard/{id?}','CommunityController@dashboard')->name('dashboard');
+        Route::get('/member/{id?}','CommunityController@members')->name('member');
+        Route::get('/mapdata/{id?}','CommunityController@mapdata')->name('mapdata');
+        Route::get('/event/{id?}','CommunityController@createevent')->name('createevent');
+        Route::get('/notification/{id?}','CommunityController@createnotification')->name('createnotification');
+        Route::get('/prompt/{id?}','CommunityController@prompt')->name('prompt');  
+        Route::resource('events','EventController');
+        Route::resource('notification','NotificationController');
+        
+   
+    });
 
 });
