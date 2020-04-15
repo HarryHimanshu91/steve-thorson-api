@@ -17,10 +17,10 @@
               </div> 
             </div>
             <!-- /.card-header -->
-            <div class="card-body">
+<div class="card-body">
                   @include('community.communityNavbar')
 
-                  <div class="container">
+<div class="container">
     <form  method="post" action="{{ route('admin.community.notification.store') }}">
        @csrf    
        <input type="hidden" name="center_id" value="{{ $id }}">  
@@ -106,8 +106,47 @@
             </div>
         </div> 
     </form> 
-</div>             
+
+    <hr class="topborderline">
+<!--Events Listing-->
+    <div class="row"> 
+            <div class="col-12">
+                <h5 class="mt-4 mb-4" >  Notification Listing </h5>
+                <table id="example2" class="table table-bordered table-hover dataTable" >
+                    <thead>
+                        <tr>
+                            <th> ID </th>
+                            <th> Title </th>
+                            <th> Date/Time</th>
+                            <th> Description</th>
+                            <th> Title </th>
+                            <th> Date/Time </th>
+                            <th> Description</th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                       @php $i=1; @endphp
+                       @foreach($notifications as $notification) 
+                         <tr>
+                            <td>{{ $i++ }}</td>
+                            <td>{{ $notification->title_one }}</td>
+                            <td>{{ $notification->date_one }} - {{ $notification->time_one }} </td>
+                            <td>{{ $notification->description_one }}</td>
+                            <td>{{ $notification->title_second }}</td>
+                            <td>{{ $notification->date_second }} - {{ $notification->time_second }} </td>
+                            <td>{{ $notification->description_second }}</td>
+                           
+                         </tr>
+                       @endforeach         
+                    </tbody>
+                </table> 
             </div>
+    
+    </div>
+<!--Events End------>
+</div>             
+</div>
             <!-- /.card-body -->
           </div>
           <!-- /.col12 -->

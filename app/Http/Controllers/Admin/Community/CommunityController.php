@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Community;
 use App\User;
+use App\Models\Event;
+use App\Models\Notification;
 
 
 class CommunityController extends Controller
@@ -29,7 +31,6 @@ class CommunityController extends Controller
    public function members($id)
    {
        $users = User::whereCenterId($id)->get();
-       //dd($users);
        return view('community.members.view',compact('id','users'));
    }
    
@@ -39,14 +40,16 @@ class CommunityController extends Controller
    }
     
    public function createevent($id)
-   {
-      return view('community.events.create',compact('id'));
+   { 
+       $events = Event::whereCenterId($id)->get();
+       return view('community.events.create',compact('id','events'));
    }
    
    
    public function createnotification($id)
    {
-      return view('community.notifications.create',compact('id'));
+      $notifications = Notification::whereCenterId($id)->get();
+      return view('community.notifications.create',compact('id','notifications'));
    }
 
    public function prompt($id)
