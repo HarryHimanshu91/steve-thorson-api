@@ -58,6 +58,20 @@
                                 </span>
                             @enderror
                         </div>
+
+                        <div class="form-group">
+                            <label>Content Status </label>
+                            <select class="form-control @error('status') is-invalid @enderror" data-placeholder="Select Status" name="status">
+                                <option value="">Select Status</option>
+                                <option value="1" {{ (old('status')=='1') ? "selected":"" }}>Active</option>
+                                <option value="0" {{ (old('status')=='0') ? "selected":"" }}>Inactive</option>
+                            </select>
+                            @error('status')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
                       
 
                         

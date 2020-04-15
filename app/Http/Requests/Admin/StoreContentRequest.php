@@ -27,6 +27,7 @@ class StoreContentRequest extends FormRequest
             'title' => 'required',
             'description' => 'required',
             'cat_name' => 'required',
+            'status' => 'required',
            
         ];
     }
@@ -36,7 +37,8 @@ class StoreContentRequest extends FormRequest
         return [
             'title.required' => 'Oops! Please enter content title.',
             'description.required' => "Oops! Please enter content description.",
-            'cat_name.required' => 'Oops! Please select category.'
+            'cat_name.required' => 'Oops! Please select category.',
+            'status.required' => 'Oops! Please select content status.'
         ];
     }
 
@@ -45,7 +47,8 @@ class StoreContentRequest extends FormRequest
         return [
             'title' => $this->get('title'),
             'description' => $this->get('description'),
-            'cat_name' => $this->get('cat_name')
+            'cat_name' => $this->get('cat_name'),
+            'status' => $this->get('status')
         ];
     }
 

@@ -18,7 +18,7 @@ class CreateContentsTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->string('cat_name');
-            $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('status');
             $table->timestamps();
         });
     }

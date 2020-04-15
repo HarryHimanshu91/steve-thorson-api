@@ -42,6 +42,8 @@ class ContentController extends Controller
     {
         $content = Content::create($request->contentData());
 
+       // dd($content);
+
         if($content){
             $notification = array(
                 'message' => 'Success ! Content has been added successfully', 
@@ -95,11 +97,12 @@ class ContentController extends Controller
             'title' => 'required',
             'description' => 'required',
             'cat_name' => 'required',
+            'status' => 'required',
         ],
         [
             'title.required' => 'Oops! Please enter content title.',
             'description.required' => "Oops! Please enter content description.",
-            'cat_name.required' => 'Oops! Please select category.'
+            'status.required' => 'Oops! Please select content status.'
         ]);
 
         if ($validator->fails()) {
@@ -111,7 +114,8 @@ class ContentController extends Controller
         $content->fill([
             'title' => $request->get('title'),
             'description' => $request->get('description'),
-            'cat_name' => $request->get('cat_name')
+            'cat_name' => $request->get('cat_name'),
+            'status' => $request->get('status')
             
         ])->save();
 
