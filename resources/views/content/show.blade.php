@@ -14,17 +14,13 @@
                             <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">
-                               
-                               Title- {{ $content-> title }}
+                                  {{ $content-> title }}
                                 </h3>
+                                <p class="text-muted text-right">{{ $content->cat_name }}</p>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <dl>
-                                <dt> Category - {{ $content->cat_name }}</dt>
-                                <dd><b> Description- </b>{!! $content->description !!}</dd>
-                               
-                                </dl>
+                              {!! $content->description !!}
                             </div>
                             <!-- /.card-body -->
                             </div>
