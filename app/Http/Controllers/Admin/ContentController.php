@@ -19,7 +19,7 @@ class ContentController extends Controller
     public function index()
     {
         $contents = Content::all();
-        return view('content.view' ,compact('contents') );
+        return view('content.view')->with('contents', $contents);
     }
 
     /**

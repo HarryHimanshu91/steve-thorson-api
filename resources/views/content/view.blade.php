@@ -25,7 +25,6 @@
                     <tr>
                         <th>ID</th>
                         <th>Content Title </th>
-                        <th>Content Description </th>
                         <th>Category  </th>
                         <th>Status  </th>
                         <th>Created At</th>
@@ -38,11 +37,10 @@
                  @foreach($contents as $content)
               
                  <tr>
-                        <td>{{ $i++  }}</td>
+                        <td>{{ $content->id  }}</td>
                         <td>{{ $content->title }}</td>
-                        <td> {!! Str::limit($content->description,250) !!} </td>
                         <td>{{ $content->cat_name }}</td>
-                        <td class="{{ $content->status ? 'text-danger text-bold' : 'text-success text-bold'}}">{{ $content->status? "Inactive" : "Active" }}</td>
+                        <td class="{{ $content->status ? 'text-success' : 'text-danger'}}">{{ $content->status ? "Active" : "Inactive" }}</td>
                         <td>{{ $content->created_at }}</td>
                         <td>{{ $content->updated_at }}</td>
                         <td>
