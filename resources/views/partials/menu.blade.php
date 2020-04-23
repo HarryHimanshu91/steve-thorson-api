@@ -59,18 +59,19 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="{{ route('admin.content.index') }}" class="nav-link {{ request()->segment('2') == 'content' && request()->segment('3') == ''  ? 'active' : '' }}">
+                    <a href="{{ route('admin.viewAllContent') }}" class="nav-link {{ request()->segment('2') == 'content' && request()->segment('3') == ''  ? 'active' : '' }}">
                         <p>View</p>
                     </a>
                 </li>
+
                 <li class="nav-item">
-                    <a href="{{ route('admin.content.create') }}" class="nav-link {{ request()->segment('2') == 'content' && request()->segment('3') == 'create' ? 'active' : '' }}">
+                    <a href="{{ route('admin.createContent') }}" class="nav-link {{ request()->segment('2') == 'content' && request()->segment('3') == 'create' ? 'active' : '' }}">
                         <p>Add</p>
                     </a>
                 </li>
+              
             </ul>
         </li>  
-
 
         <li class="nav-item has-treeview {{ request()->segment('2') == 'members' ? 'menu-open' : '' }}">
             <a href="#" class="nav-link {{ request()->segment('2') == 'members' ? 'active' : '' }}">
@@ -98,7 +99,7 @@
             </a>
           </li> 
 
-
+         
 
     </ul>
 </nav>

@@ -27,5 +27,6 @@ Route::middleware('auth:api')->group( function () {
     Route::post('change-password','Api\V1\ChangePasswordController@updatePassword');
 
     Route::get('contents','Api\V1\ContentController@contents');
+    Route::get('community/{id}','Api\V1\CommunityController@community');
 
 });

@@ -31,13 +31,13 @@
         float: left;
         margin: 10px;
         padding: 10px;
-    }
-    li.custom-link.active {
-      background: #007bff;
-    }
-    li.custom-link.active a {
-      color: #fff;
-    }
+      }
+    li.custom-link.active { background: #007bff;}
+    li.custom-link.active a { color: #fff; }
+    span.languagestyles { margin-left: 20px; font-weight: bold; color: #007bff; }
+    .card-header.languagess {background-color: #007bff; color: #fff; }
+    span.err-block { color: #dc3545; }
+
     </style>
   </head>
   <body class="hold-transition sidebar-mini">

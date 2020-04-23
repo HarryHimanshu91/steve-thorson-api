@@ -26,8 +26,8 @@
             @csrf  
             <input type="hidden" name="center_id" value="{{ $id }}">       
             <div class="col-md-6">
-                <div class="card card-info">
-                    <div class="card-header">
+                <div class="card">
+                    <div class="card-header languagess">
                         <h3 class="card-title">Language 1</h3>
                     </div>
                     <div class="card-body">
@@ -64,8 +64,8 @@
                             
             </div>
             <div class="col-md-6">
-                <div class="card card-info">
-                    <div class="card-header">
+                <div class="card">
+                    <div class="card-header languagess">
                         <h3 class="card-title">Language 2 </h3>
                     </div>
                     <div class="card-body">

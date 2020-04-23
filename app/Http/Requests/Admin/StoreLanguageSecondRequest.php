@@ -4,14 +4,14 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreContentRequest extends FormRequest
+class StoreLanguageSecondRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    protected $errorBag = 'language1';
+    protected $errorBag = 'language2';
 
     public function authorize()
     {
@@ -57,4 +57,3 @@ class StoreContentRequest extends FormRequest
 
 
 }
- 

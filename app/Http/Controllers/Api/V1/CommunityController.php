@@ -4,19 +4,20 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Content;
+use App\Models\Community;
 
-class ContentController extends Controller
+class CommunityController extends Controller
 {
-    /**
-     *  This function return the content list.
+     /**
+     *  This function return the events and notification lists related to Community.
      *
      * @return JsonResponse
      */
-    public function contents()
+    public function community($id)
     {
+        // dd($id);
         try{
-            $contents = Content::all();
+            $contents = Community::whereId($id)->with('events','notifications')->first();
             $data = [
                 'success' => true,
                 'data' => $contents

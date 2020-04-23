@@ -5,93 +5,98 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\Admin\StoreContentRequest;
+use App\Http\Requests\Admin\StoreLanguageSecondRequest;
 use Illuminate\Http\Request;
 use App\Models\Content;
+use App\Language;
 use Illuminate\Support\Str;
 
 class ContentController extends Controller
 {
-    /**
-     * Display a listing of the contents.
+     /**
+     * Display Listing of the Contents.
      *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $contents = Content::all();
-        return view('content.view')->with('contents', $contents);
+        $contents = Content::with('language')->get();
+        return view('contents.view')->with('contents', $contents);
     }
 
-    /**
-     * Show the form for creating a new content.
+     /**
+     * Display Forms For Creating Contents.
      *
-     * @return \Illuminate\Http\Response
      */
     public function create()
-    {  
-        return view('content.create');
+    {
+        return view('contents.create');
     }
 
-    /**
-     * Store a newly created content in database.
+     /**
+     * Save Contents Data of Language 1 in Database.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
-    public function store(StoreContentRequest $request)
+
+    public function saveLanguage1(StoreContentRequest $request)
     {
         $content = Content::create($request->contentData());
-
-       // dd($content);
 
         if($content){
             $notification = array(
                 'message' => 'Success ! Content has been added successfully', 
                 'alert-type' => 'success'
             );
-            return redirect()->route('admin.content.create')->with($notification);
+            return redirect()->back()->with($notification);
         }else{
             $notification = array(
                 'message' => 'Error ! Something went wrong', 
                 'alert-type' => 'error'
             );
-            return redirect()->route('admin.content.create')->with($notification)->withInput();
+            return redirect()->back()->with($notification);
         }
     }
 
+    
     /**
-     * Show the content with unique Id.
+     * Save Contents Data of Language 2 in Database.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function show($id)
+
+    public function saveLanguage2(StoreLanguageSecondRequest $request)
     {
-       $content = Content::where('id', $id )->first();
-       return view('content.show',compact('content'));
-        
+        $content = Content::create($request->contentData());
+ 
+         if($content){
+             $notification = array(
+                 'message' => 'Success ! Content has been added successfully', 
+                 'alert-type' => 'success'
+             );
+             return redirect()->back()->with($notification);
+         }else{
+             $notification = array(
+                 'message' => 'Error ! Something went wrong', 
+                 'alert-type' => 'error'
+             );
+             return redirect()->back()->with($notification);
+         }
     }
 
     /**
-     * Show the form for editing the specified content.
+     * Show Edit Form With Unique Record Contents.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+
+    public function editContent($id)
     {
-        $content = Content::where('id', $id )->first();
-        return view('content.edit', compact('content'));
+        $content = Content::where('id', $id )->with('language')->first();
+        return view('contents.edit', compact('content'));
     }
 
-    /**
-     * Update the specified content in database.
+     /**
+     * Update Record With Unique Id Contents.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Content $content)
+    public function updateContent(Request $request , $id)
     {
         $validator = Validator::make($request->all(), [
             'title' => 'required',
@@ -106,33 +111,42 @@ class ContentController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('admin.content.edit', $content->id)
-                        ->withErrors($validator)
-                        ->withInput();
+            return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $content->fill([
-            'title' => $request->get('title'),
-            'description' => $request->get('description'),
-            'cat_name' => $request->get('cat_name'),
-            'status' => $request->get('status')
-            
-        ])->save();
+        $content = Content::find($id);
+        $content->title = $request->input('title');
+        $content->description = $request->input('description');
+        $content->cat_name = $request->input('cat_name');
+        $content->status = $request->input('status');
+        $content->language_id = $request->input('language_id');
+        $content->save();
 
         $notification = array(
             'message' => 'Success ! Content has been updated successfully', 
             'alert-type' => 'success'
         );
-        return redirect()->route('admin.content.index')->with($notification);
+        return redirect()->back()->with($notification);
+
     }
 
-    /**
-     * Remove the specified content from database.
+     /**
+     * Show Contents Description With Unique Id.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+
+    public function showContent($id)
+    {
+        $content = Content::where('id', $id )->first();
+        return view('contents.show',compact('content'));
+    }
+
+     /**
+     * Delete Content Record With Unique Id.
+     *
+     */
+
+    public function deleteContent($id)
     {
         $content = Content::find($id);
         $content->delete();
@@ -140,6 +154,8 @@ class ContentController extends Controller
             'message' => 'Success ! Content has been Deleted successfully', 
             'alert-type' => 'success'
         );
-        return redirect()->route('admin.content.index')->with($notification);
+        return redirect()->back()->with($notification);
     }
+    
+
 }

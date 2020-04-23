@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Passport\HasApiTokens;
+// use App\Models\Content;
 
 class Language extends Model
 {
@@ -18,4 +19,8 @@ class Language extends Model
     protected $fillable = [
         'id', 'name', 'locale'
     ];
+
+    
+
+
 }
