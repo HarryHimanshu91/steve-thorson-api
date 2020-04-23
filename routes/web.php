@@ -31,7 +31,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('roles','RoleController')->except([
         'show','destroy'
     ]);
-    Route::resource('users','UserController')->except([
+    Route::resource('admins','AdminController')->except([
         'show'
     ]);
 

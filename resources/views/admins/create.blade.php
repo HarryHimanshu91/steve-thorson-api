@@ -14,13 +14,13 @@
                         <h3 class="card-title">Add User</h3>
                     </div>
                     <div class="col-6 text-right">
-                        <a href="{{ route('admin.users.index') }}" class="btn btn-primary btn-small">Back</a>
+                        <a href="{{ route('admin.admins.index') }}" class="btn btn-primary btn-small">Back</a>
                     </div>
                 </div>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <form role="form" method="POST" action="{{ route('admin.users.store') }}">
+              <form role="form" method="POST" action="{{ route('admin.admins.store') }}">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">

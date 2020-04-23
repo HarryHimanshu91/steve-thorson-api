@@ -48,15 +48,8 @@
                         <td>
                           <div class="btn-group btn-group-sm">
                             <a title="Edit" href="{{ route('admin.editContent', $content->id) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                          &nbsp;
-                          <a title="View" href="{{ route('admin.showContent', $content->id) }}" class="btn btn-primary"><i class="fa fa-eye"></i></a>
-                          &nbsp;
-                            <form method="post" class="delete_form" action="{{ route('admin.deleteContent', $content->id )}}">
-                            {{csrf_field()}}
-                            <input type="hidden" name="_method" value="Post" />
-                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                          </form>
-
+                            <a title="View" href="{{ route('admin.showContent', $content->id) }}" class="btn btn-info"><i class="fa fa-eye"></i></a>
+                            <a title="Delete" href="javascript:void(0)" onclick="onDeleteContent({{ $content->id }})" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                           </div>
                         </td>
                     </tr>
@@ -71,6 +64,35 @@
         </div>
     </section>    
   </div>  
-
-  
+@endsection
+@section('scripts')
+<script>
+  function onDeleteContent(contentId){
+    $.confirm({
+      title:"Are you sure?",
+      content: 'Please be careful, Content will be deleted permanently from admin. <br> Do you really want to delete this content? ',
+      buttons: {
+        confirm: function () {
+          $.ajax({
+            url: 'content/delete/'+contentId,
+            type:'POST',
+            data:{"_token": "{{ csrf_token() }}"},
+            success:function(data){
+              if(data.status===200){
+                sessionStorage.reloadAfterPageLoad = true;
+                sessionStorage.setItem('message',data.message);
+                window.location.reload();
+              }else if(data.status===403){
+                toastr.error(data.message);
+              }
+            }
+          })
+        },
+        cancel: function () {
+              
+        }
+      }
+    })
+  }
+</script>
 @endsection

@@ -11,7 +11,7 @@ use App\Models\Role;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NewUser;
 
-class UserController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the users.
@@ -20,8 +20,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = Admin::with('role')->get();
-        return view('admins.view')->with('users',$users);
+        $admins = Admin::with('role')->get();
+        return view('admins.view')->with('admins',$admins);
     }
  
     /**
@@ -31,7 +31,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Admin::whereStatus(1)->get();
+        $roles = Role::whereStatus(1)->get();
         return view('admins.create')->with(['roles'=>$roles]);
     }
 
@@ -51,13 +51,13 @@ class UserController extends Controller
                 'message' => 'Success ! User has been created successfully', 
                 'alert-type' => 'success'
             );
-            return redirect()->route('admin.users.create')->with($notification);
+            return redirect()->route('admin.admins.create')->with($notification);
         }else{
             $notification = array(
                 'message' => 'Error ! Something went wrong', 
                 'alert-type' => 'error'
             );
-            return redirect()->route('admin.users.create')->with($notification)->withInput();
+            return redirect()->route('admin.admins.create')->with($notification)->withInput();
         }
     }
 
@@ -67,11 +67,10 @@ class UserController extends Controller
      * @param  User  $user
      * @return view
      */
-    public function edit($id)
+    public function edit(Admin $admin)
     {
-        $admin = Admin::whereId($id)->first();
         $roles = Role::whereStatus(1)->get();
-        return view('admins.edit')->with(['user'=>$admin,'roles'=>$roles]);
+        return view('admins.edit')->with(['admin'=>$admin,'roles'=>$roles]);
     }
 
     /**
@@ -95,7 +94,7 @@ class UserController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('admin.users.edit', $id)
+            return redirect()->route('admin.admins.edit', $id)
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -111,7 +110,7 @@ class UserController extends Controller
             'message' => 'Success ! User has been updated successfully', 
             'alert-type' => 'success'
         );
-        return redirect()->route('admin.users.index')->with($notification);
+        return redirect()->route('admin.admins.index')->with($notification);
     }
 
     /**
@@ -122,7 +121,7 @@ class UserController extends Controller
      */
     public function destroy(Admin $admin)
     {
-        $user->delete();
+        $admin->delete();
         $data = array(
             'status' => 200,
             'message' => 'Success! User has been successfully deleted.'
