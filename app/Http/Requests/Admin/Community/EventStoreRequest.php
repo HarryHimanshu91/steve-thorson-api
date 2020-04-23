@@ -24,6 +24,7 @@ class EventStoreRequest extends FormRequest
     public function rules()
     {
         return [
+            'content_id' => 'required',
             'title_one' => 'required',
             'date_one' => 'required',
             'time_one' => 'required',
@@ -41,6 +42,7 @@ class EventStoreRequest extends FormRequest
     public function messages()
     {
         return [
+            'content_id.required' => 'Oops! Please select content title',
             'title_one.required' => 'Oops! Please enter title of Language 1',
             'date_one.required' => 'Oops! Please enter date of Language 1',
             'time_one.required' => 'Oops! Please enter time of Language 1',
@@ -58,6 +60,7 @@ class EventStoreRequest extends FormRequest
     {
         return [
             'center_id' => $this->get('center_id'),
+            'content_id' => $this->get('content_id'),
             'title_one' => $this->get('title_one'),
             'date_one' => $this->get('date_one'),
             'time_one' => $this->get('time_one'),

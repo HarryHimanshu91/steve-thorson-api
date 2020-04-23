@@ -43,7 +43,7 @@ class ContentController extends Controller
 
         if($content){
             $notification = array(
-                'message' => 'Success ! Content has been added successfully', 
+                'message' => 'Success ! Language 1 Content has been added successfully', 
                 'alert-type' => 'success'
             );
             return redirect()->back()->with($notification);
@@ -68,7 +68,7 @@ class ContentController extends Controller
  
          if($content){
              $notification = array(
-                 'message' => 'Success ! Content has been added successfully', 
+                 'message' => 'Success ! Language 2 Content has been added successfully', 
                  'alert-type' => 'success'
              );
              return redirect()->back()->with($notification);

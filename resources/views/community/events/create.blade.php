@@ -31,6 +31,15 @@
                         <h3 class="card-title">Language 1</h3>
                     </div>
                     <div class="card-body">
+                          <select class="form-control @error('content_id') is-invalid @enderror" placeholder="Select Status" name="content_id">
+                            <option value="">Select Content Title </option>
+                                @foreach($content_title as $title)
+                                    <option value="{{ $title->id }}"> {{ $title->title  }} </option>
+                                @endforeach
+                            </select>
+
+                        <br>
+
                         <input class="form-control @error('title_one') is-invalid @enderror" type="text" name="title_one" value="{{ old('title_one') }}" placeholder="Enter Title">
                         @error('title_one')
                             <span class="invalid-feedback" role="alert">
