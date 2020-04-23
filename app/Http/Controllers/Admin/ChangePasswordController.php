@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreChangePasswordRequest;
 use Illuminate\Http\Request;
-use App\User;
+use App\Admin;
 use Auth;
 
 class ChangePasswordController extends Controller

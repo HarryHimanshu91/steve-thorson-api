@@ -38,6 +38,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Change Password
     Route::get('change-password', 'ChangePasswordController@index')->name('change-password');
 
+    // Update Change Password
+    Route::post('change-password', 'ChangePasswordController@updatePassword')->name('change-password');
     
     // Content Route
     // Route::resource('content','ContentController');
