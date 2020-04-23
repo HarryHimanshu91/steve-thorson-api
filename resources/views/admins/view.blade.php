@@ -14,7 +14,7 @@
                       <h3 class="card-title">Admin List</h3>
                   </div>
                   <div class="col-6 text-right">
-                      <a href="{{ route('admin.users.create') }}" class="btn btn-primary btn-small">Add Admin</a>
+                      <a href="{{ route('admin.admins.create') }}" class="btn btn-primary btn-small">Add Admin</a>
                   </div>
               </div> 
             </div>
@@ -34,19 +34,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                   @foreach($users as $user)
+                   @foreach($admins as $admin)
                     <tr>
-                        <td>{{ $user->id }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->role['name'] }}</td>
-                        <td class="{{ $user->status ? 'text-success text-bold' : 'text-danger text-bold'}}">{{ $user->status ? 'Active' : 'Inactive' }}</td>
-                        <td>{{ $user->created_at }}</td>
-                        <td>{{ $user->updated_at }}</td>
+                        <td>{{ $admin->id }}</td>
+                        <td>{{ $admin->email }}</td>
+                        <td>{{ $admin->name }}</td>
+                        <td>{{ $admin->role['name'] }}</td>
+                        <td class="{{ $admin->status ? 'text-success text-bold' : 'text-danger text-bold'}}">{{ $admin->status ? 'Active' : 'Inactive' }}</td>
+                        <td>{{ $admin->created_at }}</td>
+                        <td>{{ $admin->updated_at }}</td>
                         <td>
                           <div class="btn-group btn-group-sm">
-                            <a title="Edit" href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                            <a title="Delete" href="javascript:void(0)" onclick="onDeleteUser({{ $user->id }})" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                            <a title="Edit" href="{{ route('admin.admins.edit', $admin->id) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                            <a title="Delete" href="javascript:void(0)" onclick="onDeleteAdmin({{ $admin->id }})" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                           </div>
                         </td>
                     </tr>
@@ -60,4 +60,35 @@
         </div>
     </section>    
   </div>  
+@endsection
+@section('scripts')
+<script>
+  function onDeleteAdmin(adminId){
+    $.confirm({
+      title:"Are you sure?",
+      content: 'Please be careful, Admin user will be deleted permanently from admin. <br> Do you really want to delete this user? ',
+      buttons: {
+        confirm: function () {
+          $.ajax({
+            url: 'admins/'+adminId,
+            type:'DELETE',
+            data:{"_token": "{{ csrf_token() }}"},
+            success:function(data){
+              if(data.status===200){
+                sessionStorage.reloadAfterPageLoad = true;
+                sessionStorage.setItem('message',data.message);
+                window.location.reload();
+              }else if(data.status===403){
+                toastr.error(data.message);
+              }
+            }
+          })
+        },
+        cancel: function () {
+              
+        }
+      }
+    })
+  }
+</script>
 @endsection

@@ -38,12 +38,12 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="{{ route('admin.users.index') }}" class="nav-link {{ request()->segment('2') == 'users' && request()->segment('3') == '' ? 'active' : '' }}">
+                    <a href="{{ route('admin.admins.index') }}" class="nav-link {{ request()->segment('2') == 'users' && request()->segment('3') == '' ? 'active' : '' }}">
                         <p>View</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.users.create') }}" class="nav-link {{ request()->segment('2') == 'users' && request()->segment('3') == 'create' ? 'active' : '' }}">
+                    <a href="{{ route('admin.admins.create') }}" class="nav-link {{ request()->segment('2') == 'users' && request()->segment('3') == 'create' ? 'active' : '' }}">
                         <p>Add</p>
                     </a>
                 </li>

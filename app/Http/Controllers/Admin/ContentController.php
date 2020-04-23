@@ -150,11 +150,11 @@ class ContentController extends Controller
     {
         $content = Content::find($id);
         $content->delete();
-        $notification = array(
-            'message' => 'Success ! Content has been Deleted successfully', 
-            'alert-type' => 'success'
+        $data = array(
+            'status' => 200,
+            'message' => 'Success! Content has been successfully deleted.'
         );
-        return redirect()->back()->with($notification);
+        return response()->json($data, 200);
     }
     
 

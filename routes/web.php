@@ -31,13 +31,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('roles','RoleController')->except([
         'show','destroy'
     ]);
-    Route::resource('users','UserController')->except([
+    Route::resource('admins','AdminController')->except([
         'show'
     ]);
 
     // Change Password
     Route::get('change-password', 'ChangePasswordController@index')->name('change-password');
 
+    // Update Change Password
+    Route::post('change-password', 'ChangePasswordController@updatePassword')->name('change-password');
     
     // Content Route
     // Route::resource('content','ContentController');
