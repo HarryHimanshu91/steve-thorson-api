@@ -33,14 +33,14 @@
 
                          <div class="form-group">
                             <label>Select Category </label>
-                            <select class="form-control @error('cat_name') is-invalid @enderror" placeholder="Select Status" name="cat_name">
+                            <select class="form-control {{ $errors->language1->first('cat_name') ? 'is-invalid':'' }}" placeholder="Select Status" name="cat_name">
                                 <option value="">Select Category</option>
                                 <option value="Category A"{{ (old('cat_name')=='Category A') ? 'selected' : '' }}> Category A </option>
                                 <option value="Category B"{{ (old('cat_name')=='Category B') ? 'selected' : '' }}> Category B </option>
                                 <option value="Category C"{{ (old('cat_name')=='Category C') ? 'selected' : '' }}> Category C </option>
 
                             </select>
-                            {!! $errors->language1->first('cat_name', '<span class="err-block"> <strong>:message </strong></span>') !!}
+                            {!! $errors->language1->first('cat_name', '<span class="invalid-feedback"> <strong>:message </strong></span>') !!}
                         </div>
 
                         <div class="form-group">

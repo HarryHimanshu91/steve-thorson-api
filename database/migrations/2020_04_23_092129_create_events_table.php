@@ -17,6 +17,7 @@ class CreateEventsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('center_id');
             $table->unsignedBigInteger('content_id');
+            $table->foreign('content_id')->references('id')->on('contents');
             $table->string('title_one');
             $table->string('date_one');
             $table->string('time_one');

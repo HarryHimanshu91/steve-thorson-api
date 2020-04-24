@@ -37,6 +37,11 @@
     span.languagestyles { margin-left: 20px; font-weight: bold; color: #007bff; }
     .card-header.languagess {background-color: #007bff; color: #fff; }
     span.err-block { color: #dc3545; }
+    .card-header.customstyle {
+        background-color: #fff;
+        color: #000;
+        border: 1px solid #ccc;
+    }
 
     </style>
   </head>

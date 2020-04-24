@@ -44,6 +44,7 @@ class CommunityController extends Controller
    public function createevent($id)
    { 
        $events = Event::whereCenterId($id)->get();
+      // dd($events);
        $content_title = DB::table('contents')->select('id','title')->get();
        return view('community.events.create',compact('id','events','content_title'));
    }
