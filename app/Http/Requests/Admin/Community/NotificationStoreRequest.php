@@ -24,11 +24,11 @@ class NotificationStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'title_one' => 'required',
+            'title_one' => 'required|max:160',
             'date_one' => 'required',
             'time_one' => 'required',
             'description_one' => 'required',
-            'title_second' => 'required',
+            'title_second' => 'required|max:160',
             'date_second' => 'required',
             'time_second' => 'required',
             'description_second' => 'required',
@@ -40,10 +40,12 @@ class NotificationStoreRequest extends FormRequest
     {
         return [
             'title_one.required' => 'Oops! Please enter title of Language 1',
+            'title_one.max' => 'Oops! The title may not be greater than 160 characters',
             'date_one.required' => 'Oops! Please enter date of Language 1',
             'time_one.required' => 'Oops! Please enter time of Language 1',
             'description_one.required' => 'Oops! Please enter description of Language 1',
             'title_second.required' => 'Oops! Please enter title of Language 2',
+            'title_second.max' => 'Oops! The title may not be greater than 160 characters',
             'date_second.required' => 'Oops! Please enter date of Language 2',
             'time_second.required' => 'Oops! Please enter time of Language 2',
             'description_second.required' => 'Oops! Please enter description of Language 2',

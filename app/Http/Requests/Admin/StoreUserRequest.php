@@ -14,7 +14,7 @@ class StoreUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string',
+            'name' => 'required|max:160|string',
             'email' => 'required|unique:admins,email|email',
             'role' => 'required',
             'status' => 'required'
@@ -31,6 +31,7 @@ class StoreUserRequest extends FormRequest
     {
         return [
             'name.required' => 'Oops! Please enter name.',
+            'name.max' => 'Oops! The name may not be greater than 160 characters',
             'email.required' => "Oops! Please enter email address.",
             'email.email' => "Oops! Please enter valid email address.",
             'email.unique' => "Oops! The enter email address is already exists.",

@@ -83,11 +83,12 @@ class AdminController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string',
+            'name' => 'required|max:160|string',
             'email' => ['required','email','unique:admins,email,'.$id]
         ],
         [
             'name.required' => 'Oops! Please enter name.',
+            'name.max' => 'Oops! The name may not be greater than 160 characters.',
             'email.required' => "Oops! Please enter email address.",
             'email.email' => "Oops! Please enter valid email address.",
             'email.unique' => "Oops! The enter email address is already exists."

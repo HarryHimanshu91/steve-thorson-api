@@ -33,35 +33,34 @@
 
                          <div class="form-group">
                             <label>Select Category </label>
-                            <select class="form-control @error('cat_name') is-invalid @enderror" placeholder="Select Status" name="cat_name">
+                            <select class="form-control {{ $errors->language1->first('cat_name') ? 'is-invalid' : '' }}" placeholder="Select Category Name" name="cat_name">
                                 <option value="">Select Category</option>
                                 <option value="Category A"{{ (old('cat_name')=='Category A') ? 'selected' : '' }}> Category A </option>
                                 <option value="Category B"{{ (old('cat_name')=='Category B') ? 'selected' : '' }}> Category B </option>
                                 <option value="Category C"{{ (old('cat_name')=='Category C') ? 'selected' : '' }}> Category C </option>
-
                             </select>
-                            {!! $errors->language1->first('cat_name', '<span class="err-block"> <strong>:message </strong></span>') !!}
+                            {!! $errors->language1->first('cat_name', '<span class="invalid-feedback" role="alert"> <strong>:message </strong></span>') !!}
                         </div>
 
                         <div class="form-group">
                             <label>Content Title </label>
-                            <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" placeholder="Enter Category Title">
-                            {!! $errors->language1->first('title', '<span class="err-block"> <strong>:message </strong></span>') !!}
+                            <input type="text" name="title" class="form-control {{ $errors->language1->first('title') ? 'is-invalid' : '' }}" value="{{ old('title') }}" placeholder="Enter Category Title">
+                            {!! $errors->language1->first('title', '<span class="invalid-feedback" role="alert"> <strong>:message </strong></span>') !!}
                         </div>
                         <div class="form-group">
                             <label>Content Description </label>
-                            <textarea  rows="10" name="description" class="textarea form-control @error('description') is-invalid @enderror"> {{ old('description') }}</textarea>
-                            {!! $errors->language1->first('description', '<span class="err-block"> <strong>:message </strong></span>') !!}
+                            <textarea  rows="10" name="description" class="textarea form-control {{ $errors->language1->first('description') ? 'is-invalid' : '' }}"> {{ old('description') }}</textarea>
+                            {!! $errors->language1->first('description', '<span class="invalid-feedback" role="alert"> <strong>:message </strong></span>') !!}
                         </div>
 
                         <div class="form-group">
                             <label>Content Status </label>
-                            <select class="form-control @error('status') is-invalid @enderror" data-placeholder="Select Status" name="status">
+                            <select class="form-control {{ $errors->language1->first('status') ? 'is-invalid' : '' }}" data-placeholder="Select Status" name="status">
                                 <option value="">Select Status</option>
                                 <option value="1" {{ (old('status')=='1') ? "selected":"" }}>Active</option>
                                 <option value="0" {{ (old('status')=='0') ? "selected":"" }}>Inactive</option>
                             </select>
-                            {!! $errors->language1->first('status', '<span class="err-block"> <strong>:message </strong></span>') !!}
+                            {!! $errors->language1->first('status', '<span class="invalid-feedback"> <strong>:message </strong></span>') !!}
                         </div>
                         
                         
@@ -91,35 +90,35 @@
 
                          <div class="form-group">
                             <label>Select Category </label>
-                            <select class="form-control @error('cat_name') is-invalid @enderror" data-placeholder="Select Status" name="cat_name">
+                            <select class="form-control {{ $errors->language2->first('cat_name') ? 'is-invalid' : '' }}" data-placeholder="Select Category Name" name="cat_name">
                                 <option value="">Select Category</option>
                                 <option value="Category A"{{ (old('cat_name')=='Category A') ? 'selected' : '' }}> Category A </option>
                                 <option value="Category B"{{ (old('cat_name')=='Category B') ? 'selected' : '' }}> Category B </option>
                                 <option value="Category C"{{ (old('cat_name')=='Category C') ? 'selected' : '' }}> Category C </option>
 
                             </select>
-                            {!! $errors->language2->first('cat_name', '<span class="err-block"> <strong>:message </strong></span>') !!}
+                            {!! $errors->language2->first('cat_name', '<span class="invalid-feedback"> <strong>:message </strong></span>') !!}
                         </div>
 
                         <div class="form-group">
                             <label>Content Title </label>
-                            <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" placeholder="Enter Category Title">
-                            {!! $errors->language2->first('title', '<span class="err-block"> <strong>:message </strong></span>') !!}
+                            <input type="text" name="title" class="form-control {{ $errors->language2->first('title') ? 'is-invalid' : '' }}" value="{{ old('title') }}" placeholder="Enter Category Title">
+                            {!! $errors->language2->first('title', '<span class="invalid-feedback"> <strong>:message </strong></span>') !!}
                         </div>
                         <div class="form-group">
                             <label>Content Description </label>
-                            <textarea  rows="10" name="description" class="textarea form-control @error('description') is-invalid @enderror"> {{ old('description') }}</textarea>
-                            {!! $errors->language2->first('description', '<span class="err-block"> <strong>:message </strong></span>') !!}
+                            <textarea  rows="10" name="description" class="textarea form-control {{ $errors->language2->first('description') ? 'is-invalid' : '' }}"> {{ old('description') }}</textarea>
+                            {!! $errors->language2->first('description', '<span class="invalid-feedback"> <strong>:message </strong></span>') !!}
                         </div>
 
                         <div class="form-group">
                             <label>Content Status </label>
-                            <select class="form-control @error('status') is-invalid @enderror" data-placeholder="Select Status" name="status">
+                            <select class="form-control {{ $errors->language2->first('status') ? 'is-invalid' : '' }}" data-placeholder="Select Status" name="status">
                                 <option value="">Select Status</option>
                                 <option value="1" {{ (old('status')=='1') ? "selected":"" }}>Active</option>
                                 <option value="0" {{ (old('status')=='0') ? "selected":"" }}>Inactive</option>
                             </select>
-                            {!! $errors->language2->first('status', '<span class="err-block"> <strong>:message </strong></span>') !!}
+                            {!! $errors->language2->first('status', '<span class="invalid-feedback"> <strong>:message </strong></span>') !!}
                         </div>
                         
                         

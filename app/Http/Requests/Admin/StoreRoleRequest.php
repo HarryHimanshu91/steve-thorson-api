@@ -15,7 +15,7 @@ class StoreRoleRequest extends FormRequest
     public function rules()
     {
         return [
-            'role' => 'required|unique:roles,name',
+            'role' => 'required|max:160|unique:roles,name',
             'status' => 'required',
         ];
     }
@@ -30,6 +30,7 @@ class StoreRoleRequest extends FormRequest
     {
         return [
             'role.required' => 'Oops! Please enter role.',
+            'role.max' => 'Oops! The role may not be greater than 160 characters',
             'role.unique' => "Oops! The enter role is already exists.",
             'status.required' => 'Oops! Please select status.'
         ];

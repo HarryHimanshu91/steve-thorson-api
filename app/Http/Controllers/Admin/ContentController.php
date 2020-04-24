@@ -99,13 +99,14 @@ class ContentController extends Controller
     public function updateContent(Request $request , $id)
     {
         $validator = Validator::make($request->all(), [
-            'title' => 'required',
+            'title' => 'required|max:160',
             'description' => 'required',
             'cat_name' => 'required',
             'status' => 'required',
         ],
         [
             'title.required' => 'Oops! Please enter content title.',
+            'title.max' => 'Oops! The title may not be greater than 160 characters.',
             'description.required' => "Oops! Please enter content description.",
             'status.required' => 'Oops! Please select content status.'
         ]);

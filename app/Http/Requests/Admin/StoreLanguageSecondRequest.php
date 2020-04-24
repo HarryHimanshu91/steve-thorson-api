@@ -26,7 +26,7 @@ class StoreLanguageSecondRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
+            'title' => 'required|max:160',
             'description' => 'required',
             'cat_name' => 'required',
             'status' => 'required',
@@ -38,6 +38,7 @@ class StoreLanguageSecondRequest extends FormRequest
     {
         return [
             'title.required' => 'Oops! Please enter content title.',
+            'title.max' => 'Oops! The title may not be greater than 160 characters.',
             'description.required' => "Oops! Please enter content description.",
             'cat_name.required' => 'Oops! Please select category.',
             'status.required' => 'Oops! Please select content status.'

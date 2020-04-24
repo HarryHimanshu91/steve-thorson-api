@@ -77,11 +77,13 @@ class RoleController extends Controller
     public function update(Request $request, Role $role)
     {
         $validator = Validator::make($request->all(), [
-            'role' => ['required','unique:roles,name,'.$role->id],
+            'role' => ['required','max:160','unique:roles,name,'.$role->id],
             'status' => ['required']
         ],
         [
             'role.required' => 'Oops! Please enter role.',
+            'role.unique' => 'Oops! The enter role is already exists.',
+            'role.max' => 'Oops! The role may not be greater than 160 characters.',
             'status.required' => 'Oops! Please select status'
         ]);
 

@@ -18,6 +18,7 @@ class AdminsTableSeeder extends Seeder
             'role_id' => '1',
             'email' => 'aiden.aman@ithands.com',
             'password' => Hash::make('password'),
+            'status' => 1,
             'created_at' => now(),
             'updated_at' => now()
         ]);
