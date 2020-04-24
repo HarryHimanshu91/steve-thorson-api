@@ -33,13 +33,21 @@
 
                          <div class="form-group">
                             <label>Select Category </label>
+<<<<<<< HEAD
                             <select class="form-control {{ $errors->language1->first('cat_name') ? 'is-invalid' : '' }}" placeholder="Select Category Name" name="cat_name">
+=======
+                            <select class="form-control {{ $errors->language1->first('cat_name') ? 'is-invalid':'' }}" placeholder="Select Status" name="cat_name">
+>>>>>>> 83bf9d83e46fa50aee0aea1d7623430650eb6e5d
                                 <option value="">Select Category</option>
                                 <option value="Category A"{{ (old('cat_name')=='Category A') ? 'selected' : '' }}> Category A </option>
                                 <option value="Category B"{{ (old('cat_name')=='Category B') ? 'selected' : '' }}> Category B </option>
                                 <option value="Category C"{{ (old('cat_name')=='Category C') ? 'selected' : '' }}> Category C </option>
                             </select>
+<<<<<<< HEAD
                             {!! $errors->language1->first('cat_name', '<span class="invalid-feedback" role="alert"> <strong>:message </strong></span>') !!}
+=======
+                            {!! $errors->language1->first('cat_name', '<span class="invalid-feedback"> <strong>:message </strong></span>') !!}
+>>>>>>> 83bf9d83e46fa50aee0aea1d7623430650eb6e5d
                         </div>
 
                         <div class="form-group">

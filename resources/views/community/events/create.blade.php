@@ -23,10 +23,23 @@
     <div class="col-12">
         <form class="row" method="post" action="{{ route('admin.community.events.store') }}"> 
             @csrf  
-            <input type="hidden" name="center_id" value="{{ $id }}">       
+            <input type="hidden" name="center_id" value="{{ $id }}">   
+             <div class="col-12 mb-3">
+                    <select class="form-control @error('content_id') is-invalid @enderror" placeholder="Select Status" name="content_id">
+                      <option value="">Select Content Title </option>
+                       @foreach($content_title as $title)
+                       <option value="{{ $title->id }}"> {{ $title->title  }} </option>
+                       @endforeach
+                    </select>
+                    @error('content_id')
+                      <span class="invalid-feedback" role="alert">
+                         <strong>{{ $message }}</strong>
+                     </span>
+                    @enderror
+            </div>    
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header languagess">
+                    <div class="card-header customstyle">
                         <h3 class="card-title">Language 1</h3>
                     </div>
                     <div class="card-body">
@@ -74,7 +87,7 @@
             </div>
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header languagess">
+                    <div class="card-header customstyle">
                         <h3 class="card-title">Language 2 </h3>
                     </div>
                     <div class="card-body">
@@ -121,27 +134,26 @@
                             
             </div>  
             
-            <div class="col-md-6">
-                <input class="form-control form-control  @error('tracking_code') is-invalid @enderror" name="tracking_code" type="text" placeholder="Tracking Code" value="{{ old('tracking_code') }}">
-                @error('tracking_code')
-                    <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>  
-            <div class="col-md-6">
-            
-                <select class="form-control form-control @error('unlock_content') is-invalid @enderror" name="unlock_content">
-                <option value=""> Select to Unlock Content  </option>
-                <option value="1"{{ (old('unlock_content')=='1') ? 'selected' : '' }}> Yes </option>
-                <option value="0"{{ (old('unlock_content')=='0') ? 'selected' : '' }}> No </option>
-                
-                </select>
-                @error('unlock_content')
-                    <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+                <div class="col-md-6">
+                    <input class="form-control form-control  @error('tracking_code') is-invalid @enderror" name="tracking_code" type="text" placeholder="Tracking Code" value="{{ old('tracking_code') }}">
+                    @error('tracking_code')
+                        <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div> 
+                <div class="col-md-6">            
+                    <select class="form-control form-control @error('unlock_content') is-invalid @enderror" name="unlock_content">
+                        <option value=""> Select to Unlock Content  </option>
+                        <option value="1"{{ (old('unlock_content')=='1') ? 'selected' : '' }}> Yes </option>
+                        <option value="0"{{ (old('unlock_content')=='0') ? 'selected' : '' }}> No </option>
+                    </select>
+                    @error('unlock_content')
+                        <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
             </div>                
 
             <div class="col-12 col-sm-12 col-lg-12 mt-3">

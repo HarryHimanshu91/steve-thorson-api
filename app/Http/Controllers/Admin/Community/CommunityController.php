@@ -8,6 +8,8 @@ use App\Models\Community;
 use App\User;
 use App\Models\Event;
 use App\Models\Notification;
+use App\Models\Content;
+use Illuminate\Support\Facades\DB;
 
 
 class CommunityController extends Controller
@@ -42,7 +44,9 @@ class CommunityController extends Controller
    public function createevent($id)
    { 
        $events = Event::whereCenterId($id)->get();
-       return view('community.events.create',compact('id','events'));
+      // dd($events);
+       $content_title = DB::table('contents')->select('id','title')->get();
+       return view('community.events.create',compact('id','events','content_title'));
    }
    
    

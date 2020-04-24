@@ -24,7 +24,8 @@ class EventStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'title_one' => 'required|max:160',
+            'content_id' => 'required',
+            'title_one' => 'required',
             'date_one' => 'required',
             'time_one' => 'required',
             'description_one' => 'required',
@@ -41,6 +42,7 @@ class EventStoreRequest extends FormRequest
     public function messages()
     {
         return [
+            'content_id.required' => 'Oops! Please select content title',
             'title_one.required' => 'Oops! Please enter title of Language 1',
             'title_one.max' => 'Oops! The title may not be greater than 160 characters',
             'date_one.required' => 'Oops! Please enter date of Language 1',
@@ -60,6 +62,7 @@ class EventStoreRequest extends FormRequest
     {
         return [
             'center_id' => $this->get('center_id'),
+            'content_id' => $this->get('content_id'),
             'title_one' => $this->get('title_one'),
             'date_one' => $this->get('date_one'),
             'time_one' => $this->get('time_one'),
