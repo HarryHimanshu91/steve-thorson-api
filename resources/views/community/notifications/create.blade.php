@@ -30,36 +30,45 @@
                 <div class="card-header languagess">
                      <h3 class="card-title">Language 1</h3>
                 </div>
-                 <div class="card-body">
-                                   <input class="form-control @error('title_one') is-invalid @enderror" type="text" name="title_one" value="{{ old('title_one') }}" placeholder="Enter Title">
-                                    @error('title_one')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                    <br>
-                                    <input class="form-control @error('date_one') is-invalid @enderror" type="date" name="date_one" value="{{ old('date_one') }}" placeholder="Choose Date">
-                                    @error('date_one')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                    <br>
-                                    <input class="form-control @error('time_one') is-invalid @enderror" type="time" name="time_one" value="{{ old('time_one') }}" placeholder="Choose Time">
-                                    @error('time_one')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                    <br>
-                                    <textarea class="form-control @error('description_one') is-invalid @enderror" name="description_one" rows="5" placeholder="Enter Description">{{ old('description_one') }}</textarea>
-                                    @error('description_one')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                 </div>
-                                         
+                <div class="card-body">
+                    <div class="form-group">
+                        <input class="form-control @error('title_one') is-invalid @enderror" type="text" name="title_one" value="{{ old('title_one') }}" placeholder="Enter Title">
+                        @error('title_one')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control date @error('date_one') is-invalid @enderror"  data-provide="datepicker" name="date_one" value="{{ old('date_one') }}" placeholder="Choose Date">
+                        @error('date_one')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group date" id="timepicker" data-target-input="nearest">
+                            <input type="text" class="form-control  @error('time_one') is-invalid @enderror datetimepicker-input" data-target="#timepicker" placeholder="Choose Time" name="time_one" value="{{ old('time_one') }}">
+                            <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="far fa-clock"></i></div>
+                            </div>
+                        </div>
+                        @error('time_one')
+                            <span class="invalid-feedback" role="alert" style="display:block">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control @error('description_one') is-invalid @enderror" name="description_one" rows="5" placeholder="Enter Description">{{ old('description_one') }}</textarea>
+                        @error('description_one')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>                                         
             </div>
           </div>
           <div class="col-md-6">
@@ -68,33 +77,43 @@
                      <h3 class="card-title">Language 2</h3>
                 </div>
                  <div class="card-body">
-                 <input class="form-control @error('title_second') is-invalid @enderror" type="text" name="title_second" value="{{ old('title_second') }}" placeholder="Enter Title">
-                                    @error('title_second')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                    <br>
-                                    <input class="form-control @error('date_second') is-invalid @enderror" type="date" name="date_second" value="{{ old('date_second') }}" placeholder="Choose Date">
-                                    @error('date_second')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                    <br>
-                                    <input class="form-control @error('time_second') is-invalid @enderror" type="time" name="time_second" value="{{ old('time_second') }}" placeholder="Choose Time">
-                                    @error('time_second')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                    <br>
-                                    <textarea class="form-control @error('description_second') is-invalid @enderror" name="description_second" rows="5" placeholder="Enter Description"> {{ old('description_second') }} </textarea>
-                                    @error('description_second')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                    <div class="form-group">
+                        <input class="form-control @error('title_second') is-invalid @enderror" type="text" name="title_second" value="{{ old('title_second') }}" placeholder="Enter Title">
+                        @error('title_second')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control date @error('date_second') is-invalid @enderror"  data-provide="datepicker" name="date_second" value="{{ old('date_second') }}" placeholder="Choose Date">
+                        @error('date_second')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group date" id="timepicker1" data-target-input="nearest">
+                            <input type="text" class="form-control  @error('time_second') is-invalid @enderror datetimepicker-input" data-target="#timepicker1" placeholder="Choose Time" name="time_second" value="{{ old('time_second') }}">
+                            <div class="input-group-append" data-target="#timepicker1" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="far fa-clock"></i></div>
+                            </div>
+                        </div>
+                        @error('time_second')
+                            <span class="invalid-feedback" role="alert" style="display:block">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control @error('description_second') is-invalid @enderror" name="description_second" rows="5" placeholder="Enter Description">{{ old('description_second') }}</textarea>
+                        @error('description_second')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
                  </div>
                                          
             </div>
@@ -153,4 +172,21 @@
         </div>
     </section>    
   </div>  
+@endsection
+@section('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+<script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
+<script src="{{ asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#timepicker').datetimepicker({
+            format: 'LT'
+        });
+    });
+    $(function () {
+        $('#timepicker1').datetimepicker({
+            format: 'LT'
+        });
+    });
+</script>
 @endsection
