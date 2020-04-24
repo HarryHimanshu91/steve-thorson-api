@@ -28,7 +28,7 @@
                     <select class="form-control @error('content_id') is-invalid @enderror" placeholder="Select Status" name="content_id">
                       <option value="">Select Content Title </option>
                        @foreach($content_title as $title)
-                       <option value="{{ $title->id }}"> {{ $title->title  }} </option>
+                       <option value="{{ $title->id }}" {{ (old('content_id')== $title->id ) ? 'selected' : '' }}> {{ $title->title  }} </option>
                        @endforeach
                     </select>
                     @error('content_id')
