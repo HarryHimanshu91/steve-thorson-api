@@ -21,7 +21,7 @@
                   @include('community.communityNavbar')
 
 <div class="container">
-    <form  method="post" action="{{ route('admin.community.notification.store') }}">
+    <form  method="post" action="{{ route('admin.community.notifications.store') }}">
        @csrf    
        <input type="hidden" name="center_id" value="{{ $id }}">  
         <div class="row">     
@@ -127,8 +127,9 @@
     </form> 
 
     <hr class="topborderline">
-<!--Events Listing-->
-    <div class="row"> 
+
+</div>   
+<div class="row"> 
             <div class="col-12">
                 <h5 class="mt-4 mb-4" >  Notification Listing </h5>
                 <table id="example2" class="table table-bordered table-hover dataTable" >
@@ -137,10 +138,9 @@
                             <th> ID </th>
                             <th> Title </th>
                             <th> Date/Time</th>
-                            <th> Description</th>
                             <th> Title </th>
                             <th> Date/Time </th>
-                            <th> Description</th>
+                            <th> Action </th>
                            
                         </tr>
                     </thead>
@@ -151,10 +151,13 @@
                             <td>{{ $i++ }}</td>
                             <td>{{ $notification->title_one }}</td>
                             <td>{{ $notification->date_one }} - {{ $notification->time_one }} </td>
-                            <td>{{ $notification->description_one }}</td>
                             <td>{{ $notification->title_second }}</td>
                             <td>{{ $notification->date_second }} - {{ $notification->time_second }} </td>
-                            <td>{{ $notification->description_second }}</td>
+                           <td>
+                           <div class="btn-group btn-group-sm">
+                             <a href="{{ route('admin.community.notifications.show', $notification->id ) }}" class="btn btn-info"><i class="fa fa-eye"></i></a>
+                           </div>
+                           </td>
                            
                          </tr>
                        @endforeach         
@@ -163,8 +166,6 @@
             </div>
     
     </div>
-<!--Events End------>
-</div>             
 </div>
             <!-- /.card-body -->
           </div>

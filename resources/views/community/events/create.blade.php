@@ -162,11 +162,8 @@
                 </div>
             </div>               
         </form>          
-     </div>             
-</div>
-
-<hr class="topborderline">
-<!--Events Listing-->
+     </div> 
+     <hr class="topborderline">
     <div class="row"> 
             <div class="col-12">
                 <h5 class="mt-4 mb-4" >  Events Listing </h5>
@@ -176,12 +173,11 @@
                             <th> ID </th>
                             <th> Title </th>
                             <th> Date/Time</th>
-                            <th> Description</th>
                             <th> Title </th>
                             <th> Date/Time </th>
-                            <th> Description</th>
                             <th> Tracking Code </th>
                             <th> Unlock Content </th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -191,13 +187,16 @@
                             <td>{{ $i++ }}</td>
                             <td>{{ $event->title_one }}</td>
                             <td>{{ $event->date_one }} - {{ $event->time_one }} </td>
-                            <td>{{ $event->description_one }}</td>
                             <td>{{ $event->title_second }}</td>
                             <td>{{ $event->date_second }} - {{ $event->time_second }} </td>
-                            <td>{{ $event->description_second }}</td>
                             <td>{{ $event->tracking_code }}</td>
                             <td class="{{ $event->unlock_content ? 'text-success text-bold' : 'text-danger text-bold'}}">
-                            {{ $event->unlock_content? "Yes" : "No" }}
+                                {{ $event->unlock_content? "Yes" : "No" }}
+                            </td>
+                            <td>
+                                <div class="btn-group btn-group-sm">
+                                    <a title="View" href="{{ route('admin.community.events.show', $event->id) }}" class="btn btn-info"><i class="fa fa-eye"></i></a>
+                                </div>
                             </td>
                          </tr>
                        @endforeach         
@@ -205,8 +204,10 @@
                 </table> 
             </div>
     
-    </div>
-<!--Events End------>
+    </div>        
+</div>
+  
+
             </div>
             <!-- /.card-body -->
           </div>

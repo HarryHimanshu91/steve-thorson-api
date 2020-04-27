@@ -69,7 +69,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
         Route::get('/notification/{id?}','CommunityController@createnotification')->name('createnotification');
         Route::get('/prompt/{id?}','CommunityController@prompt')->name('prompt');  
         Route::resource('events','EventController');
-        Route::resource('notification','NotificationController');
+        Route::resource('notifications','NotificationController');
         
    
     });

@@ -31,7 +31,7 @@ class NotificationController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a notification in Database.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -56,14 +56,16 @@ class NotificationController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified notification.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function show($id)
     {
-        //
+        $notifications = Notification::with('community')-> where('id',$id)->first();
+        return view('community.notifications.show',compact('notifications'));
     }
 
     /**
@@ -84,6 +86,7 @@ class NotificationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, $id)
     {
         //

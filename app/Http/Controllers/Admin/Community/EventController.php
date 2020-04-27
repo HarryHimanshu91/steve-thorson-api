@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\Admin\Community\EventStoreRequest;
 use Illuminate\Http\Request;
 use App\Models\Event;
+// use App\Models\Content;
 
 
 class EventController extends Controller
@@ -63,9 +64,11 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
     public function show($id)
     {
-        //
+         $events = Event::whereId($id)->with('contents','community')->first();
+         return view('community.events.show',compact('events'));
     }
 
     /**
