@@ -45,10 +45,11 @@ class MapDataImport implements ToModel, WithHeadingRow, WithValidation
     public function rules(): array
     {
         return [
-            'name' => [
-                'required',
-                 Rule::unique('map_data', 'name')
-            ],
+            'name' => ['required','unique:map_data,name'],
+            'category' => ['required'],
+            'description' => ['required'],
+            'latitude' => ['required'],
+            'longitude' => ['required']
         ];
     }
 
@@ -58,8 +59,12 @@ class MapDataImport implements ToModel, WithHeadingRow, WithValidation
     public function customValidationMessages()
     {
         return [
-            'name.required' => 'Oops! the name field in the file is not exist.',
+            'name.required' => 'Oops! the name field is required.',
             'name.unique' => 'Oops! the name field in the file is already exist.',
+            'category.required' => 'Oops! the category field is required.',
+            'description.required' => 'Oops! the description field is required.',
+            'latitude.required' => 'Oops! the latitude field is required.',
+            'longitude.required' => 'Oops! the longitude field is required.'
         ];
     }
 }
