@@ -80,14 +80,16 @@ class CommunityController extends Controller
             );
             return redirect()->back()->with($notification);
         }catch(\MaatWebsite\Excel\Validators\ValidationException $e){
+            $errStr = '';
             foreach($e->failures() as $failure){
                 foreach($failure->errors() as $error){
-                    $notification = array(
-                        'message' => $error, 
-                        'alert-type' => 'error'
-                    );
+                    $errStr .= $error."<br>";
                 }
             }
+            $notification = array(
+                'message' => $errStr, 
+                'alert-type' => 'error'
+            );
             return redirect()->back()->with($notification);
         }
     }

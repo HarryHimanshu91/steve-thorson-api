@@ -202,7 +202,7 @@
                     break;
 
                 case 'error':
-                    toastr.error("{{ Session::get('message') }}");
+                    toastr.error("{!! Session::get('message') !!}");
                     break;
             }
         @endif
