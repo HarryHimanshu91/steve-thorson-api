@@ -41,14 +41,14 @@ class NotificationStoreRequest extends FormRequest
         return [
             'title_one.required' => 'Oops! Please enter title of Language 1',
             'title_one.max' => 'Oops! The title may not be greater than 160 characters',
-            'date_one.required' => 'Oops! Please enter date of Language 1',
-            'time_one.required' => 'Oops! Please enter time of Language 1',
-            'description_one.required' => 'Oops! Please enter description of Language 1',
-            'title_second.required' => 'Oops! Please enter title of Language 2',
+            'date_one.required' => 'Oops! Please enter date of English Language',
+            'time_one.required' => 'Oops! Please enter time of English Language',
+            'description_one.required' => 'Oops! Please enter description of English Language',
+            'title_second.required' => 'Oops! Please enter title of Swahili Language',
             'title_second.max' => 'Oops! The title may not be greater than 160 characters',
-            'date_second.required' => 'Oops! Please enter date of Language 2',
-            'time_second.required' => 'Oops! Please enter time of Language 2',
-            'description_second.required' => 'Oops! Please enter description of Language 2',
+            'date_second.required' => 'Oops! Please enter date of Swahili Language',
+            'time_second.required' => 'Oops! Please enter time of Swahili Language',
+            'description_second.required' => 'Oops! Please enter description of Swahili Language',
         ];
     }
 
