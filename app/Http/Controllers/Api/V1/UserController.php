@@ -48,13 +48,13 @@ class UserController extends Controller
                 
                 $fileName = time().'.'.$request->image->getClientOriginalExtension();
                 $path = asset('/uploads/profiles/'.$fileName);
-                $request->image->move(public_path('uploads'), '/profiles/'.$fileName);
+                $request->image->move(public_path('uploads/profiles/'), '/profiles/'.$fileName);
 
                 User::find($user->id)->update([
                     'profile_path' => $path
                 ]);
 
-                $user = User::find($user->id)->with('region','center')->first();
+                $user = User::whereId($user->id)->with('region','center')->first();
                 $tokenResult = $user->createToken(env('APP_NAME'));
                 $token = $tokenResult->token;
                 $token->expires_at = Carbon::now()->addWeeks(1);
