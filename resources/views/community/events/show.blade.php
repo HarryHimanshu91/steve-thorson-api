@@ -7,14 +7,19 @@
     <section class="content">
       <div class="row">
         <div class="col-12"> 
-         
           <div class="card">
             <div class="card-header">
-              <div class="row align-items-center">
-                 <div class="col-12 mb-4 pl-2"> 
-                 <p class="text-muted text-left mb-0"> <b> {{ $events ->contents->title }} </b> </p>
-                 <p class="text-muted text-left mb-0"><b> Community - {{ $events ->community->title }} </b></p>
+                  <div class="row align-items-center mb-4">
+                    <div class="col-8">
+                      <p class="text-muted text-left mb-0"> <b> {{ $events ->contents->title }} </b> </p>
+                      <p class="text-muted text-left mb-0"><b> Community - {{ $events ->community->title }} </b></p>
+                    </div>
+                  <div class="col-4 text-right">
+                      <a href="{{ route('admin.community.createevent',['id'=>$communityId ]) }}" class="btn btn-primary btn-small">Back</a>
                   </div>
+                </div>
+
+                <div class="row align-items-center">
                  <div class="col-md-6">    
                     <div class="card">
                                 <div class="card-header">

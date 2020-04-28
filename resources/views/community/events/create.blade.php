@@ -21,10 +21,10 @@
 
 <div class="row">
     <div class="col-12">
-        <form class="row" method="post" action="{{ route('admin.community.events.store') }}"> 
+        <form class="row" method="post" action="{{ route('admin.community.saveEvent') }}"> 
             @csrf  
             <input type="hidden" name="center_id" value="{{ $id }}">   
-             <div class="col-12 mb-3">
+            <div class="col-12 mb-3">
                     <select class="form-control @error('content_id') is-invalid @enderror" placeholder="Select Status" name="content_id">
                       <option value="">Select Content Title </option>
                        @foreach($content_title as $title)
@@ -36,7 +36,7 @@
                          <strong>{{ $message }}</strong>
                      </span>
                     @enderror
-            </div>    
+            </div> 
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header customstyle">
@@ -164,7 +164,7 @@
         </form>          
      </div> 
      <hr class="topborderline">
-    <div class="row"> 
+     <div class="row"> 
             <div class="col-12">
                 <h5 class="mt-4 mb-4" >  Events Listing </h5>
                 <table id="example2" class="table table-bordered table-hover dataTable" >
@@ -195,7 +195,7 @@
                             </td>
                             <td>
                                 <div class="btn-group btn-group-sm">
-                                    <a title="View" href="{{ route('admin.community.events.show', $event->id) }}" class="btn btn-info"><i class="fa fa-eye"></i></a>
+                                    <a title="View" href="{{ route('admin.community.listEvent', ['id'=>$event->id ,'cId'=> $event->center_id ]) }}" class="btn btn-info"><i class="fa fa-eye"></i></a>
                                 </div>
                             </td>
                          </tr>
@@ -204,7 +204,7 @@
                 </table> 
             </div>
     
-    </div>        
+    </div>   
 </div>
   
 

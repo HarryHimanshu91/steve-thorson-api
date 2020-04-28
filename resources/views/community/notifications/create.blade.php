@@ -21,7 +21,7 @@
                   @include('community.communityNavbar')
 
 <div class="container">
-    <form  method="post" action="{{ route('admin.community.notifications.store') }}">
+    <form  method="post" action="{{ route('admin.community.saveNotification') }}">
        @csrf    
        <input type="hidden" name="center_id" value="{{ $id }}">  
         <div class="row">     
@@ -129,6 +129,7 @@
     <hr class="topborderline">
 
 </div>   
+
 <div class="row"> 
             <div class="col-12">
                 <h5 class="mt-4 mb-4" >  Notification Listing </h5>
@@ -155,7 +156,7 @@
                             <td>{{ $notification->date_second }} - {{ $notification->time_second }} </td>
                            <td>
                            <div class="btn-group btn-group-sm">
-                             <a href="{{ route('admin.community.notifications.show', $notification->id ) }}" class="btn btn-info"><i class="fa fa-eye"></i></a>
+                             <a href="{{ route('admin.community.listNotification', ['id'=>$notification->id ,'cId'=> $notification->center_id ] ) }}" class="btn btn-info"><i class="fa fa-eye"></i></a>
                            </div>
                            </td>
                            
@@ -167,6 +168,7 @@
     
     </div>
 </div>
+
             <!-- /.card-body -->
           </div>
           <!-- /.col12 -->
