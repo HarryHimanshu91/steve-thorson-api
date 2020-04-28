@@ -23,7 +23,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header languagess">
-                        <h3 class="card-title">Language 1</h3>
+                        <h3 class="card-title">English Language</h3>
                     </div>
                     <div class="card-body">
                       <form method="post" action="{{ route('admin.saveContent1') }}">
@@ -34,9 +34,10 @@
                             <label>Select Category </label>
                             <select class="form-control {{ $errors->language1->first('cat_name') ? 'is-invalid' : '' }}" placeholder="Select Category Name" name="cat_name">
                                 <option value="">Select Category</option>
-                                <option value="Category A"{{ (old('cat_name')=='Category A') ? 'selected' : '' }}> Category A </option>
-                                <option value="Category B"{{ (old('cat_name')=='Category B') ? 'selected' : '' }}> Category B </option>
-                                <option value="Category C"{{ (old('cat_name')=='Category C') ? 'selected' : '' }}> Category C </option>
+                                <option value="Economic"{{ (old('cat_name')=='Economic') ? 'selected' : '' }}>Economic</option>
+                                <option value="Spiritual"{{ (old('cat_name')=='Spiritual') ? 'selected' : '' }}>Spiritual</option>
+                                <option value="Health"{{ (old('cat_name')=='Health') ? 'selected' : '' }}>Health</option>
+                                <option value="Emotional"{{ (old('cat_name')=='Emotional') ? 'selected' : '' }}>Emotional</option>
                             </select>
                             {!! $errors->language1->first('cat_name', '<span class="invalid-feedback" role="alert"> <strong>:message </strong></span>') !!}
                         </div>
@@ -80,7 +81,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header languagess">
-                        <h3 class="card-title">Language 2</h3>
+                        <h3 class="card-title">Swahili Language</h3>
                     </div>
                     <div class="card-body">
                     <form method="post" action="{{ route('admin.saveContent2') }}">
@@ -91,10 +92,10 @@
                             <label>Select Category </label>
                             <select class="form-control {{ $errors->language2->first('cat_name') ? 'is-invalid' : '' }}" data-placeholder="Select Category Name" name="cat_name">
                                 <option value="">Select Category</option>
-                                <option value="Category A"{{ (old('cat_name')=='Category A') ? 'selected' : '' }}> Category A </option>
-                                <option value="Category B"{{ (old('cat_name')=='Category B') ? 'selected' : '' }}> Category B </option>
-                                <option value="Category C"{{ (old('cat_name')=='Category C') ? 'selected' : '' }}> Category C </option>
-
+                                <option value="Economic"{{ (old('cat_name')=='Economic') ? 'selected' : '' }}>Economic</option>
+                                <option value="Spiritual"{{ (old('cat_name')=='Spiritual') ? 'selected' : '' }}>Spiritual</option>
+                                <option value="Health"{{ (old('cat_name')=='Health') ? 'selected' : '' }}>Health</option>
+                                <option value="Emotional"{{ (old('cat_name')=='Emotional') ? 'selected' : '' }}>Emotional</option>
                             </select>
                             {!! $errors->language2->first('cat_name', '<span class="invalid-feedback"> <strong>:message </strong></span>') !!}
                         </div>

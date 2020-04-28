@@ -28,7 +28,7 @@
           <div class="col-md-6">
             <div class="card">
                 <div class="card-header languagess">
-                     <h3 class="card-title">Language 1</h3>
+                     <h3 class="card-title">English Language</h3>
                 </div>
                 <div class="card-body">
                     <div class="form-group">
@@ -74,7 +74,7 @@
           <div class="col-md-6">
             <div class="card">
                 <div class="card-header languagess">
-                     <h3 class="card-title">Language 2</h3>
+                     <h3 class="card-title">Swahili Language</h3>
                 </div>
                  <div class="card-body">
                     <div class="form-group">

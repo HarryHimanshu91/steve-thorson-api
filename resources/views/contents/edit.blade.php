@@ -31,10 +31,10 @@
                             <label>Select Category </label>
                             <select class="form-control @error('cat_name') is-invalid @enderror" data-placeholder="Select Status" name="cat_name">
                                 <option value="">Select Category</option>
-                                <option value="Category A"{{ ($content->cat_name =='Category A') ? 'selected' : '' }}> Category A </option>
-                                <option value="Category B"{{ ($content->cat_name =='Category B') ? 'selected' : '' }}> Category B </option>
-                                <option value="Category C"{{ ($content->cat_name =='Category C') ? 'selected' : '' }}> Category C </option>
-
+                                <option value="Economic"{{ ($content->cat_name =='Economic') ? 'selected' : '' }}>Economic</option>
+                                <option value="Spiritual"{{ ($content->cat_name =='Spiritual') ? 'selected' : '' }}>Spiritual</option>
+                                <option value="Health"{{ ($content->cat_name =='Health') ? 'selected' : '' }}>Health</option>
+                                <option value="Emotional"{{ ($content->cat_name =='Emotional') ? 'selected' : '' }}>Emotional</option>
                             </select>
                             @error('cat_name')
                                 <span class="invalid-feedback" role="alert">
