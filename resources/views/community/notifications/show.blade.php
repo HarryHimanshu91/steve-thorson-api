@@ -19,7 +19,7 @@
                       <a href="{{ route('admin.community.createnotification',['id'=>$communityId ]) }}" class="btn btn-primary btn-small">Back</a>
                   </div>
               </div>
-              <div class="row align-items-center">
+              <div class="row">
                  <div class="col-md-6">    
                     <div class="card">
                                 <div class="card-header">
