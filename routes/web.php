@@ -68,7 +68,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
         Route::get('/event/{id?}','CommunityController@createevent')->name('createevent');
         Route::get('/notification/{id?}','CommunityController@createnotification')->name('createnotification');
         Route::get('/prompt/{id?}','CommunityController@prompt')->name('prompt');  
-        Route::resource('events','EventController');
-        Route::resource('notification','NotificationController');  
+     
+        Route::post('/event/save','EventController@storeEvents')->name('saveEvent');
+        Route::get('/event/{id}/show/{cId}','EventController@showEvent')->name('listEvent');
+
+        Route::post('/notification/save','NotificationController@storeNotifications')->name('saveNotification');
+        Route::get('/notification/{id}/show/{cId}','NotificationController@showNotification')->name('listNotification');
+   
     });
 });

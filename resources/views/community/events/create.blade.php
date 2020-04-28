@@ -21,14 +21,14 @@
 
 <div class="row">
     <div class="col-12">
-        <form class="row" method="post" action="{{ route('admin.community.events.store') }}"> 
+        <form class="row" method="post" action="{{ route('admin.community.saveEvent') }}"> 
             @csrf  
             <input type="hidden" name="center_id" value="{{ $id }}">   
-             <div class="col-12 mb-3">
+            <div class="col-12 mb-3">
                     <select class="form-control @error('content_id') is-invalid @enderror" placeholder="Select Status" name="content_id">
                       <option value="">Select Content Title </option>
                        @foreach($content_title as $title)
-                       <option value="{{ $title->id }}"> {{ $title->title  }} </option>
+                       <option value="{{ $title->id }}" {{ (old('content_id')== $title->id ) ? 'selected' : '' }}> {{ $title->title  }} </option>
                        @endforeach
                     </select>
                     @error('content_id')
@@ -36,7 +36,7 @@
                          <strong>{{ $message }}</strong>
                      </span>
                     @enderror
-            </div>    
+            </div> 
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header customstyle">
@@ -162,12 +162,9 @@
                 </div>
             </div>               
         </form>          
-     </div>             
-</div>
-
-<hr class="topborderline">
-<!--Events Listing-->
-    <div class="row"> 
+     </div> 
+     <hr class="topborderline">
+     <div class="row"> 
             <div class="col-12">
                 <h5 class="mt-4 mb-4" >  Events Listing </h5>
                 <table id="example2" class="table table-bordered table-hover dataTable" >
@@ -176,12 +173,11 @@
                             <th> ID </th>
                             <th> Title </th>
                             <th> Date/Time</th>
-                            <th> Description</th>
                             <th> Title </th>
                             <th> Date/Time </th>
-                            <th> Description</th>
                             <th> Tracking Code </th>
                             <th> Unlock Content </th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -191,13 +187,16 @@
                             <td>{{ $i++ }}</td>
                             <td>{{ $event->title_one }}</td>
                             <td>{{ $event->date_one }} - {{ $event->time_one }} </td>
-                            <td>{{ $event->description_one }}</td>
                             <td>{{ $event->title_second }}</td>
                             <td>{{ $event->date_second }} - {{ $event->time_second }} </td>
-                            <td>{{ $event->description_second }}</td>
                             <td>{{ $event->tracking_code }}</td>
                             <td class="{{ $event->unlock_content ? 'text-success text-bold' : 'text-danger text-bold'}}">
-                            {{ $event->unlock_content? "Yes" : "No" }}
+                                {{ $event->unlock_content? "Yes" : "No" }}
+                            </td>
+                            <td>
+                                <div class="btn-group btn-group-sm">
+                                    <a title="View" href="{{ route('admin.community.listEvent', ['id'=>$event->id ,'cId'=> $event->center_id ]) }}" class="btn btn-info"><i class="fa fa-eye"></i></a>
+                                </div>
                             </td>
                          </tr>
                        @endforeach         
@@ -205,8 +204,10 @@
                 </table> 
             </div>
     
-    </div>
-<!--Events End------>
+    </div>   
+</div>
+  
+
             </div>
             <!-- /.card-body -->
           </div>
