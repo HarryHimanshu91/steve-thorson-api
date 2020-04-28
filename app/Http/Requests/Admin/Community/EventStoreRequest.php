@@ -25,7 +25,7 @@ class EventStoreRequest extends FormRequest
     {
         return [
             'content_id' => 'required',
-            'title_one' => 'required',
+            'title_one' => 'required|max:160',
             'date_one' => 'required',
             'time_one' => 'required',
             'description_one' => 'required',
