@@ -40,7 +40,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header customstyle">
-                        <h3 class="card-title">English Language</h3>
+                        <h3 class="card-title">English</h3>
                     </div>
                     <div class="card-body">
                         <div class="form-group">
@@ -88,7 +88,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header customstyle">
-                        <h3 class="card-title">Swahili Language</h3>
+                        <h3 class="card-title">Swahili</h3>
                     </div>
                     <div class="card-body">
                         <div class="form-group">
