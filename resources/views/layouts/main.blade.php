@@ -89,7 +89,7 @@
       <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
         <a href="{{ url('admin') }}" class="brand-link pl-4">
-          <span class="brand-text font-weight-light">{{ config('app.name', 'CareForAIDS') }}</span>
+          <span class="brand-text font-weight-light">{{ config('app.name', 'Care For AIDS') }}</span>
         </a>
 
         <!-- Sidebar -->
@@ -108,7 +108,7 @@
           
         </div>
         <!-- Default to the left -->
-        <strong>Copyright &copy; 2020 CareForAids.</strong> All rights reserved.
+        <strong>Copyright &copy; 2020 Care For AIDS.</strong> All rights reserved.
       </footer>
     </div>
     <!-- jQuery -->

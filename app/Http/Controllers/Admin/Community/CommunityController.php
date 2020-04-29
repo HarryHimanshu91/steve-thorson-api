@@ -30,7 +30,8 @@ class CommunityController extends Controller
     
    public function dashboard($id)
    {
-       return view('community.dashboard.view',compact('id'));
+       $name = Community::whereId($id)->pluck('title')->first();
+       return view('community.dashboard.view',compact('id','name'));
    }
 
    public function members($id)
