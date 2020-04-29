@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Admin;
 use App\Models\Role;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\NewUser;
+use App\Mail\AdminUserMail;
 
 class AdminController extends Controller
 {
@@ -46,7 +46,7 @@ class AdminController extends Controller
         $user = Admin::create($request->userData());
         
         if($user){
-            // Mail::to($user->email)->send(new NewUser($request->get('email'), env('NEW_USER_DEFAULT_PASSWORD')));
+            Mail::to($user->email)->send(new AdminUserMail($request->get('email'), env('NEW_USER_DEFAULT_PASSWORD')));
             $notification = array(
                 'message' => 'Success ! User has been created successfully', 
                 'alert-type' => 'success'
