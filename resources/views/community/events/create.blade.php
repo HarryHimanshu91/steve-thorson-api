@@ -39,7 +39,7 @@
             </div> 
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header customstyle">
+                    <div class="card-header languagess">
                         <h3 class="card-title">English</h3>
                     </div>
                     <div class="card-body">
@@ -87,7 +87,7 @@
             </div>
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header customstyle">
+                    <div class="card-header languagess">
                         <h3 class="card-title">Swahili</h3>
                     </div>
                     <div class="card-body">
