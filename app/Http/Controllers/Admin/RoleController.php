@@ -32,7 +32,7 @@ class RoleController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created role in Database.
      *
      * @param  StoreRoleRequest $request
      * @return \Illuminate\Http\Redirect

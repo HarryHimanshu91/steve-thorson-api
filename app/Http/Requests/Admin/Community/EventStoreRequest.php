@@ -17,7 +17,7 @@ class EventStoreRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Get the validation rules that apply to the request for Event Controller.
      *
      * @return array
      */
@@ -39,6 +39,14 @@ class EventStoreRequest extends FormRequest
         ];
     }
 
+    /**
+     * Get the custom messages of that rule which return by the rules method for Event Controller
+     * 
+     * @return array
+     */
+
+
+
     public function messages()
     {
         return [
@@ -57,6 +65,14 @@ class EventStoreRequest extends FormRequest
             'unlock_content.required' => 'Oops! Please select to unlock content',
         ];
     }
+
+
+    /**
+     * Data get from request and assign it on array for Event Controller.
+     * 
+     * @return array
+     */
+
 
     public function eventData(): array 
     {

@@ -19,10 +19,10 @@ class StoreContentRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Get the validation rules that apply to the request for Content Controller.
      *
      * @return array
-     */
+     */ 
     public function rules()
     {
         return [
@@ -32,6 +32,12 @@ class StoreContentRequest extends FormRequest
             'status' => 'required',           
         ];
     }
+
+     /**
+     * Get the custom messages of that rule which return by the rules method for Content Controller.
+     *
+     * @return array
+     */
 
     public function messages()
     {
@@ -43,6 +49,13 @@ class StoreContentRequest extends FormRequest
             'status.required' => 'Oops! Please select content status.'
         ];
     }
+
+
+     /**
+     * Data get from request and assign it on array for Content Controller.
+     * 
+     * @return array
+     */
 
     public function contentData(): array 
     {
