@@ -104,7 +104,7 @@ class UserController extends Controller
                 return response()->json(['errors' => array('phone' => ['Oops! Either the phone number or password you entered is incorrect.'])], 401);
             }
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 403);
+            return response()->json(['error' => 'Something went wrong.'], 403);
         }
     }
 

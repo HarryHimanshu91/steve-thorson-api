@@ -32,8 +32,8 @@ class LoginUserRequest extends FormRequest
     public function messages()
     {
         return [
-            'phone.required' => 'Oops! Please enter email address.',
-            'phone.exists' => "Oops! The email address you entered is not in our system. Please go back and select the green 'Sign Up with Email' button.",
+            'phone.required' => 'Oops! Please enter phone number.',
+            'phone.exists' => "Oops! The phone number you entered is not in our system. Please go back and select the green 'Sign Up with Email' button.",
         ];
     }
 
