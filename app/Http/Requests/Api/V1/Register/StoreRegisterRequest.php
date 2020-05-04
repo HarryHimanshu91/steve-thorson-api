@@ -24,7 +24,8 @@ class StoreRegisterRequest extends FormRequest
             'password' => 'required',
             'region' => 'required',
             'center' => 'required',
-            'is_verified' => 'required'
+            'image' => 'required|mimes:jpeg,png,jpg',
+            'is_verified' => 'required|in:0,1'
         ];
     }
 
@@ -44,7 +45,9 @@ class StoreRegisterRequest extends FormRequest
             'password.required' => "Oops! Please enter password.",
             'region.required' => 'Oops! Please select the region.',
             'center.required' => 'Oops! Please select the center.',
+            'image.required' => 'Oops! please select required image.',
             'is_verified.required' => 'Oops! User is not verified, please try again.',
+            'is_verified.in' => 'Oops! The selected field is not valid'
         ];
     }
 
