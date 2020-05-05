@@ -96,7 +96,7 @@ class UserController extends Controller
                 $success['expires_at'] = Carbon::parse(
                     $tokenResult->token->expires_at
                 )->toDateTimeString();   
-                $user = User::find($user->id)->with('region','center')->first();
+                $user = User::whereId($user->id)->with('region','center')->first();
                 $success['data'] = $user;
                 // $success['data']->store = Store::with('locations')->find(User::find($user->id)->pluck('store_id'))->first();
                 return response()->json($success, 200);
