@@ -14,8 +14,12 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-
-                        You are logged in!
+                        @can('isCommunity')
+                            You are logged in with Community Role!
+                        @endcan
+                        @can('isAdmin')
+                            You are logged in with Admin Role!
+                        @endcan
                     </div>
                 </div>
             </div>

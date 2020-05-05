@@ -9,6 +9,7 @@
                 <p>Dashboard</p>
             </a>
         </li> 
+        @can('isAdmin')
         <li class="nav-item has-treeview {{ request()->segment('2') == 'roles' ? 'menu-open' : '' }}">
             <a href="#" class="nav-link {{ request()->segment('2') == 'roles' ? 'active' : '' }}">
                 <i class="nav-icon fas fa-user-cog"></i>
@@ -92,15 +93,23 @@
 
         <li class="nav-item">
             <a href="{{ route('admin.community') }}" class="nav-link {{ request()->segment('2') == 'community' ? 'active' : '' }}">
-              <i class="nav-icon fas fa-user-cog"></i>
-              <p>
+                <i class="nav-icon fas fa-user-cog"></i>
+                <p>
                 Community            
-              </p>
+                </p>
             </a>
-          </li> 
-
-         
-
+        </li> 
+        @endcan
+        @can('isCommunity')
+        <li class="nav-item">
+            <a href="{{ route('admin.community') }}" class="nav-link {{ request()->segment('2') == 'community' ? 'active' : '' }}">
+                <i class="nav-icon fas fa-user-cog"></i>
+                <p>
+                Community           
+                </p>
+            </a>
+        </li> 
+        @endcan
     </ul>
 </nav>
 <!-- /.sidebar-menu -->
