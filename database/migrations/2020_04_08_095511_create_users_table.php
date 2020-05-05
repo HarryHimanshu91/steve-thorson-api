@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('phone')->unique();
             $table->string('password');
             $table->timestamp('phone_verified_at')->nullable();
-            $table->tinyInteger('is_verified')->default(0);
+            $table->enum('is_verified',['0','1'])->default(0);
             $table->unsignedBigInteger('region_id');
             $table->foreign('region_id')->references('id')->on('regions');
             $table->unsignedBigInteger('center_id');

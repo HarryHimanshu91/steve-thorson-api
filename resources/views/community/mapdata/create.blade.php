@@ -42,23 +42,30 @@
                               <tr>
                                   <th>Category</th>
                                   <th>Name</th>
-                                  <th>Description</th>
-                                  <th>Latitude </th>
-                                  <th>Longitude</th>
-                                  <th>Created At</th>
-                                  <th>Updated At</th>            
+                                  <th>English/Swahili Description</th>
+                                  <th>English/Swahili Directions</th>
+                                  <th>Lat/Long Coordinates </th>
+                                  <th>Phone Number/URL</th>
+                                  <th>Created/Updated At</th>            
                               </tr>
                           </thead>
                           <tbody>
                             @foreach($mapData as $map)
                                 <tr>
-                                  <td>{{ $map->category }}</td>
-                                  <td>{{ $map->name }}</td>
-                                  <td>{{ $map->description }}</td>
-                                  <td>{{ $map->latitude }}</td>
-                                  <td>{{ $map->longitude }} </td>
-                                  <td>{{ $map->created_at }}</td>
-                                  <td>{{ $map->updated_at }}</td>                                 
+                                  <td rowspan="2">{{ $map->category }}</td>
+                                  <td rowspan="2">{{ $map->name }}</td>
+                                  <td>{{ $map->eng_description }}</td>
+                                  <td>{{ $map->eng_directions }}</td>
+                                  <td>{{ "Lat: ".$map->latitude }}</td>
+                                  <td>{{ $map->phone_number }}</td>
+                                  <td>{{ $map->created_at }}</td>                                 
+                                </tr>
+                                <tr>
+                                  <td>{{ $map->swa_description }}</td>      
+                                  <td>{{ $map->swa_directions }}</td>     
+                                  <td>{{ "Long: ".$map->longitude }} </td> 
+                                  <td>{{ $map->url }}</td>       
+                                  <td>{{ $map->updated_at }}</td>         
                                 </tr>
                             @endforeach
                           </tbody>

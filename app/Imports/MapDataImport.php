@@ -36,7 +36,12 @@ class MapDataImport implements ToModel, WithHeadingRow, WithValidation
             'center_id' => $this->centerID,
             'category' => $row['category'],
             'name' => $row['name'],
-            'description' => $row['description'],
+            'eng_description' => $row['english_description'],
+            'eng_directions' => $row['english_directions'],
+            'swa_description' => $row['swahili_description'],
+            'swa_directions' => $row['swahili_directions'],
+            'phone_number' => $row['phone_number'],
+            'url' => $row['url'],
             'latitude' => $row['latitude'],
             'longitude' => $row['longitude']
         ]);
@@ -47,7 +52,12 @@ class MapDataImport implements ToModel, WithHeadingRow, WithValidation
         return [
             'name' => ['required','unique:map_data,name'],
             'category' => ['required'],
-            'description' => ['required'],
+            'english_description' => ['required'],
+            'english_directions' => ['required'],
+            'swahili_description' => ['required'],
+            'swahili_directions' => ['required'],
+            'phone_number' => ['required'],
+            'url' => ['required'],
             'latitude' => ['required'],
             'longitude' => ['required']
         ];
@@ -62,7 +72,12 @@ class MapDataImport implements ToModel, WithHeadingRow, WithValidation
             'name.required' => 'Oops! the name field is required.',
             'name.unique' => 'Oops! the name field in the file is already exist.',
             'category.required' => 'Oops! the category field is required.',
-            'description.required' => 'Oops! the description field is required.',
+            'english_description.required' => 'Oops! the english description field is required.',
+            'english_directions.required' => 'Oops! the english directions field is required.',
+            'swahili_description.required' => 'Oops! the swahili description field is required.',
+            'swahili_directions.required' => 'Oops! the swahili directions field is required.',
+            'phone_number.required' => 'Oops! the phone number is required.',
+            'url.required' => 'Oops! the url is required',
             'latitude.required' => 'Oops! the latitude field is required.',
             'longitude.required' => 'Oops! the longitude field is required.'
         ];

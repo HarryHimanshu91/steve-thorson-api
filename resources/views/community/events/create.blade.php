@@ -167,14 +167,12 @@
      <div class="row"> 
             <div class="col-12">
                 <h5 class="mt-4 mb-4" >  Events Listing </h5>
-                <table id="example2" class="table table-bordered table-hover dataTable" >
+                <table id="example2" class="table table-bordered dataTable" >
                     <thead>
                         <tr>
                             <th> ID </th>
-                            <th> Title </th>
+                            <th> English/Swahili Title </th>
                             <th> Date/Time</th>
-                            <th> Title </th>
-                            <th> Date/Time </th>
                             <th> Tracking Code </th>
                             <th> Unlock Content </th>
                             <th>Action</th>
@@ -184,20 +182,22 @@
                        @php $i=1; @endphp
                        @foreach($events as $event) 
                          <tr>
-                            <td>{{ $i++ }}</td>
+                            <td rowspan="2">{{ $i++ }}</td>
                             <td>{{ $event->title_one }}</td>
-                            <td>{{ $event->date_one }} - {{ $event->time_one }} </td>
-                            <td>{{ $event->title_second }}</td>
-                            <td>{{ $event->date_second }} - {{ $event->time_second }} </td>
-                            <td>{{ $event->tracking_code }}</td>
-                            <td class="{{ $event->unlock_content ? 'text-success text-bold' : 'text-danger text-bold'}}">
+                            <td>{{ $event->date_one }} - {{ $event->time_one }} </td>                            
+                            <td rowspan="2">{{ $event->tracking_code }}</td>
+                            <td rowspan="2" class="{{ $event->unlock_content ? 'text-success text-bold' : 'text-danger text-bold'}}">
                                 {{ $event->unlock_content? "Yes" : "No" }}
                             </td>
-                            <td>
+                            <td rowspan="2">
                                 <div class="btn-group btn-group-sm">
                                     <a title="View" href="{{ route('admin.community.listEvent', ['id'=>$event->id ,'cId'=> $event->center_id ]) }}" class="btn btn-info"><i class="fa fa-eye"></i></a>
                                 </div>
                             </td>
+                         </tr>
+                         <tr>
+                            <td>{{ $event->title_second }}</td>
+                            <td style="border-right-width:1px">{{ $event->date_second }} - {{ $event->time_second }} </td>
                          </tr>
                        @endforeach         
                     </tbody>
