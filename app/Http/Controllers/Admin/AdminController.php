@@ -14,7 +14,7 @@ use App\Mail\AdminUserMail;
 class AdminController extends Controller
 {
     /**
-     * Display a listing of the users.
+     * Display a listing of the admin.
      *
      * @return view
      */
@@ -25,7 +25,7 @@ class AdminController extends Controller
     }
  
     /**
-     * Show the form for creating a new user.
+     * Show the form for creating a new admin.
      *
      * @return view
      */
@@ -36,7 +36,7 @@ class AdminController extends Controller
     }
 
     /**
-     * Store a newly created user in database.
+     * Store a newly created admin in database.
      *
      * @param  StoreUserRequest  $request
      * @return \Illuminate\Http\Redirect
@@ -62,7 +62,7 @@ class AdminController extends Controller
     }
 
     /**
-     * Show the form for editing the specified user.
+     * Show the form for editing the specified admin.
      *
      * @param  User  $user
      * @return view
@@ -74,7 +74,7 @@ class AdminController extends Controller
     }
 
     /**
-     * Update the specified user.
+     * Update the specified admin.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  User  $user
@@ -115,7 +115,7 @@ class AdminController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified admin from database.
      *
      * @param  User $user
      * @return \Illuminate\Http\Response

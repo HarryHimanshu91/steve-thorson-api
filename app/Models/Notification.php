@@ -9,6 +9,11 @@ class Notification extends Model
 {
     protected $guarded = [];
 
+    /**
+     * Method for getting notification to community relationship
+     * @return relations
+     */
+
     public function community()
     {
         return $this->hasOne(Community::class,'id','center_id');

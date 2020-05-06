@@ -17,7 +17,7 @@ class NotificationStoreRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Get the validation rules that apply to the request for Notification Controller
      *
      * @return array
      */
@@ -36,6 +36,12 @@ class NotificationStoreRequest extends FormRequest
         ];
     }
 
+    /**
+     * Get the custom messages of that rule which return by the rules method for Notification Controller
+     * 
+     * @return array
+     */
+
     public function messages()
     {
         return [
@@ -51,6 +57,13 @@ class NotificationStoreRequest extends FormRequest
             'description_second.required' => 'Oops! Please enter description of Swahili',
         ];
     }
+
+
+     /**
+     * Data get from request and assign it on array for Notification Controller.
+     * 
+     * @return array
+     */
 
     public function NotificationData(): array 
     {

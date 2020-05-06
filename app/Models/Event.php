@@ -10,10 +10,20 @@ class Event extends Model
 {
     protected $guarded = [];
 
+    /**
+     * Method for getting event to content relationship
+     * @return relations
+     */
+
     public function contents()
     {
         return $this->hasOne(Content::class,'id','content_id');
     }
+
+    /**
+     * Method for getting event to community relationship
+     * @return relations
+     */
 
     public function community()
     {

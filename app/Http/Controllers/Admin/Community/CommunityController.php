@@ -17,22 +17,31 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class CommunityController extends Controller
 {
+    /**
+     *  Method to list all Communities with Region
+     */
     public function index()
     {
         $communities = Community::with('region')->get();
         return view('community.view',compact('communities'));
-    }
+    }    
 
-    public function showCommunity($id)
-    {
-         return view('community.show',compact('id'));
-    }
+    /**
+     * Method to get unique Community with Dashboard
+     * @param $id
+     */
     
+
    public function dashboard($id)
    {
        $name = Community::whereId($id)->pluck('title')->first();
        return view('community.dashboard.view',compact('id','name'));
    }
+
+    /**
+     * Method to get unique Community with Members
+     * @param $id
+     */
 
    public function members($id)
    {
@@ -41,8 +50,7 @@ class CommunityController extends Controller
    }
 
     /**
-     * method for fetch map data
-     * 
+     * method for fetch map data 
      * @param $id
      */
    
@@ -54,10 +62,8 @@ class CommunityController extends Controller
 
     /**
      * method for import data from csv
-     * 
      * @param Request $request
      * @param $id
-     * 
      */
 
     public function importMapData(Request $request, $id){
@@ -95,7 +101,11 @@ class CommunityController extends Controller
         }
     }
 
-    
+    /**
+     * Method to get unique Community with Events
+     * @param $id
+     */
+
    public function createevent($id)
    { 
        $content_title = DB::table('contents')->select('id','title')->get();
@@ -103,6 +113,10 @@ class CommunityController extends Controller
        return view('community.events.create',compact('id','content_title','events'));
    }
    
+    /**
+     * Method to get unique Community with Notification
+     * @param $id
+     */
    
    public function createnotification($id)
    {
@@ -110,10 +124,6 @@ class CommunityController extends Controller
       return view('community.notifications.create',compact('id','notifications'));
    }
 
-   public function prompt($id)
-   {
-      return view('community.promptSchedule.create',compact('id'));
-   }
 
 
 }

@@ -19,7 +19,7 @@ class StoreLanguageSecondRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Get the validation rules that apply to the request for Swahili Language
      *
      * @return array
      */
@@ -34,6 +34,11 @@ class StoreLanguageSecondRequest extends FormRequest
         ];
     }
 
+    /**
+     * Get the custom messages of that rule which return by the rules method for Swahili Language.
+     *
+     * @return array
+     */
     public function messages()
     {
         return [
@@ -44,6 +49,13 @@ class StoreLanguageSecondRequest extends FormRequest
             'status.required' => 'Oops! Please select content status.'
         ];
     }
+
+
+    /**
+     * Data get from request and assign it on array for Swahili Language.
+     * 
+     * @return array
+     */
 
     public function contentData(): array 
     {

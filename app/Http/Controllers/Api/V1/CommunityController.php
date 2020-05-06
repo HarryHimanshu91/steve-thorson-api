@@ -15,7 +15,6 @@ class CommunityController extends Controller
      */
     public function community($id)
     {
-        // dd($id);
         try{
             $contents = Community::whereId($id)->with('events','notifications')->first();
             $data = [
