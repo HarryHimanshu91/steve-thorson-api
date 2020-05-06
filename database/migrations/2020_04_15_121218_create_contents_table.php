@@ -20,6 +20,7 @@ class CreateContentsTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->string('cat_name');
+            $table->text("audio_file");
             $table->tinyInteger('status');
             $table->timestamps();
         });

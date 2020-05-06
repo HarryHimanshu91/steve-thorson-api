@@ -41,6 +41,13 @@ class ContentController extends Controller
     {
         $content = Content::create($request->contentData());
 
+        $fileName = time().'.'.$request->audio_file->getClientOriginalExtension();
+        $path = asset('/uploads/audio/english/'.$fileName);
+        $request->audio_file->move(public_path('uploads/audio/english/'), $fileName);
+        $content->audio_file = $fileName;
+
+        $content->save();
+
         if($content){
             $notification = array(
                 'message' => 'Success ! Language 1 Content has been added successfully', 
@@ -65,7 +72,14 @@ class ContentController extends Controller
     public function saveLanguage2(StoreLanguageSecondRequest $request)
     {
         $content = Content::create($request->contentData());
- 
+
+        $fileName = time().'.'.$request->audio_file->getClientOriginalExtension();
+        $path = asset('/uploads/audio/swahili/'.$fileName);
+        $request->audio_file->move(public_path('uploads/audio/swahili/'), $fileName);
+        $content->audio_file = $fileName;
+        
+        $content->save();
+
          if($content){
              $notification = array(
                  'message' => 'Success ! Language 2 Content has been added successfully', 
@@ -98,31 +112,46 @@ class ContentController extends Controller
      */
     public function updateContent(Request $request , $id)
     {
-        $validator = Validator::make($request->all(), [
-            'title' => 'required|max:160',
-            'description' => 'required',
-            'cat_name' => 'required',
-            'status' => 'required',
-        ],
-        [
-            'title.required' => 'Oops! Please enter content title.',
-            'title.max' => 'Oops! The title may not be greater than 160 characters.',
-            'description.required' => "Oops! Please enter content description.",
-            'status.required' => 'Oops! Please select content status.'
-        ]);
+        $audioFile = $request->hidden_image;
+        $audio_file = $request->file('audio_file');
+        if($audio_file != '')
+        {
+            $request->validate([
+                'title' => 'required|max:160',
+                'description' => 'required',
+                'cat_name' => 'required',
+                'status' => 'required',
+                'audio_file' => 'required|mimes:application/octet-stream,audio/mpeg,mpga,mp3,wav',
+            ]);
 
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
+            $audioFile = rand() . '.' . $audio_file->getClientOriginalExtension();
+           
+            if($request->language_id=='1'){
+                $audio_file->move(public_path('uploads/audio/english/'), $audioFile);
+            }else{
+                $audio_file->move(public_path('uploads/audio/swahili/'), $audioFile);
+            }
+        }
+        else
+        {
+            $request->validate([
+                'title' => 'required|max:160',
+                'description' => 'required',
+                'cat_name' => 'required',
+                'status' => 'required',
+            ]);
         }
 
-        $content = Content::find($id);
-        $content->title = $request->input('title');
-        $content->description = $request->input('description');
-        $content->cat_name = $request->input('cat_name');
-        $content->status = $request->input('status');
-        $content->language_id = $request->input('language_id');
-        $content->save();
-
+        $form_data = array(
+            'title'       =>   $request->title,
+            'description' =>   $request->description,
+            'cat_name'    =>   $request->cat_name,
+            'status'      =>   $request->status,
+            'language_id' =>   $request->language_id,
+            'audio_file'  =>   $audioFile
+        );
+  
+        Content::whereId($id)->update($form_data);
         $notification = array(
             'message' => 'Success ! Content has been updated successfully', 
             'alert-type' => 'success'

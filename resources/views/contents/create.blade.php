@@ -26,7 +26,7 @@
                         <h3 class="card-title">English</h3>
                     </div>
                     <div class="card-body">
-                      <form method="post" action="{{ route('admin.saveContent1') }}">
+                      <form method="post" action="{{ route('admin.saveContent1') }}" enctype="multipart/form-data">
                         @csrf
                          <input type="hidden" name="language_id" value="1">
 
@@ -63,7 +63,11 @@
                             {!! $errors->language1->first('status', '<span class="invalid-feedback"> <strong>:message </strong></span>') !!}
                         </div>
                         
-                        
+                        <div class="form-group">
+                            <label>Upload Audio </label>
+                             <input type="file" name="audio_file" class="form-control {{ $errors->language1->first('audio_file') ? 'is-invalid' : '' }}">
+                             {!! $errors->language1->first('audio_file', '<span class="invalid-feedback"> <strong>:message </strong></span>') !!}
+                        </div>
                        
                         <div class="col-12 col-sm-12 col-lg-12 mt-3">
                             <div class="text-left">
@@ -84,7 +88,7 @@
                         <h3 class="card-title">Swahili</h3>
                     </div>
                     <div class="card-body">
-                    <form method="post" action="{{ route('admin.saveContent2') }}">
+                    <form method="post" action="{{ route('admin.saveContent2') }}" enctype="multipart/form-data">
                         @csrf
                          <input type="hidden" name="language_id" value="2">
 
@@ -121,7 +125,11 @@
                             {!! $errors->language2->first('status', '<span class="invalid-feedback"> <strong>:message </strong></span>') !!}
                         </div>
                         
-                        
+                        <div class="form-group">
+                            <label>Upload Audio </label>
+                             <input type="file" name="audio_file" class="form-control {{ $errors->language2->first('audio_file') ? 'is-invalid' : '' }}">
+                             {!! $errors->language2->first('audio_file', '<span class="invalid-feedback"> <strong>:message </strong></span>') !!}
+                        </div>
                        
                         <div class="col-12 col-sm-12 col-lg-12 mt-3">
                             <div class="text-left">

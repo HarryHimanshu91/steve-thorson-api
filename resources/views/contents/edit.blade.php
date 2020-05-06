@@ -22,7 +22,7 @@
             <div class="card-body">
                <span class="languagestyles">  Language - {{ $content->language->name }} </span>
               
-              <form role="form" method="POST" action="{{ route('admin.updateContent', $content->id ) }}">
+              <form role="form" method="POST" action="{{ route('admin.updateContent', $content->id ) }}" enctype="multipart/form-data">
                     @csrf
                     @method('POST')
                     <input type="hidden" name="language_id" value={{ $content->language_id }}>
@@ -76,7 +76,22 @@
                             @enderror
                         </div>
                         
-                       
+                        <div class="form-group">
+                            <label>Upload Audio </label>
+                             <input type="file" name="audio_file" class="form-control @error('audio_file') is-invalid @enderror">
+                             <input type="hidden" name="hidden_image" value="{{ $content->audio_file }}" />
+                             @error('audio_file')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                             @enderror
+
+                            @if($content->language_id ==1)
+                              <audio controls><source src="/uploads/audio/english/{{ $content->audio_file }}" /></audio>
+                            @else
+                              <audio controls><source src="/uploads/audio/swahili/{{ $content->audio_file }}" /></audio>
+                            @endif
+                        </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Update</button>
                         </div>

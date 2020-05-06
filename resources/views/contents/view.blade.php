@@ -25,6 +25,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Content Title </th>
+                        <th>Audio </th>
                         <th>Category  </th>
                         <th>Status  </th>
                         <th>Languages  </th>
@@ -40,6 +41,14 @@
                  <tr>
                         <td>{{ $content->id  }}</td>
                         <td>{{ $content->title }}</td>
+                        <td> 
+                            @if($content->language_id ==1)
+                              <audio controls><source src="/uploads/audio/english/{{ $content->audio_file }}" /></audio>
+                            @else
+                              <audio controls><source src="/uploads/audio/swahili/{{ $content->audio_file }}" /></audio>
+                            @endif
+                           
+                        </td>
                         <td>{{ $content->cat_name }}</td>
                         <td class="{{ $content->status ? 'text-success' : 'text-danger'}}">{{ $content->status ? "Active" : "Inactive" }}</td>
                         <td>{{ $content->language->name }}</td>
