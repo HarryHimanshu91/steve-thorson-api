@@ -19,7 +19,12 @@ class CreateMapDataTable extends Migration
             $table->foreign('center_id')->references('id')->on('communities');
             $table->text('category');
             $table->text('name');
-            $table->text('description');
+            $table->text('eng_description');
+            $table->text('eng_directions');
+            $table->text('swa_description');
+            $table->text('swa_directions');
+            $table->text('phone_number');
+            $table->text('url');
             $table->string('latitude');
             $table->string('longitude');
             $table->timestamps();

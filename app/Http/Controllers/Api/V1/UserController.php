@@ -71,7 +71,7 @@ class UserController extends Controller
                 return response()->json(['error' => 'Oops! Phone number is not verified.'], 422);
             }
         }catch(\Exception $e){
-            return response()->json(['error' => $e->getMessage()], 403);
+            return response()->json(['error' => 'Something went wrong.'], 403);
         }
     }
 
@@ -96,7 +96,7 @@ class UserController extends Controller
                 $success['expires_at'] = Carbon::parse(
                     $tokenResult->token->expires_at
                 )->toDateTimeString();   
-                $user = User::find($user->id)->with('region','center')->first();
+                $user = User::whereId($user->id)->with('region','center')->first();
                 $success['data'] = $user;
                 // $success['data']->store = Store::with('locations')->find(User::find($user->id)->pluck('store_id'))->first();
                 return response()->json($success, 200);
@@ -104,7 +104,7 @@ class UserController extends Controller
                 return response()->json(['errors' => array('phone' => ['Oops! Either the phone number or password you entered is incorrect.'])], 401);
             }
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 403);
+            return response()->json(['error' => 'Something went wrong.'], 403);
         }
     }
 
