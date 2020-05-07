@@ -46,13 +46,15 @@ class UserController extends Controller
             if($request->registerData()['is_verified']){
                 $user = User::create($request->registerData());
                 
-                $fileName = time().'.'.$request->image->getClientOriginalExtension();
-                $path = asset('/uploads/profiles/'.$fileName);
-                $request->image->move(public_path('uploads/profiles/'), '/profiles/'.$fileName);
+                if($request->image){
+                    $fileName = time().'.'.$request->image->getClientOriginalExtension();
+                    $path = asset('/uploads/profiles/'.$fileName);
+                    $request->image->move(public_path('uploads/profiles/'), '/profiles/'.$fileName);
 
-                User::find($user->id)->update([
-                    'profile_path' => $path
-                ]);
+                    User::find($user->id)->update([
+                        'profile_path' => $path
+                    ]);
+                }
 
                 $user = User::whereId($user->id)->with('region','center')->first();
                 $tokenResult = $user->createToken(env('APP_NAME'));

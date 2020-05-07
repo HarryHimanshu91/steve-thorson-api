@@ -43,13 +43,27 @@
                         </div>
                         <div class="form-group">
                             <label>Assign Role</label>
-                            <select class="form-control select2bs4 @error('role') is-invalid @enderror" data-placeholder="Select Role" name="role">
+                            <select class="form-control roles select2bs4 @error('role') is-invalid @enderror" data-placeholder="Select Role" name="role">
                                 <option value="">Select Role</option>
                                 @foreach($roles as $role){
                                     <option value="{{ $role->id }}" {{ (old('role')==$role->id) ? 'selected' : '' }}>{{ $role->name }}</option>
                                 @endforeach
                             </select>
                             @error('role')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group d-none" id="community">
+                            <label>Assign Community</label>
+                            <select class="form-control select2bs4 @error('community') is-invalid @enderror" data-placeholder="Select Community" name="community">
+                                <option value=""></option>
+                                @foreach($communities as $community){
+                                    <option value="{{ $community->id }}" {{ (old('community') == $community->id) ? 'selected' : '' }}>{{ $community->title }}</option>
+                                @endforeach
+                            </select>
+                            @error('community')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -80,4 +94,21 @@
         </div>
     </section>    
   </div>  
+@endsection
+@section('scripts')
+<script>
+    $(document).ready(function(){
+        if($('.roles').val() == '2'){
+            $('#community').removeClass("d-none");
+        }
+        $('.roles').on('change',function(){
+            if($('.roles').val() == '1'){
+                $('#community').addClass("d-none");
+            }
+            if($('.roles').val() == '2'){
+                $('#community').removeClass("d-none");
+            }
+        })
+    })
+</script>
 @endsection

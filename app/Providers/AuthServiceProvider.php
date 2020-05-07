@@ -30,7 +30,7 @@ class AuthServiceProvider extends ServiceProvider
             return $user->role_id == '1';
         });
     
-        /* define a manager user role */
+        /* define a community user role */
         Gate::define('isCommunity', function($user) {
             return $user->role_id == '2';
         });
