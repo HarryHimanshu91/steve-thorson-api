@@ -44,7 +44,6 @@
         color: #000;
         border: 1px solid #ccc;
     }
-
     </style>
   </head>
   <body class="hold-transition sidebar-mini">

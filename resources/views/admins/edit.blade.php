@@ -44,13 +44,27 @@
                         </div>
                         <div class="form-group">
                             <label>Assign Role</label>
-                            <select class="form-control select2bs4 @error('role') is-invalid @enderror" data-placeholder="Select Role" name="role">
+                            <select class="form-control roles select2bs4 @error('role') is-invalid @enderror" data-placeholder="Select Role" name="role">
                                 <option value=""></option>
                                 @foreach($roles as $role){
                                     <option value="{{ $role->id }}" {{ ($admin->role_id == $role->id) ? 'selected' : '' }}>{{ $role->name }}</option>
                                 @endforeach
                             </select>
                             @error('role')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group @if($role->id=='2') 'd-none' @endif" id="community">
+                            <label>Assign Community</label>
+                            <select class="form-control select2bs4 @error('community') is-invalid @enderror" data-placeholder="Select Community" name="community">
+                                <option value=""></option>
+                                @foreach($communities as $community){
+                                    <option value="{{ $community->id }}" {{ ($admin->center_id == $community->id) ? 'selected' : '' }}>{{ $community->title }}</option>
+                                @endforeach
+                            </select>
+                            @error('community')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -81,4 +95,23 @@
         </div>
     </section>    
   </div>  
+@endsection
+@section('scripts')
+<script>
+    $(document).ready(function(){
+        if($('.roles').val() == '2'){
+            $('#community').css('display','block');
+        }else if($('.roles').val() == '1'){
+            $('#community').css('display','none');
+        }
+        $('.roles').on('change',function(){
+            if($('.roles').val() == '1'){
+                $('#community').css('display','none');
+            }
+            if($('.roles').val() == '2'){
+                $('#community').css('display','block');
+            }
+        })
+    })
+</script>
 @endsection

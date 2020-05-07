@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\StoreUserRequest;
 use Illuminate\Http\Request;
 use App\Admin;
 use App\Models\Role;
+use App\Models\Community;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\AdminUserMail;
 
@@ -32,7 +33,8 @@ class AdminController extends Controller
     public function create()
     {
         $roles = Role::whereStatus(1)->get();
-        return view('admins.create')->with(['roles'=>$roles]);
+        $communities = Community::all();
+        return view('admins.create')->with(['roles'=>$roles,'communities'=>$communities]);
     }
 
     /**
@@ -70,7 +72,8 @@ class AdminController extends Controller
     public function edit(Admin $admin)
     {
         $roles = Role::whereStatus(1)->get();
-        return view('admins.edit')->with(['admin'=>$admin,'roles'=>$roles]);
+        $communities = Community::all();
+        return view('admins.edit')->with(['admin'=>$admin,'roles'=>$roles,'communities'=>$communities]);
     }
 
     /**
@@ -84,14 +87,16 @@ class AdminController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:160|string',
-            'email' => ['required','email','unique:admins,email,'.$id]
+            'email' => ['required','email','unique:admins,email,'.$id],
+            'community' => 'required_if:role,2'
         ],
         [
             'name.required' => 'Oops! Please enter name.',
             'name.max' => 'Oops! The name may not be greater than 160 characters.',
             'email.required' => "Oops! Please enter email address.",
             'email.email' => "Oops! Please enter valid email address.",
-            'email.unique' => "Oops! The enter email address is already exists."
+            'email.unique' => "Oops! The enter email address is already exists.",
+            'community.required_if' => 'Oops! Please select community when role is community.'
         ]);
 
         if ($validator->fails()) {
@@ -104,6 +109,7 @@ class AdminController extends Controller
             'name' => $request->get('name'),
             'email' => $request->get('email'),
             'role_id' => $request->get('role'),
+            'center_id' => $request->get('role') == '2' ? $request->get('community') : NULL,
             'status' => $request->get('status')
         ]);
 

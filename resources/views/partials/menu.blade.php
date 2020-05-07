@@ -105,7 +105,15 @@
             <a href="{{ route('admin.community') }}" class="nav-link {{ request()->segment('2') == 'community' ? 'active' : '' }}">
                 <i class="nav-icon fas fa-user-cog"></i>
                 <p>
-                Community           
+                Member           
+                </p>
+            </a>
+        </li> 
+        <li class="nav-item">
+            <a href="{{ route('admin.community') }}" class="nav-link {{ request()->segment('2') == 'community' ? 'active' : '' }}">
+                <i class="nav-icon fas fa-user-cog"></i>
+                <p>
+                Map Data           
                 </p>
             </a>
         </li> 

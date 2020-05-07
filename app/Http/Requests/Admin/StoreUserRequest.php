@@ -17,6 +17,7 @@ class StoreUserRequest extends FormRequest
             'name' => 'required|max:160|string',
             'email' => 'required|unique:admins,email|email',
             'role' => 'required',
+            'community' => 'required_if:role,2',
             'status' => 'required'
         ];
     }
@@ -36,6 +37,7 @@ class StoreUserRequest extends FormRequest
             'email.email' => "Oops! Please enter valid email address.",
             'email.unique' => "Oops! The enter email address is already exists.",
             'role.required' => 'Oops! Please assign role to the user.',
+            'community.required_if' => 'Oops! Please select community when role is community.',
             'status.required' => 'Oops! Please select status.'
         ];
     }
@@ -52,6 +54,7 @@ class StoreUserRequest extends FormRequest
             'name' => $this->get('name'),
             'email' => $this->get('email'),
             'role_id' => $this->get('role'),
+            'center_id' => $this->get('community'), 
             'password' => \Hash::make(env('NEW_USER_DEFAULT_PASSWORD')),
             'status' => $this->get('status')
         ];
