@@ -44,7 +44,7 @@ class ContentController extends Controller
         $fileName = time().'.'.$request->audio_file->getClientOriginalExtension();
         $path = asset('/uploads/audio/english/'.$fileName);
         $request->audio_file->move(public_path('uploads/audio/english/'), $fileName);
-        $content->audio_file = $fileName;
+        $content->audio_file = $path;
 
         $content->save();
 

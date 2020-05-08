@@ -14,7 +14,7 @@
                       <h3 class="card-title">Community Map Data </h3>
                   </div>
                   <div class="col-6">
-                    <form action="{{ route('admin.community.import', $id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('community.import', $id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="input-group">
                           <input type="file" name="file" class="form-control @error('file') is-invalid @enderror">
@@ -33,8 +33,9 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
+                @can('isAdmin')
                 @include('community.communityNavbar')
-
+                @endcan
                 <div class="row">
                     <div class="col-12">
                       <table id="example2" class="table table-bordered table-hover dataTable" >
@@ -52,20 +53,19 @@
                           <tbody>
                             @foreach($mapData as $map)
                                 <tr>
-                                  <td rowspan="2">{{ $map->category }}</td>
-                                  <td rowspan="2">{{ $map->name }}</td>
-                                  <td>{{ $map->eng_description }}</td>
-                                  <td>{{ $map->eng_directions }}</td>
-                                  <td>{{ "Lat: ".$map->latitude }}</td>
+                                  <td>{{ $map->category }}</td>
+                                  <td>{{ $map->name }}</td>
+                                  <td>{{ $map->eng_description }}
+                                      <hr>
+                                      {{ $map->swa_description }}</td>
+                                  <td>{{ $map->eng_directions }}
+                                      <hr>
+                                      {{ $map->swa_directions }}</td>
+                                  <td>{{ "Lat: ".$map->latitude }}
+                                      <hr>
+                                      {{ "Long: ".$map->longitude }}</td>
                                   <td>{{ $map->phone_number }}</td>
                                   <td>{{ $map->created_at }}</td>                                 
-                                </tr>
-                                <tr>
-                                  <td>{{ $map->swa_description }}</td>      
-                                  <td>{{ $map->swa_directions }}</td>     
-                                  <td>{{ "Long: ".$map->longitude }} </td> 
-                                  <td>{{ $map->url }}</td>       
-                                  <td>{{ $map->updated_at }}</td>         
                                 </tr>
                             @endforeach
                           </tbody>

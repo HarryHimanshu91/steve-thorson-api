@@ -16,7 +16,12 @@
                       <p class="text-muted text-left mb-0"><b> Community - {{ $notifications ->community->title }} </b></p>
                     </div>
                   <div class="col-4 text-right">
+                      @can('isAdmin')
                       <a href="{{ route('admin.community.createnotification',['id'=>$communityId ]) }}" class="btn btn-primary btn-small">Back</a>
+                      @endcan
+                      @can('isCommunity')
+                      <a href="{{ route('community.notifications') }}" class="btn btn-primary btn-small">Back</a>
+                      @endcan
                   </div>
               </div>
               <div class="row">

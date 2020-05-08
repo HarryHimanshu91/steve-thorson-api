@@ -15,7 +15,12 @@
                       <p class="text-muted text-left mb-0"><b> Community - {{ $events ->community->title }} </b></p>
                     </div>
                   <div class="col-4 text-right">
+                      @can('isAdmin')
                       <a href="{{ route('admin.community.createevent',['id'=>$communityId ]) }}" class="btn btn-primary btn-small">Back</a>
+                      @endcan
+                      @can('isCommunity')
+                      <a href="{{ route('community.events') }}" class="btn btn-primary btn-small">Back</a>
+                      @endcan
                   </div>
                 </div>
 

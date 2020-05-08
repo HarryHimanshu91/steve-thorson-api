@@ -13,8 +13,12 @@
 
 Route::redirect('/', '/login');
 Route::get('/home', function () {
-    return redirect()->route('admin.home');
-});
+    // dd(\Auth::user());
+    if(\Auth::user()->role_id==1){
+        return redirect()->route('admin.home');
+    }
+    return redirect()->route('community.home');
+})->middleware('auth:admin');
 
 Auth::routes();
 
@@ -72,4 +76,17 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
         Route::get('/notification/{id}/show/{cId}','NotificationController@showNotification')->name('listNotification');
    
     });
+});
+
+Route::group(['prefix' => 'community', 'as' => 'community.', 'namespace' => 'Community', 'middleware' => ['auth:admin']], function () {
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/members','MemberController@index')->name('members');
+    Route::get('/mapdata','MapDataController@index')->name('mapdata');
+    Route::post('/mapdata/import/{id?}', 'MapDataController@importMapData')->name('import');
+    Route::get('/events','EventController@index')->name('events');
+    Route::post('/events/store','EventController@store')->name('events.store');
+    Route::get('/events/{id}/show/{cId}','EventController@show')->name('events.show');
+    Route::get('/notifications','NotificationController@index')->name('notifications');
+    Route::post('/notifications/store','NotificationController@store')->name('notifications.store');
+    Route::get('/notifications/{id}/show/{cId}','NotificationController@show')->name('notifications.show');
 });

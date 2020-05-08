@@ -102,18 +102,34 @@
         @endcan
         @can('isCommunity')
         <li class="nav-item">
-            <a href="{{ route('admin.community') }}" class="nav-link {{ request()->segment('2') == 'community' ? 'active' : '' }}">
+            <a href="{{ route('community.members') }}" class="nav-link {{ request()->segment('2') == 'members' ? 'active' : '' }}">
                 <i class="nav-icon fas fa-user-cog"></i>
                 <p>
-                Member           
+                Members           
                 </p>
             </a>
         </li> 
         <li class="nav-item">
-            <a href="{{ route('admin.community') }}" class="nav-link {{ request()->segment('2') == 'community' ? 'active' : '' }}">
+            <a href="{{ route('community.mapdata') }}" class="nav-link {{ request()->segment('2') == 'mapdata' ? 'active' : '' }}">
                 <i class="nav-icon fas fa-user-cog"></i>
                 <p>
                 Map Data           
+                </p>
+            </a>
+        </li> 
+        <li class="nav-item">
+            <a href="{{ route('community.events') }}" class="nav-link {{ request()->segment('2') == 'events' ? 'active' : '' }}">
+                <i class="nav-icon fas fa-user-cog"></i>
+                <p>
+                Events           
+                </p>
+            </a>
+        </li> 
+        <li class="nav-item">
+            <a href="{{ route('community.notifications') }}" class="nav-link {{ request()->segment('2') == 'notifications' ? 'active' : '' }}">
+                <i class="nav-icon fas fa-user-cog"></i>
+                <p>
+                Notification           
                 </p>
             </a>
         </li> 

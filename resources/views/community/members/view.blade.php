@@ -11,15 +11,16 @@
             <div class="card-header">
               <div class="row align-items-center">
                   <div class="col-6">
-                      <h3 class="card-title">Community Member</h3>
+                      <h3 class="card-title">Community Members</h3>
                   </div>
                 
               </div> 
             </div>
             <!-- /.card-header -->
             <div class="card-body">
+                @can('isAdmin')
                   @include('community.communityNavbar')
-
+                @endcan
                 <div class="row">
                    <div class="col-12">
                         <table id="example2" class="table table-bordered table-hover dataTable" >
