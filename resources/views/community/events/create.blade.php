@@ -25,24 +25,25 @@
                         <form class="row" method="post" action="{{ route('community.events.store') }}"> 
                             @csrf  
                             <input type="hidden" name="center_id" value="{{ $id }}">   
-                            <div class="col-12 mb-3">
-                                    <select class="form-control select2bs4 @error('content_id') is-invalid @enderror" placeholder="Select Status" name="content_id">
-                                    @foreach($contents as $content)
-                                    <option value="{{ $content->id }}" {{ (old('content_id')== $content->id ) ? 'selected' : '' }}> {{ $content->title  }} </option>
-                                    @endforeach
-                                    </select>
-                                    @error('content_id')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                            </div> 
                             <div class="col-md-6">
                                 <div class="card">
                                     <div class="card-header languagess">
                                         <h3 class="card-title">English</h3>
                                     </div>
                                     <div class="card-body">
+                                        <div class="form-group">
+                                            <select class="form-control select2bs4 @error('content_english_id') is-invalid @enderror" placeholder="Select Status" name="content_english_id">
+                                                <option value="" style="display:none">Select english content title...</option>
+                                                @foreach($englishContents as $content)
+                                                <option value="{{ $content->id }}" {{ (old('content_id')== $content->id ) ? 'selected' : '' }}> {{ $content->title  }} </option>
+                                                @endforeach
+                                            </select>
+                                            @error('content_english_id')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
                                         <div class="form-group">
                                             <input class="form-control @error('title_one') is-invalid @enderror" type="text" name="title_one" value="{{ old('title_one') }}" placeholder="Enter Title">
                                             @error('title_one')
@@ -80,7 +81,7 @@
                                                 </span>
                                             @enderror
                                         </div>
-                                </div>
+                                    </div>
                                                 <!-- /.card-body -->
                                 </div>
                                             
@@ -91,6 +92,19 @@
                                         <h3 class="card-title">Swahili</h3>
                                     </div>
                                     <div class="card-body">
+                                        <div class="form-group">
+                                            <select class="form-control select2bs4 @error('content_swahili_id') is-invalid @enderror" placeholder="Select Status" name="content_swahili_id">
+                                                <option value="" style="display:none">Select swahili content title...</option>
+                                                @foreach($swahiliContents as $content)
+                                                <option value="{{ $content->id }}" {{ (old('content_id')== $content->id ) ? 'selected' : '' }}> {{ $content->title  }} </option>
+                                                @endforeach
+                                            </select>
+                                            @error('content_swahili_id')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
                                         <div class="form-group">
                                             <input class="form-control @error('title_second') is-invalid @enderror" type="text" name="title_second" value="{{ old('title_second') }}" placeholder="Enter Title">
                                             @error('title_second')

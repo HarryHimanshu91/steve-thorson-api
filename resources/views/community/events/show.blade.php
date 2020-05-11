@@ -27,21 +27,19 @@
                 <div class="row">
                  <div class="col-md-6">    
                     <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">
-                                        {{ $events ->title_one }}
-                                       
-                                    </h3>
-                                    <p class="text-muted text-right mb-0">  {{ $events ->date_one }} </p>
-                                    <p class="text-muted text-right mb-0">  {{ $events ->time_one }} </p>
-                                </div>
-                           
-                                <div class="card-body">
-                                  {{ $events ->description_one }}
-                                </div>
-                          
-                    </div>
-                          
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                {{ $events ->title_one }}
+                                
+                            </h3>
+                            <p class="text-muted text-right mb-0">  {{ $events ->date_one }} </p>
+                            <p class="text-muted text-right mb-0">  {{ $events ->time_one }} </p>
+                        </div>
+                    
+                        <div class="card-body">
+                          {{ $events ->description_one }}
+                        </div>                          
+                    </div>                          
                 </div>
 
                 <div class="col-md-6">

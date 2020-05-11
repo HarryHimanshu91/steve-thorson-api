@@ -24,7 +24,8 @@ class EventStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'content_id' => 'required',
+            'content_english_id' => 'required',
+            'content_swahili_id' => 'required',
             'title_one' => 'required|max:160',
             'date_one' => 'required',
             'time_one' => 'required',
@@ -50,7 +51,8 @@ class EventStoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'content_id.required' => 'Oops! Please select content title',
+            'content_english_id.required' => 'Oops! Please select english content title',
+            'content_swahili_id.required' => 'Oops! Please select swahili content title',
             'title_one.required' => 'Oops! Please enter title of English',
             'title_one.max' => 'Oops! The title may not be greater than 160 characters',
             'date_one.required' => 'Oops! Please enter date of English',
@@ -78,7 +80,8 @@ class EventStoreRequest extends FormRequest
     {
         return [
             'center_id' => $this->get('center_id'),
-            'content_id' => $this->get('content_id'),
+            'content_english_id' => $this->get('content_english_id'),
+            'content_swahili_id' => $this->get('content_swahili_id'),
             'title_one' => $this->get('title_one'),
             'date_one' => $this->get('date_one'),
             'time_one' => $this->get('time_one'),

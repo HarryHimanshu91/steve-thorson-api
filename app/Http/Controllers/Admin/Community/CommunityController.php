@@ -108,9 +108,10 @@ class CommunityController extends Controller
 
    public function createevent($id)
    { 
-       $contents = DB::table('contents')->select('id','title')->get();
+       $englishContents = Content::select('id','title')->whereLanguageId('1')->get();
+       $swahiliContents = Content::select('id','title')->whereLanguageId('2')->get();
        $events = Event::whereCenterId($id)->get();
-       return view('community.events.create',compact('id','contents','events'));
+       return view('community.events.create',compact('id','englishContents','swahiliContents','events'));
    }
    
     /**
