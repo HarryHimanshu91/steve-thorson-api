@@ -3,12 +3,6 @@
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
             with font-awesome or any other icon font library -->
-        <li class="nav-item">
-            <a href="{{ url('admin') }}" class="nav-link {{ request()->segment('1') == 'admin' && request()->segment('2') == '' ? 'active' : '' }}">
-                <i class="nav-icon fas fa-th"></i>
-                <p>Dashboard</p>
-            </a>
-        </li> 
         @can('isAdmin')
         <li class="nav-item has-treeview {{ request()->segment('2') == 'roles' ? 'menu-open' : '' }}">
             <a href="#" class="nav-link {{ request()->segment('2') == 'roles' ? 'active' : '' }}">
@@ -101,6 +95,12 @@
         </li> 
         @endcan
         @can('isCommunity')
+        <li class="nav-item">
+            <a href="{{ url('community') }}" class="nav-link {{ request()->segment('1') == 'community' && request()->segment('2') == '' ? 'active' : '' }}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>Dashboard</p>
+            </a>
+        </li> 
         <li class="nav-item">
             <a href="{{ route('community.members') }}" class="nav-link {{ request()->segment('2') == 'members' ? 'active' : '' }}">
                 <i class="nav-icon fas fa-user-cog"></i>
