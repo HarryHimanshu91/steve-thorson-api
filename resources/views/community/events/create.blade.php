@@ -35,7 +35,7 @@
                                             <select class="form-control select2bs4 @error('content_english_id') is-invalid @enderror" placeholder="Select Status" name="content_english_id">
                                                 <option value="" style="display:none">Select english content title...</option>
                                                 @foreach($englishContents as $content)
-                                                <option value="{{ $content->id }}" {{ (old('content_id')== $content->id ) ? 'selected' : '' }}> {{ $content->title  }} </option>
+                                                <option value="{{ $content->id }}" {{ (old('content_english_id')== $content->id ) ? 'selected' : '' }}> {{ $content->title  }} </option>
                                                 @endforeach
                                             </select>
                                             @error('content_english_id')
@@ -96,7 +96,7 @@
                                             <select class="form-control select2bs4 @error('content_swahili_id') is-invalid @enderror" placeholder="Select Status" name="content_swahili_id">
                                                 <option value="" style="display:none">Select swahili content title...</option>
                                                 @foreach($swahiliContents as $content)
-                                                <option value="{{ $content->id }}" {{ (old('content_id')== $content->id ) ? 'selected' : '' }}> {{ $content->title  }} </option>
+                                                <option value="{{ $content->id }}" {{ (old('content_swahili_id')== $content->id ) ? 'selected' : '' }}> {{ $content->title  }} </option>
                                                 @endforeach
                                             </select>
                                             @error('content_swahili_id')
