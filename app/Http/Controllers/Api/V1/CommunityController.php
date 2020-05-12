@@ -16,7 +16,7 @@ class CommunityController extends Controller
     public function community($id)
     {
         try{
-            $contents = Community::whereId($id)->with('events','notifications')->first();
+            $contents = Community::whereId($id)->with('mapdata','events','notifications')->first();
             $data = [
                 'success' => true,
                 'data' => $contents

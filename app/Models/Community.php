@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Region;
 use App\Models\Event;
 use App\Models\Notification;
+use App\Models\MapData;
 
 class Community extends Model
 {
@@ -42,6 +43,16 @@ class Community extends Model
     public function notifications()
     {
         return $this->hasMany(Notification::class,'center_id');
+    }
+
+     /**
+     * Method for getting mapdata
+     * @return relations
+     */
+    
+    public function mapdata()
+    {
+        return $this->hasMany(MapData::class,'center_id');
     }
 
 }
