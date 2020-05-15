@@ -25,7 +25,7 @@ class StoreRegisterRequest extends FormRequest
             'region' => 'required',
             'center' => 'required',
             'image' => 'mimes:jpeg,png,jpg',
-            'is_verified' => 'required|in:0,1'
+            'uid' => 'required|unique:users,uid'
         ];
     }
 
@@ -46,8 +46,8 @@ class StoreRegisterRequest extends FormRequest
             'region.required' => 'Oops! Please select the region.',
             'center.required' => 'Oops! Please select the center.',
             'image.mimes' => 'Oops! please select only jpeg, png & jpg image.',
-            'is_verified.required' => 'Oops! User is not verified, please try again.',
-            'is_verified.in' => 'Oops! The selected field is not valid'
+            'uid.required' => 'Oops! UID is not verified, please try again.',
+            'uid.unique' => 'Oops! The given UID is already exist.'
         ];
     }
 
@@ -65,7 +65,7 @@ class StoreRegisterRequest extends FormRequest
             'password' => \Hash::make($this->get('password')),
             'region_id' => $this->get('region'),
             'center_id' => $this->get('center'),
-            'is_verified' => $this->get('is_verified')
+            'uid' => $this->get('uid')
         ];
     }
 
