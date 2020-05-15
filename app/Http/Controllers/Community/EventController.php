@@ -15,12 +15,10 @@ class EventController extends Controller
      */
     public function index(){
         $events = Event::whereCenterId(Auth::user()->center_id)->get();
-        $englishContents = Content::select('id','title')->whereLanguageId('1')->get();
-        $swahiliContents = Content::select('id','title')->whereLanguageId('2')->get();
+        $contents = Content::select('id','english_title','swahili_title')->get();
         return view('community.events.create')->with([
             'id'=>Auth::user()->center_id,
-            'englishContents' => $englishContents,
-            'swahiliContents' => $swahiliContents,
+            'contents' => $contents,
             'events' => $events
         ]);
     }
