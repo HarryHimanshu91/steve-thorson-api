@@ -50,12 +50,16 @@ class StoreUserRequest extends FormRequest
 
     public function userData(): array 
     {
+        $str_result = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'; 
+        $str = substr(str_shuffle($str_result),  
+                        0, 10); 
+
         return [
             'name' => $this->get('name'),
             'email' => $this->get('email'),
             'role_id' => $this->get('role'),
             'center_id' => $this->get('community'), 
-            'password' => \Hash::make(env('NEW_USER_DEFAULT_PASSWORD')),
+            'password' => $str,
             'status' => $this->get('status')
         ];
     }

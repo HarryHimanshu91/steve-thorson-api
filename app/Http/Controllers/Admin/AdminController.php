@@ -45,10 +45,18 @@ class AdminController extends Controller
      */
     public function store(StoreUserRequest $request)
     {  
-        $user = Admin::create($request->userData());
-        
+        $data = $request->userData();
+        $user = Admin::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'role_id' => $data['role_id'],
+            'center_id' => $data['center_id'],
+            'password' => \Hash::make($data['password']),
+            'status' => $data['status']
+        ]);        
+                        
         if($user){
-            Mail::to($user->email)->send(new AdminUserMail($request->get('email'), env('NEW_USER_DEFAULT_PASSWORD')));
+            Mail::to($user->email)->send(new AdminUserMail($request->get('email'), $data['password']));
             $notification = array(
                 'message' => 'Success ! User has been created successfully', 
                 'alert-type' => 'success'
