@@ -20,12 +20,9 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-               <span class="languagestyles">  Language - {{ $content->language->name }} </span>
               
-              <form role="form" method="POST" action="{{ route('admin.updateContent', $content->id ) }}" enctype="multipart/form-data">
+              <form role="form" method="POST" action="{{ route('admin.content.update', $content->id ) }}" enctype="multipart/form-data">
                     @csrf
-                    @method('POST')
-                    <input type="hidden" name="language_id" value={{ $content->language_id }}>
                     <div class="card-body">
                         <div class="form-group">
                             <label>Select Category </label>
@@ -42,26 +39,85 @@
                                 </span>
                             @enderror
                         </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Content Title </label>
+                                    <input type="text" name="english_title" class="form-control @error('english_title') is-invalid @enderror" value="{{ $content->english_title }}" placeholder="Enter Category Title in English">
+                                    @error('english_title')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Content Title </label>
+                                    <input type="text" name="swahili_title" class="form-control @error('swahili_title') is-invalid @enderror" value="{{ $content->swahili_title }}" placeholder="Enter Category Title in Swahili">
+                                    @error('swahili_title')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        <div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Content Description </label>
+                                    <textarea rows="5" name="english_description" class="textarea form-control @error('english_description') is-invalid @enderror"> {{ $content->english_description }}</textarea>
+                                    @error('english_description')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Content Description </label>
+                                    <textarea rows="5" name="swahili_description" class="textarea form-control @error('swahili_description') is-invalid @enderror"> {{ $content->swahili_description }}</textarea>
+                                    @error('swahili_description')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Upload Audio for English</label>
+                                    <input type="file" name="audio_english_file" class="form-control @error('audio_english_file') is-invalid @enderror">
+                                    <input type="hidden" name="hidden_english_file" value="{{ $content->audio_english_file }}" />
+                                    @error('audio_english_file')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
 
-                        <div class="form-group">
-                            <label>Content Title </label>
-                            <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" value="{{ $content->title }}" placeholder="Enter Category Title">
-                            @error('title')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                                    <audio controls><source src="{{ asset($content->audio_english_file) }}" /></audio>
+            
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Upload Audio for Swahili</label>
+                                    <input type="file" name="audio_swahili_file" class="form-control @error('audio_swahili_file') is-invalid @enderror">
+                                    <input type="hidden" name="hidden_swahili_file" value="{{ $content->audio_swahili_file }}" />
+                                    @error('audio_swahili_file')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+
+                                    <audio controls><source src="{{ asset($content->audio_swahili_file)  }}" /></audio>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label>Content Description </label>
-                            <textarea rows="5" name="description" class="textarea form-control @error('description') is-invalid @enderror"> {{ $content->description }}</textarea>
-                            @error('description')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                      
                         <div class="form-group">
                             <label>Content Status </label>
                             <select class="form-control @error('status') is-invalid @enderror" name="status">
@@ -74,23 +130,6 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Upload Audio </label>
-                             <input type="file" name="audio_file" class="form-control @error('audio_file') is-invalid @enderror">
-                             <input type="hidden" name="hidden_image" value="{{ $content->audio_file }}" />
-                             @error('audio_file')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                             @enderror
-
-                            @if($content->language_id ==1)
-                              <audio controls><source src="/uploads/audio/english/{{ $content->audio_file }}" /></audio>
-                            @else
-                              <audio controls><source src="/uploads/audio/swahili/{{ $content->audio_file }}" /></audio>
-                            @endif
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Update</button>

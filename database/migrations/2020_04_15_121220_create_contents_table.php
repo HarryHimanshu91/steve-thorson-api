@@ -15,12 +15,13 @@ class CreateContentsTable extends Migration
     {
         Schema::create('contents', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('language_id');
-            $table->foreign('language_id')->references('id')->on('languages');
-            $table->string('title');
-            $table->text('description');
             $table->string('cat_name');
-            $table->text("audio_file");
+            $table->string('english_title');
+            $table->string('swahili_title');
+            $table->text('english_description');
+            $table->text('swahili_description');
+            $table->text("audio_english_file")->nullable();
+            $table->text("audio_swahili_file")->nullable();
             $table->tinyInteger('status');
             $table->timestamps();
         });

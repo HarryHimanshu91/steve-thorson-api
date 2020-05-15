@@ -53,10 +53,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     
     Route::get('content','ContentController@index')->name('viewAllContent');
     Route::get('content/create','ContentController@create')->name('createContent');
-    Route::post('content/create','ContentController@saveLanguage1')->name('saveContent1');
-    Route::post('content/creates','ContentController@saveLanguage2')->name('saveContent2');
+    Route::post('content/store','ContentController@store')->name('content.store');
     Route::get('content/{id}','ContentController@editContent')->name('editContent');
-    Route::post('content/{id}','ContentController@updateContent')->name('updateContent');
+    Route::post('content/{id}','ContentController@update')->name('content.update');
     Route::get('content/view/{id}','ContentController@showContent')->name('showContent');
     Route::post('content/delete/{id}','ContentController@deleteContent')->name('deleteContent');
 

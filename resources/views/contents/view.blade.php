@@ -24,11 +24,10 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Content Title </th>
-                        <th>Audio </th>
+                        <th>English/Swahili Content Title </th>
+                        <th>English/Swahili Audio </th>
                         <th>Category  </th>
                         <th>Status  </th>
-                        <th>Languages  </th>
                         <th>Created At</th>
                         <th>Updated At</th>
                         <th>Action</th>
@@ -40,18 +39,16 @@
               
                  <tr>
                         <td>{{ $content->id  }}</td>
-                        <td>{{ $content->title }}</td>
+                        <td>{{ $content->english_title }}
+                            <hr>
+                            {{ $content->swahili_title }}</td>
                         <td> 
-                            @if($content->language_id ==1)
-                              <audio controls><source src="/uploads/audio/english/{{ $content->audio_file }}" /></audio>
-                            @else
-                              <audio controls><source src="/uploads/audio/swahili/{{ $content->audio_file }}" /></audio>
-                            @endif
-                           
+                            <audio controls><source src="{{ asset($content->audio_english_file) }}" /></audio>
+                            <hr>
+                            <audio controls><source src="{{ asset($content->audio_swahili_file) }}" /></audio>                           
                         </td>
                         <td>{{ $content->cat_name }}</td>
                         <td class="{{ $content->status ? 'text-success' : 'text-danger'}}">{{ $content->status ? "Active" : "Inactive" }}</td>
-                        <td>{{ $content->language->name }}</td>
                         <td>{{ $content->created_at }}</td>
                         <td>{{ $content->updated_at }}</td>
                         <td>

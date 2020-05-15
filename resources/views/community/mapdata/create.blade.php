@@ -64,7 +64,9 @@
                                   <td>{{ "Lat: ".$map->latitude }}
                                       <hr>
                                       {{ "Long: ".$map->longitude }}</td>
-                                  <td>{{ $map->phone_number }}</td>
+                                  <td>{{ $map->phone_number }}
+                                      <hr>
+                                      {{ $map->url }}</td>
                                   <td>{{ $map->created_at }}</td>                                 
                                 </tr>
                             @endforeach

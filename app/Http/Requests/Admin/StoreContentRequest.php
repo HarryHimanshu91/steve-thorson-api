@@ -11,7 +11,6 @@ class StoreContentRequest extends FormRequest
      *
      * @return bool
      */
-    protected $errorBag = 'language1';
 
     public function authorize()
     {
@@ -26,11 +25,14 @@ class StoreContentRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:160',
-            'description' => 'required',
             'cat_name' => 'required',
+            'english_title' => 'required|max:160|unique:contents,english_title',
+            'swahili_title' => 'required|max:160|unique:contents,swahili_title',
+            'english_description' => 'required',
+            'swahili_description' => 'required',
             'status' => 'required', 
-            'audio_file' => 'required|mimes:application/octet-stream,audio/mpeg,mpga,mp3,wav',          
+            'audio_english_file' => 'required|mimes:application/octet-stream,audio/mpeg,mpga,mp3,wav',      
+            'audio_swahili_file' => 'required|mimes:application/octet-stream,audio/mpeg,mpga,mp3,wav',       
         ];
     }
 
@@ -43,12 +45,20 @@ class StoreContentRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.required' => 'Oops! Please enter content title.',
-            'title.max' => 'Oops! The title may not be greater than 160 characters',
-            'description.required' => "Oops! Please enter content description.",
             'cat_name.required' => 'Oops! Please select category.',
+            'english_title.required' => 'Oops! Please enter content title for english.',
+            'swahili_title.required' => 'Oops! Please enter content title for swahili.',
+            'english_title.unique' => 'Oops! The given title for english is already exists',
+            'swahili_title.unique' => 'Oops! The given title for swahili is already exists',
+            'english_title.max' => 'Oops! The english title may not be greater than 160 characters',
+            'swahili_title.max' => 'Oops! The swahili title may not be greater than 160 characters',
+            'english_description.required' => "Oops! Please enter content description for english.",   
+            'swahili_description.required' => "Oops! Please enter content description for swahili.",           
             'status.required' => 'Oops! Please select content status.',
-            'audio_file.required' => 'Oops! Please select audio file in English Language.'
+            'audio_english_file.required' => 'Oops! Please select audio file in English Language.',
+            'audio_english_file.mimes' => 'Oops! Please select valid audio file for english',
+            'audio_swahili_file.required' => 'Oops! Please select audio file in Swahili Language.',
+            'audio_swahili_file.mimes' => 'Oops! Please select valid audio file for swahili',
         ];
     }
 
@@ -62,11 +72,12 @@ class StoreContentRequest extends FormRequest
     public function contentData(): array 
     {
         return [
-            'title' => $this->get('title'),
-            'description' => $this->get('description'),
             'cat_name' => $this->get('cat_name'),
-            'status' => $this->get('status'),
-            'language_id' => $this->get('language_id')
+            'english_title' => $this->get('english_title'),
+            'swahili_title' => $this->get('swahili_title'),
+            'english_description' => $this->get('english_description'),
+            'swahili_description' => $this->get('swahili_description'),            
+            'status' => $this->get('status')
         ];
     }
    

@@ -19,7 +19,7 @@ class ContentController extends Controller
      */
     public function index()
     {
-        $contents = Content::with('language')->get();
+        $contents = Content::all();
         return view('contents.view')->with('contents', $contents);
     }
 
@@ -37,20 +37,25 @@ class ContentController extends Controller
      *
      */
 
-    public function saveLanguage1(StoreContentRequest $request)
+    public function store(StoreContentRequest $request)
     {
         $content = Content::create($request->contentData());
 
-        $fileName = time().'.'.$request->audio_file->getClientOriginalExtension();
+        $fileName = time().'.'.$request->audio_english_file->getClientOriginalExtension();
         $path = asset('/uploads/audio/english/'.$fileName);
-        $request->audio_file->move(public_path('uploads/audio/english/'), $fileName);
-        $content->audio_file = $path;
+        $request->audio_english_file->move(public_path('uploads/audio/english/'), $fileName);
+        $content->audio_english_file = $path;
+
+        $fileName = time().'.'.$request->audio_swahili_file->getClientOriginalExtension();
+        $path = asset('/uploads/audio/swahili/'.$fileName);
+        $request->audio_swahili_file->move(public_path('uploads/audio/swahili/'), $fileName);
+        $content->audio_swahili_file = $path;
 
         $content->save();
 
         if($content){
             $notification = array(
-                'message' => 'Success ! Language 1 Content has been added successfully', 
+                'message' => 'Success ! Content has been added successfully', 
                 'alert-type' => 'success'
             );
             return redirect()->back()->with($notification);
@@ -61,38 +66,6 @@ class ContentController extends Controller
             );
             return redirect()->back()->with($notification);
         }
-    }
-
-    
-    /**
-     * Save Contents Data of Language 2 in Database.
-     *
-     */
-
-    public function saveLanguage2(StoreLanguageSecondRequest $request)
-    {
-        $content = Content::create($request->contentData());
-
-        $fileName = time().'.'.$request->audio_file->getClientOriginalExtension();
-        $path = asset('/uploads/audio/swahili/'.$fileName);
-        $request->audio_file->move(public_path('uploads/audio/swahili/'), $fileName);
-        $content->audio_file = $fileName;
-        
-        $content->save();
-
-         if($content){
-             $notification = array(
-                 'message' => 'Success ! Language 2 Content has been added successfully', 
-                 'alert-type' => 'success'
-             );
-             return redirect()->back()->with($notification);
-         }else{
-             $notification = array(
-                 'message' => 'Error ! Something went wrong', 
-                 'alert-type' => 'error'
-             );
-             return redirect()->back()->with($notification);
-         }
     }
 
     /**
@@ -110,45 +83,66 @@ class ContentController extends Controller
      * Update Record With Unique Id Contents.
      *
      */
-    public function updateContent(Request $request , $id)
+    public function update(Request $request , $id)
     {
-        $audioFile = $request->hidden_image;
-        $audio_file = $request->file('audio_file');
-        if($audio_file != '')
-        {
-            $request->validate([
-                'title' => 'required|max:160',
-                'description' => 'required',
-                'cat_name' => 'required',
-                'status' => 'required',
-                'audio_file' => 'required|mimes:application/octet-stream,audio/mpeg,mpga,mp3,wav',
-            ]);
+        $validator = Validator::make($request->all(), [
+            'english_title' => 'required|max:160|unique:contents,english_title,'.$id,
+            'swahili_title' => 'required|max:160|unique:contents,swahili_title,'.$id,
+            'english_description' => 'required',
+            'swahili_description' => 'required',
+            'cat_name' => 'required',
+            'status' => 'required',
+            'audio_english_file' => $request->hidden_english_file ? '' : 'required|mimes:application/octet-stream,audio/mpeg,mpga,mp3,wav',
+            'audio_swahili_file' => $request->hidden_swahili_file ? '' : 'required|mimes:application/octet-stream,audio/mpeg,mpga,mp3,wav',
+        ],
+        [
+            'cat_name.required' => 'Oops! Please select category.',
+            'english_title.required' => 'Oops! Please enter content title for english.',
+            'swahili_title.required' => 'Oops! Please enter content title for swahili.',
+            'english_title.unique' => 'The english title has already been taken.',
+            'swahili_title.unique' => 'The swahili title has already been taken.',
+            'english_title.max' => 'Oops! The english title may not be greater than 160 characters',
+            'swahili_title.max' => 'Oops! The swahili title may not be greater than 160 characters',
+            'english_description.required' => "Oops! Please enter content description for english.",   
+            'swahili_description.required' => "Oops! Please enter content description for swahili.",           
+            'status.required' => 'Oops! Please select content status.',
+            'audio_english_file.required' => 'Oops! Please select audio file in English Language.',
+            'audio_english_file.mimes' => 'Oops! Please select valid audio file for english',
+            'audio_swahili_file.required' => 'Oops! Please select audio file in Swahili Language.',
+            'audio_swahili_file.mimes' => 'Oops! Please select valid audio file for swahili',
+        ]);
 
-            $audioFile = rand() . '.' . $audio_file->getClientOriginalExtension();
-           
-            if($request->language_id=='1'){
-                $audio_file->move(public_path('uploads/audio/english/'), $audioFile);
-            }else{
-                $audio_file->move(public_path('uploads/audio/swahili/'), $audioFile);
-            }
+        if ($validator->fails()) {
+            return redirect()->route('admin.editContent', $id)
+                        ->withErrors($validator)
+                        ->withInput();
         }
-        else
-        {
-            $request->validate([
-                'title' => 'required|max:160',
-                'description' => 'required',
-                'cat_name' => 'required',
-                'status' => 'required',
-            ]);
+
+        $audioEnglishFile = $request->hidden_english_file;
+        $audio_english_file = $request->file('audio_english_file');
+        $audioSwahiliFile = $request->hidden_swahili_file;
+        $audio_swahili_file = $request->file('audio_swahili_file');
+
+        if($audio_english_file){
+            $fileName = time().'.'.$request->audio_english_file->getClientOriginalExtension();
+            $englishPath = asset('/uploads/audio/english/'.$fileName);
+            $request->audio_english_file->move(public_path('uploads/audio/english/'), $fileName);
+        }
+        if($audio_swahili_file){
+            $fileName = time().'.'.$request->audio_swahili_file->getClientOriginalExtension();
+            $swahiliPath = asset('/uploads/audio/swahili/'.$fileName);
+            $request->audio_swahili_file->move(public_path('uploads/audio/swahili/'), $fileName);
         }
 
         $form_data = array(
-            'title'       =>   $request->title,
-            'description' =>   $request->description,
+            'english_title'       =>   $request->english_title,
+            'swahili_title'       =>   $request->swahili_title,
+            'english_description' =>   $request->english_description,
+            'swahili_description' =>   $request->swahili_description,
             'cat_name'    =>   $request->cat_name,
             'status'      =>   $request->status,
-            'language_id' =>   $request->language_id,
-            'audio_file'  =>   $audioFile
+            'audio_english_file'  =>   empty($audio_english_file) ? $audioEnglishFile : $englishPath,
+            'audio_swahili_file' => empty($audio_swahili_file) ? $audioSwahiliFile : $swahiliPath
         );
   
         Content::whereId($id)->update($form_data);

@@ -13,7 +13,7 @@ class Content extends Model
      */
 
     protected $fillable = [
-        'title', 'description', 'cat_name', 'status', 'language_id', 'audio_file'
+        'english_title', 'english_description','swahili_title', 'swahili_description', 'cat_name', 'status', 'audio_english_file', 'audio_swahili_file'
     ];
 
     protected $table ='contents';
