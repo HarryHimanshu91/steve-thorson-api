@@ -24,15 +24,12 @@ class NotificationStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'title_one' => 'required|max:160',
-            'date_one' => 'required',
-            'time_one' => 'required',
+            'title_one' => 'required|max:160|unique:notifications,title_one',
+            'title_second' => 'required|max:160|unique:notifications,title_second',
+            'date' => 'required',
+            'time' => 'required',
             'description_one' => 'required',
-            'title_second' => 'required|max:160',
-            'date_second' => 'required',
-            'time_second' => 'required',
-            'description_second' => 'required',
-           
+            'description_second' => 'required',           
         ];
     }
 
@@ -47,14 +44,14 @@ class NotificationStoreRequest extends FormRequest
         return [
             'title_one.required' => 'Oops! Please enter title of English',
             'title_one.max' => 'Oops! The title may not be greater than 160 characters',
-            'date_one.required' => 'Oops! Please enter date of English',
-            'time_one.required' => 'Oops! Please enter time of English',
-            'description_one.required' => 'Oops! Please enter description of English',
+            'title_one.unique' => 'Oops! The given english title is already exists.',
             'title_second.required' => 'Oops! Please enter title of Swahili',
             'title_second.max' => 'Oops! The title may not be greater than 160 characters',
-            'date_second.required' => 'Oops! Please enter date of Swahili',
-            'time_second.required' => 'Oops! Please enter time of Swahili',
-            'description_second.required' => 'Oops! Please enter description of Swahili',
+            'title_second.unique' => 'Oops! The given swahili title is already exists.',
+            'date.required' => 'Oops! Please enter date of English',
+            'time.required' => 'Oops! Please enter time of English',
+            'description_one.required' => 'Oops! Please enter description of English',
+            'description_second.required' => 'Oops! Please enter description of Swahili',            
         ];
     }
 
@@ -70,12 +67,10 @@ class NotificationStoreRequest extends FormRequest
         return [
             'center_id' => $this->get('center_id'),
             'title_one' => $this->get('title_one'),
-            'date_one' => $this->get('date_one'),
-            'time_one' => $this->get('time_one'),
+            'date' => $this->get('date'),
+            'time' => $this->get('time'),
             'description_one' => $this->get('description_one'),
             'title_second' => $this->get('title_second'),
-            'date_second' => $this->get('date_second'),
-            'time_second' => $this->get('time_second'),
             'description_second' => $this->get('description_second'),
         ];
     }

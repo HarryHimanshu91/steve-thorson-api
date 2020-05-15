@@ -17,12 +17,10 @@ class CreateNotificationsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('center_id');
             $table->string('title_one');
-            $table->string('date_one');
-            $table->string('time_one');
+            $table->string('date');
+            $table->string('time');
             $table->text('description_one');
             $table->string('title_second');
-            $table->string('date_second');
-            $table->string('time_second');
             $table->text('description_second');
             $table->timestamps();
         });
