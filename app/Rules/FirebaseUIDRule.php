@@ -37,7 +37,7 @@ class FirebaseUIDRule implements Rule
             $firebaseUser = FirebaseAuth::getUser($value);
         } catch (\Exception $e) {
             if (config('app.debug')) {
-                throw $exception;
+                throw $e;
             }
             return false;
         }
