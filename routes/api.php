@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('register','Api\V1\UserController@register'); 
 Route::post('login','Api\V1\UserController@checkUserLogin');
+Route::post('forget-password','Api\V1\ForgetPasswordController@forgetPassword');
 Route::get('language','Api\V1\LanguageController@languageList');
 Route::get('regions','Api\V1\RegionController@regions');
 
