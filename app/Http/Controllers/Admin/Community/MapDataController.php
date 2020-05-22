@@ -78,11 +78,11 @@ class MapDataController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id, $cid)
+    public function update(Request $request, $mid, $id)
     {
         $validator = Validator::make($request->all(), [
             'category' => 'required',
-            'name' => 'required|max:160|unique:map_data,name,'.$id,
+            'name' => 'required|max:160|unique:map_data,name,'.$mid,
             'eng_description' => 'required',
             'eng_directions' => 'required',
             'swa_description' => 'required',
@@ -108,7 +108,7 @@ class MapDataController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('admin.community.mapdata.edit', $id, $cid)
+            return redirect()->route('admin.community.mapdata.edit', $mid, $id)
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -130,7 +130,7 @@ class MapDataController extends Controller
             'message' => 'Success ! Mapdata has been updated successfully', 
             'alert-type' => 'success'
         );
-        return redirect()->route('admin.community.mapdata', $cid)->with($notification);
+        return redirect()->route('admin.community.mapdata', $id)->with($notification);
     }
 
     /**

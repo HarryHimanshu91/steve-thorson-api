@@ -51,7 +51,7 @@
                 @endcan
                 <div class="row">
                     <div class="col-12">
-                      <table id="example2" class="table table-bordered table-hover dataTable" >
+                      <table id="example2" class="table table-bordered table-striped dataTable" >
                           <thead>
                               <tr>
                                   <th>Category</th>
