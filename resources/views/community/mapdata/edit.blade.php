@@ -26,13 +26,13 @@
                 <div class="row">
                     <div class="col-12">
                         @can('isAdmin')
-                        <form class="row" method="post" action="{{ route('admin.community.mapdata.update', $mapdata->id) }}"> 
+                        <form class="row" method="post" action="{{ route('admin.community.mapdata.update', [$mapdata->id, $id]) }}"> 
                         @endcan
                         @can('isCommunity')
                         <form class="row" method="post" action="{{ route('community.mapdata.update', $mapdata->id) }}"> 
                         @endcan
                             @csrf  
-                            <input type="hidden" name="center_id" value="{{ $mapdata->id }}">   
+                            <input type="hidden" name="center_id" value="{{ $id }}">   
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body">

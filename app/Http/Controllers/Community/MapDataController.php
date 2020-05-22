@@ -64,7 +64,7 @@ class MapDataController extends Controller
 
     public function edit($id){
         $mapdata = MapData::whereId($id)->first();
-        return view('community.mapdata.edit')->with('mapdata', $mapdata);
+        return view('community.mapdata.edit')->with(['mapdata'=>$mapdata,'id'=>$mapdata->center_id]);
     }
 
     /**
@@ -124,7 +124,7 @@ class MapDataController extends Controller
             'message' => 'Success ! Mapdata has been updated successfully', 
             'alert-type' => 'success'
         );
-        return redirect()->route('community.mapdata', $id)->with($notification);
+        return redirect()->route('community.mapdata')->with($notification);
     }
 
     /**

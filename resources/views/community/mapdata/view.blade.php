@@ -14,7 +14,12 @@
                       <h3 class="card-title">Community Map Data </h3>
                   </div>
                   <div class="col-6">
+                    @can('isAdmin')
+                    <form action="{{ route('admin.community.import', $id) }}" method="POST" enctype="multipart/form-data">
+                    @endcan
+                    @can('isCommunity')
                     <form action="{{ route('community.import', $id) }}" method="POST" enctype="multipart/form-data">
+                    @endcan
                         @csrf
                         <div class="input-group">
                           <input type="file" name="file" class="form-control @error('file') is-invalid @enderror">
@@ -79,7 +84,7 @@
                                   <td>{{ $map->created_at }}</td>  
                                   <td>
                                     @can('isAdmin')
-                                      <a href="{{ asset('/admin/community/mapdata/'.$map->id.'/edit') }}" class="btn btn-primary"><i class='fa fa-edit'></i></a>
+                                      <a href="{{ asset('/admin/community/mapdata/'.$map->id.'/edit/'.$id) }}" class="btn btn-primary"><i class='fa fa-edit'></i></a>
                                     @endcan
                                     @can('isCommunity')
                                       <a href="{{ asset('/community/mapdata/'.$map->id.'/edit') }}" class="btn btn-primary"><i class='fa fa-edit'></i></a>
