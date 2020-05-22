@@ -11,7 +11,7 @@
             <div class="card-header">
               <div class="row align-items-center">
                   <div class="col-6">
-                      <h3 class="card-title">Add Map Data </h3>
+                      <h3 class="card-title">Edit Map Data </h3>
                   </div>
                   <div class="col-6">
                     
@@ -25,15 +25,20 @@
                 @endcan
                 <div class="row">
                     <div class="col-12">
-                        <form class="row" method="post" action="{{ route('community.mapdata.store') }}"> 
+                        @can('isAdmin')
+                        <form class="row" method="post" action="{{ route('admin.community.mapdata.update', $mapdata->id) }}"> 
+                        @endcan
+                        @can('isCommunity')
+                        <form class="row" method="post" action="{{ route('community.mapdata.update', $mapdata->id) }}"> 
+                        @endcan
                             @csrf  
-                            <input type="hidden" name="center_id" value="{{ $id }}">   
+                            <input type="hidden" name="center_id" value="{{ $mapdata->id }}">   
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="form-group">
                                             <label>Title</label>
-                                            <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" value="{{ old('name') }}" placeholder="Enter Title">
+                                            <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" value="{{ $mapdata->name }}" placeholder="Enter Title">
                                             @error('name')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -44,7 +49,7 @@
                                             <label>Category</label>
                                             <select class="form-control select2bs4 @error('category') is-invalid @enderror" name="category">
                                                 <option value="">Select Category</option>
-                                                <option value="Hospital" {{ (old('category') == 'Hospital') ? 'selected':'' }}>Hospital</option>
+                                                <option value="Hospital" {{ ($mapdata->category == 'Hospital') ? 'selected':'' }}>Hospital</option>
                                             </select>
                                             @error('category')
                                                 <span class="invalid-feedback" role="alert">
@@ -56,7 +61,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Description in English</label>
-                                                    <textarea class="form-control @error('eng_description') is-invalid @enderror" name="eng_description" rows="5" placeholder="Enter English Description">{{ old('english_description') }}</textarea>
+                                                    <textarea class="form-control @error('eng_description') is-invalid @enderror" name="eng_description" rows="5" placeholder="Enter English Description">{{ $mapdata->eng_description }}</textarea>
                                                     @error('eng_description')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -67,7 +72,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Description in Swahili</label>
-                                                    <textarea class="form-control @error('swa_description') is-invalid @enderror" name="swa_description" rows="5" placeholder="Enter Swahili Description">{{ old('swahili_description') }}</textarea>
+                                                    <textarea class="form-control @error('swa_description') is-invalid @enderror" name="swa_description" rows="5" placeholder="Enter Swahili Description">{{ $mapdata->swa_description }}</textarea>
                                                     @error('swa_description')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -78,7 +83,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Direction in English</label>
-                                                    <textarea class="form-control @error('eng_directions') is-invalid @enderror" name="eng_directions" rows="2" placeholder="Enter English Direction">{{ old('english_direction') }}</textarea>
+                                                    <textarea class="form-control @error('eng_directions') is-invalid @enderror" name="eng_directions" rows="2" placeholder="Enter English Direction">{{ $mapdata->eng_directions }}</textarea>
                                                     @error('eng_directions')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -89,7 +94,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Direction in Swahili</label>
-                                                    <textarea class="form-control @error('swa_directions') is-invalid @enderror" name="swa_directions" rows="2" placeholder="Enter Swahili Direction">{{ old('swahili_direction') }}</textarea>
+                                                    <textarea class="form-control @error('swa_directions') is-invalid @enderror" name="swa_directions" rows="2" placeholder="Enter Swahili Direction">{{ $mapdata->swa_directions }}</textarea>
                                                     @error('swa_directions')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -100,7 +105,7 @@
                                             <div class="col-md-6">
                                               <div class="form-group">
                                                 <label>Latitude</label>
-                                                <input class="form-control form-control  @error('latitude') is-invalid @enderror" name="latitude" type="text" placeholder="Enter Latitude" value="{{ old('latitude') }}">
+                                                <input class="form-control form-control  @error('latitude') is-invalid @enderror" name="latitude" type="text" placeholder="Enter Latitude" value="{{ $mapdata->latitude }}">
                                                 @error('latitude')
                                                     <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -111,7 +116,7 @@
                                             <div class="col-md-6">   
                                               <div class="form-group">
                                                 <label>Longitude</label>
-                                                <input class="form-control form-control  @error('longitude') is-invalid @enderror" name="longitude" type="text" placeholder="Enter Longitude" value="{{ old('longitude') }}">
+                                                <input class="form-control form-control  @error('longitude') is-invalid @enderror" name="longitude" type="text" placeholder="Enter Longitude" value="{{ $mapdata->longitude }}">
                                                 @error('longitude')
                                                     <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -122,7 +127,7 @@
                                             <div class="col-md-6">
                                               <div class="form-group">
                                                 <label>Phone Number</label>
-                                                <input class="form-control form-control  @error('phone_number') is-invalid @enderror" name="phone_number" type="text" placeholder="Enter Phone Number" value="{{ old('phone_number') }}">
+                                                <input class="form-control form-control  @error('phone_number') is-invalid @enderror" name="phone_number" type="text" placeholder="Enter Phone Number" value="{{ $mapdata->phone_number }}">
                                                 @error('phone_number')
                                                     <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -133,7 +138,7 @@
                                             <div class="col-md-6">
                                               <div class="form-group">   
                                                 <label>URL</label>
-                                                <input class="form-control form-control  @error('url') is-invalid @enderror" name="url" type="text" placeholder="Enter URL" value="{{ old('url') }}">
+                                                <input class="form-control form-control  @error('url') is-invalid @enderror" name="url" type="text" placeholder="Enter URL" value="{{ $mapdata->url }}">
                                                 @error('url')
                                                     <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>

@@ -1,45 +1,48 @@
 <?php
 
-namespace App\Http\Controllers\Community;
+namespace App\Http\Controllers\Admin\Community;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreMapDataRequest;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\DB;
-use App\Imports\MapDataImport;
-use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use App\Models\MapData;
-use Auth;
+use Illuminate\Support\Facades\Validator;
+use App\Models\Community;
+use App\User;
+use App\Imports\MapDataImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class MapDataController extends Controller
 {
     /**
-     * method for fetch map data 
-     * @param $id
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
      */
-   
-    public function index()
+    public function index($id)
     {
-        $mapData = MapData::whereCenterId(Auth::user()->center_id)->get();
-        return view('community.mapdata.view')->with(['id'=>Auth::user()->center_id,'mapData'=>$mapData]);
+        $mapData = MapData::whereCenterId($id)->get();
+        return view('community.mapdata.view',compact('id','mapData'));
     }
 
     /**
-     * method to show the form
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
      */
 
     public function create($id){
-        return view('community.mapdata.create')->with('id', $id);
+        return view('community.mapdata.create')->with('id',$id);
     }
 
     /**
-     * method for store map data
-     * 
-     *  @param 
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
-
-    public function store(StoreMapDataRequest $request){
+    public function store(StoreMapDataRequest $request)
+    {
         $mapdata = MapData::create($request->requestData());
         if($mapdata){
             $notification = array(
@@ -57,23 +60,26 @@ class MapDataController extends Controller
     }
 
     /**
-     * method for show edit form 
-     * 
-     * @param 
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-
-    public function edit($id){
+    public function edit($id)
+    {
         $mapdata = MapData::whereId($id)->first();
-        return view('community.mapdata.edit')->with('mapdata', $mapdata);
+        return view('community.mapdata.edit')->with(['mapdata' => $mapdata, 'id' => $id]);
     }
 
     /**
-     * method for update data
-     * 
-     * @param
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         $validator = Validator::make($request->all(), [
             'category' => 'required',
             'name' => 'required|max:160|unique:map_data,name,'.$id,
@@ -102,7 +108,7 @@ class MapDataController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('community.mapdata.edit', $id)
+            return redirect()->route('admin.community.mapdata.edit', $id)
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -124,7 +130,7 @@ class MapDataController extends Controller
             'message' => 'Success ! Mapdata has been updated successfully', 
             'alert-type' => 'success'
         );
-        return redirect()->route('community.mapdata', $id)->with($notification);
+        return redirect()->route('admin.community.mapdata', $id)->with($notification);
     }
 
     /**

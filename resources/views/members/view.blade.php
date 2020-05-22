@@ -21,7 +21,7 @@
               <table id="example2" class="table table-bordered table-hover dataTable" >
                 <thead>
                     <tr>
-                        <th> ID</th>
+                        <th>Profile</th>
                         <th>Region</th>
                         <th>Center</th>
                         <th>First Name</th>
@@ -35,7 +35,7 @@
                 <tbody>
                    @foreach($users as $user)
                     <tr>
-                        <td>{{ $user->id }}</td>                        
+                        <td><img src="{{ $user->profile_path ? $user->profile_path : asset('img/no-image.png') }}" style="border-radius:10px" width="80" height="80" alt="{{ $user->firstname.' '.$user->lastname }}"/></td>                   
                         <td>{{ $user->region['region']  }} </td>
                         <td>{{ $user->center['title']  }} </td>
                         <td>{{ $user->firstname }}</td>

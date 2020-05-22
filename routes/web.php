@@ -62,8 +62,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::group(['prefix' => 'community', 'as' => 'community.', 'namespace' => 'Community'], function () {
         Route::get('/dashboard/{id?}','CommunityController@dashboard')->name('dashboard');
         Route::get('/member/{id?}','CommunityController@members')->name('member');
-        Route::get('/mapdata/{id?}','CommunityController@mapdata')->name('mapdata');
-        Route::post('/mapdata/import/{id?}', 'CommunityController@importMapData')->name('import');
+
+        Route::get('/mapdata/{id?}','MapDataController@index')->name('mapdata');
+        Route::get('/mapdata/{id}/create','MapDataController@create')->name('mapdata.create');
+        Route::post('/mapdata/{id}/store','MapDataController@store')->name('mapdata.store');
+        Route::get('/mapdata/{id}/edit','MapDataController@edit')->name('mapdata.edit');
+        Route::post('/mapdata/{id}/update','MapDataController@update')->name('mapdata.update');
+        Route::post('/mapdata/import/{id?}', 'MapDataController@importMapData')->name('import');
+
         Route::get('/event/{id?}','CommunityController@createevent')->name('createevent');
         Route::get('/notification/{id?}','CommunityController@createnotification')->name('createnotification');
         Route::get('/prompt/{id?}','CommunityController@prompt')->name('prompt');  
@@ -81,6 +87,10 @@ Route::group(['prefix' => 'community', 'as' => 'community.', 'namespace' => 'Com
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/members','MemberController@index')->name('members');
     Route::get('/mapdata','MapDataController@index')->name('mapdata');
+    Route::get('/mapdata/{id}/create','MapDataController@create')->name('mapdata.create');
+    Route::post('/mapdata/store','MapDataController@store')->name('mapdata.store');
+    Route::get('/mapdata/{id}/edit','MapDataController@edit')->name('mapdata.edit');
+    Route::post('/mapdata/{id}/update','MapDataController@update')->name('mapdata.update');
     Route::post('/mapdata/import/{id?}', 'MapDataController@importMapData')->name('import');
     Route::get('/events','EventController@index')->name('events');
     Route::post('/events/store','EventController@store')->name('events.store');

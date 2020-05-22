@@ -26,23 +26,21 @@
                         <table id="example2" class="table table-bordered table-hover dataTable" >
                                 <thead>
                                     <tr>
-                                        <th> ID</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Phone</th>
-                                        <th>Region</th>
-                                        <th>Center </th>
-                                        <th>Created At</th>
-                                        <th>Updated At</th>
-                                       
-                                       
+                                      <th>Profile</th>
+                                      <th>First Name</th>
+                                      <th>Last Name</th>
+                                      <th>Phone</th>
+                                      <th>Region</th>
+                                      <th>Center </th>
+                                      <th>Created At</th>
+                                      <th>Updated At</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                   @php $i=1 @endphp
                                   @foreach($users as $user)
                                       <tr>
-                                        <td>{{ $i++ }}</td>
+                                        <td><img src="{{ $user->profile_path ? $user->profile_path : asset('img/no-image.png') }}" style="border-radius:10px" width="80" height="80" alt="{{ $user->firstname.' '.$user->lastname }}"/></td>
                                         <td>{{ $user->firstname }}</td>
                                         <td>{{ $user->lastname }}</td>
                                         <td>{{ $user->phone }}</td>
@@ -50,7 +48,6 @@
                                         <td>{{ $user->center['title']  }} </td>
                                         <td>{{ $user->created_at }}</td>
                                         <td>{{ $user->updated_at }}</td>
-                                        
                                       </tr>
                                   @endforeach
                                   </tbody>
