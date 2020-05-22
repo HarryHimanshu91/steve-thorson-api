@@ -108,7 +108,7 @@ class MapDataController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('admin.community.mapdata.edit', $mid, $id)
+            return redirect()->route('admin.community.mapdata.edit', [$mid, $id])
                         ->withErrors($validator)
                         ->withInput();
         }
