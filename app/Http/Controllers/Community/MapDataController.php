@@ -81,10 +81,10 @@ class MapDataController extends Controller
             'eng_directions' => 'required',
             'swa_description' => 'required',
             'swa_directions' => 'required',
-            'phone_number' => 'required',
-            'url' => 'required',
-            'latitude' => 'required',
-            'longitude' => 'required'
+            'phone_number' => 'required|numeric|size:11',
+            'url' => 'required|max:100',
+            'latitude' => 'required|max:50',
+            'longitude' => 'required|max:50'
         ],
         [
             'category.required' => 'Oops! Please select category.',
@@ -96,9 +96,13 @@ class MapDataController extends Controller
             'swa_description.required' => 'Oops! Please enter swahili description.',
             'swa_directions.required' => 'Oops! Please enter swahili direction.',
             'phone_number.required' => 'Oops! Please enter phone number.',
+            'phone_number.size' => 'Oops! The phone number is not the valid size.',
+            'phone_number.numeric' => 'Oops! The phone number is not the number',
             'url.required' => 'Oops! Please enter URL.',
             'latitude.required' => 'Oops! Please enter latitude.',
-            'longitude.required' => 'Oops! Please enter longitude.'
+            'latitude.max' => 'Oops! The latitude may not be greater than 50 characters',
+            'longitude.required' => 'Oops! Please enter longitude.',
+            'longitude.max' => 'Oops! The longitude may not be greater than 50 characters'
         ]);
 
         if ($validator->fails()) {

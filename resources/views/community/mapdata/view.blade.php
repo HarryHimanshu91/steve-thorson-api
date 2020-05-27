@@ -28,10 +28,10 @@
                           </div>
                           <div class="input-group-append ml-1">
                             @can('isAdmin')
-                              <a href="{{ asset('admin/community/mapdata/'.$id.'/create') }}" class="btn btn-primary">Add Mapdata</a>
+                              <a href="{{ asset('admin/community/mapdata/'.$id.'/create') }}" class="btn btn-primary btn-sm" style="padding: .375rem .75rem">Add Map Data</a>
                             @endcan
                             @can('isCommunity')
-                              <a href="{{ asset('community/mapdata/'.$id.'/create') }}" class="btn btn-primary">Add Mapdata</a>
+                              <a href="{{ asset('community/mapdata/'.$id.'/create') }}" class="btn btn-primary btn-sm" style="padding: .375rem .75rem">Add Map Data</a>
                             @endcan
                           </div>
                           @error('file')

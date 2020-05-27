@@ -5,6 +5,9 @@
   <div class="content-wrapper">
     <!-- Main content -->
     <section class="content">
+      <div class="row align-items-center pt-2 mb-2">
+        
+      </div>
       <div class="row">
         <div class="col-md-6">
           <div class="card">
