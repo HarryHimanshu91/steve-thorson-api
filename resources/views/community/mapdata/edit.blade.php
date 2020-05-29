@@ -50,6 +50,8 @@
                                             <select class="form-control select2bs4 @error('category') is-invalid @enderror" name="category">
                                                 <option value="">Select Category</option>
                                                 <option value="Hospital" {{ ($mapdata->category == 'Hospital') ? 'selected':'' }}>Hospital</option>
+                                                <option value="Clinics" {{ ($mapdata->category == 'Clinics') ? 'selected':'' }}>Clinics</option>
+                                                <option value="Dispensaries" {{ ($mapdata->category == 'Dispensaries') ? 'selected':'' }}>Dispensaries</option>
                                             </select>
                                             @error('category')
                                                 <span class="invalid-feedback" role="alert">

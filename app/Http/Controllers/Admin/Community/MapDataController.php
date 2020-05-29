@@ -21,7 +21,7 @@ class MapDataController extends Controller
      */
     public function index($id)
     {
-        $mapData = MapData::whereCenterId($id)->get();
+        $mapData = MapData::whereCenterId($id)->orderBy('id','desc')->get();
         return view('community.mapdata.view',compact('id','mapData'));
     }
 
@@ -102,8 +102,6 @@ class MapDataController extends Controller
             'swa_description.required' => 'Oops! Please enter swahili description.',
             'swa_directions.required' => 'Oops! Please enter swahili direction.',
             'phone_number.required' => 'Oops! Please enter phone number.',
-            'phone_number.size' => 'Oops! The phone number is not the valid size.',
-            'phone_number.numeric' => 'Oops! The phone number is not the number',
             'url.required' => 'Oops! Please enter URL.',
             'latitude.required' => 'Oops! Please enter latitude.',
             'latitude.max' => 'Oops! The latitude may not be greater than 50 characters',
@@ -117,7 +115,7 @@ class MapDataController extends Controller
                         ->withInput();
         }
 
-        $mapdata = MapData::whereId($id)->update([
+        $mapdata = MapData::whereId($mid)->update([
             'category' => $request->get('category'),
             'name' => $request->get('name'),
             'eng_description' => $request->get('eng_description'),
