@@ -45,6 +45,8 @@
                                             <select class="form-control select2bs4 @error('category') is-invalid @enderror" name="category">
                                                 <option value="">Select Category</option>
                                                 <option value="Hospital" {{ (old('category') == 'Hospital') ? 'selected':'' }}>Hospital</option>
+                                                <option value="Clinics" {{ (old('category') == 'Clinics') ? 'selected':'' }}>Clinics</option>
+                                                <option value="Dispensaries" {{ (old('category') == 'Dispensaries') ? 'selected':'' }}>Dispensaries</option>
                                             </select>
                                             @error('category')
                                                 <span class="invalid-feedback" role="alert">
@@ -56,7 +58,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Description in English</label>
-                                                    <textarea class="form-control @error('eng_description') is-invalid @enderror" name="eng_description" rows="5" placeholder="Enter English Description">{{ old('english_description') }}</textarea>
+                                                    <textarea class="form-control @error('eng_description') is-invalid @enderror" name="eng_description" rows="5" placeholder="Enter English Description">{{ old('eng_description') }}</textarea>
                                                     @error('eng_description')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -67,7 +69,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Description in Swahili</label>
-                                                    <textarea class="form-control @error('swa_description') is-invalid @enderror" name="swa_description" rows="5" placeholder="Enter Swahili Description">{{ old('swahili_description') }}</textarea>
+                                                    <textarea class="form-control @error('swa_description') is-invalid @enderror" name="swa_description" rows="5" placeholder="Enter Swahili Description">{{ old('swa_description') }}</textarea>
                                                     @error('swa_description')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -78,7 +80,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Direction in English</label>
-                                                    <textarea class="form-control @error('eng_directions') is-invalid @enderror" name="eng_directions" rows="2" placeholder="Enter English Direction">{{ old('english_direction') }}</textarea>
+                                                    <textarea class="form-control @error('eng_directions') is-invalid @enderror" name="eng_directions" rows="2" placeholder="Enter English Direction">{{ old('eng_directions') }}</textarea>
                                                     @error('eng_directions')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -89,7 +91,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Direction in Swahili</label>
-                                                    <textarea class="form-control @error('swa_directions') is-invalid @enderror" name="swa_directions" rows="2" placeholder="Enter Swahili Direction">{{ old('swahili_direction') }}</textarea>
+                                                    <textarea class="form-control @error('swa_directions') is-invalid @enderror" name="swa_directions" rows="2" placeholder="Enter Swahili Direction">{{ old('swa_directions') }}</textarea>
                                                     @error('swa_directions')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>

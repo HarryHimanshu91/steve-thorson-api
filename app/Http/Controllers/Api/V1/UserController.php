@@ -115,7 +115,7 @@ class UserController extends Controller
                 return response()->json(['errors' => array('phone' => ['Oops! the phone number is not verified.'])], 401);
             }
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Something went wrong.'], 403);
+            return response()->json(['error' => $e->getMessage()], 403);
         }
     }
 

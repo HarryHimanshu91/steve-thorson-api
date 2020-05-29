@@ -22,7 +22,7 @@ class StoreMapDataRequest extends FormRequest
             'eng_directions' => 'required',
             'swa_description' => 'required',
             'swa_directions' => 'required',
-            'phone_number' => 'required|numeric|size:11',
+            'phone_number' => 'required|numeric',
             'url' => 'required|max:100',
             'latitude' => 'required|max:50',
             'longitude' => 'required|max:50'
@@ -48,7 +48,6 @@ class StoreMapDataRequest extends FormRequest
             'swa_description.required' => 'Oops! Please enter swahili description.',
             'swa_directions.required' => 'Oops! Please enter swahili direction.',
             'phone_number.required' => 'Oops! Please enter phone number.',
-            'phone_number.size' => 'Oops! The phone number is not the valid size.',
             'phone_number.numeric' => 'Oops! The phone number is not the number',
             'url.required' => 'Oops! Please enter URL.',
             'latitude.required' => 'Oops! Please enter latitude.',
