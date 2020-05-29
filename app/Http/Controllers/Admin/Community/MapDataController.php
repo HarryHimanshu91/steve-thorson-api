@@ -87,7 +87,7 @@ class MapDataController extends Controller
             'eng_directions' => 'required',
             'swa_description' => 'required',
             'swa_directions' => 'required',
-            'phone_number' => 'required|numeric|size:11',
+            'phone_number' => 'required',
             'url' => 'required|max:100',
             'latitude' => 'required|max:50',
             'longitude' => 'required|max:50'
