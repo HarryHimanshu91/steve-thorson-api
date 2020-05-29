@@ -15,7 +15,7 @@ class MemberController extends Controller
      */
     public function index()
     {
-      $users = User::with('region','center')->get();
+      $users = User::with('region','center')->orderBy('id','desc')->get();
       return view('members.view' , compact('users'));
     }
 

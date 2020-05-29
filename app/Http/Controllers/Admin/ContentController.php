@@ -19,7 +19,7 @@ class ContentController extends Controller
      */
     public function index()
     {
-        $contents = Content::all();
+        $contents = Content::orderBy('id','desc')->get();
         return view('contents.view')->with('contents', $contents);
     }
 

@@ -20,7 +20,7 @@ class CommunityController extends Controller
      */
     public function index()
     {
-        $communities = Community::with('region')->get();
+        $communities = Community::with('region')->orderBy('id','desc')->get();
         return view('community.view',compact('communities'));
     }    
 
