@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Models\Notification;
 
 class Kernel extends ConsoleKernel
 {
@@ -13,7 +14,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Commands\NotificationCron::class,
     ];
 
     /**
@@ -24,8 +25,17 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $dateTimeArray = Notification::get()->pluck('datetime')->toArray();
+        foreach($dateTimeArray as $datetime){
+            $convert = \Carbon\Carbon::parse($datetime);
+            $year = $convert->format('Y');
+            $date = $convert->format('d');
+            $month = $convert->format('m');
+            $hour = $convert->format('H');
+            $min = (int)$convert->format('i');
+            
+            
+        }
     }
 
     /**

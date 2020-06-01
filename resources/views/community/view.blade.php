@@ -21,7 +21,6 @@
               <table id="example2" class="table table-bordered table-hover dataTable" >
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Community Title </th>
                         <th>Community Description </th>
                         <th>Region</th>
@@ -34,7 +33,6 @@
                 @php $i=1 @endphp
                 @foreach($communities as $community)
                     <tr>
-                      <td>{{ $i++ }}</td>
                       <td>{{ $community->title }}</td>
                       <td>{{ $community->description }}</td>
                       <td>{{ $community->region['region'] }}</td>

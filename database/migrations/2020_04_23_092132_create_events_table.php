@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNotificationsTable extends Migration
+class CreateEventsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,17 @@ class CreateNotificationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('notifications', function (Blueprint $table) {
+        Schema::create('events', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('center_id');
+            $table->unsignedBigInteger('content_id');
             $table->string('title_one');
-            $table->string('date');
-            $table->string('time');
-            $table->text('description_one');
             $table->string('title_second');
-            $table->text('description_second');
+            $table->dateTime('datetime');
+            $table->text('description_one');
+            $table->text('description_second');            
+            $table->string('tracking_code');
+            $table->enum('unlock_content',['0','1'])->default('0');
             $table->timestamps();
         });
     }
@@ -33,6 +35,6 @@ class CreateNotificationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notifications');
+        Schema::dropIfExists('events');
     }
 }

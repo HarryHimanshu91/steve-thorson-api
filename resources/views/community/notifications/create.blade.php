@@ -132,7 +132,7 @@
                                             <td>{{ $notification->title_one }}
                                                 <hr>
                                                 {{ $notification->title_second }}</td>
-                                            <td>{{ $notification->date }} - {{ $notification->time }}</td>
+                                            <td>{{ $notification->datetime }}</td>
                                             <td>{{ $notification->created_at }}</td>
                                         <td>
                                         <div class="btn-group btn-group-sm">

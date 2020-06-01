@@ -64,11 +64,12 @@ class NotificationStoreRequest extends FormRequest
 
     public function NotificationData(): array 
     {
+        $dateTime = strtotime($this->get('date')." ".$this->get('time'));
+        $dateTime = date('Y-m-d H:i:s',$dateTime);
         return [
             'center_id' => $this->get('center_id'),
             'title_one' => $this->get('title_one'),
-            'date' => $this->get('date'),
-            'time' => $this->get('time'),
+            'datetime' =>  $dateTime,
             'description_one' => $this->get('description_one'),
             'title_second' => $this->get('title_second'),
             'description_second' => $this->get('description_second'),

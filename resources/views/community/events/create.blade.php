@@ -175,7 +175,7 @@
                                             <td>{{ $event->title_one }}
                                                 <hr>
                                                 {{ $event->title_second }}</td>
-                                            <td>{{ $event->date }} - {{ $event->time }}</td>                            
+                                            <td>{{ $event->datetime }}</td>                            
                                             <td>{{ $event->tracking_code }}</td>
                                             <td class="{{ $event->unlock_content ? 'text-success text-bold' : 'text-danger text-bold'}}">
                                                 {{ $event->unlock_content? "Yes" : "No" }}
