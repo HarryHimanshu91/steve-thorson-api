@@ -23,7 +23,6 @@ class EditProfileController extends Controller
         $validator = Validator::make($request->all(), [
             'firstname' => 'required',
             'lastname' => 'required',
-            'phone' => 'required|unique:users,phone,'.Auth::user()->id,
             'region' => 'required',
             'center' => 'required',
             'image' => 'mimes:jpeg,png,jpg'
@@ -31,8 +30,6 @@ class EditProfileController extends Controller
         [  
             'firstname.required' => 'Oops! Please enter email address.',
             'lastname.required' => 'Oops! Please enter email address.',
-            'phone.required' => 'Oops! Please enter phone number.',
-            'phone.unique' => "Oops! The phone number you entered is already registered with us.",
             'region.required' => 'Oops! Please select the region.',
             'center.required' => 'Oops! Please select the center.',
             'image.mimes' => 'Oops! please select only jpeg, png & jpg image.'
@@ -55,7 +52,6 @@ class EditProfileController extends Controller
                 User::find(Auth::user()->id)->update([
                     'firstname' => $request->get('firstname'),
                     'lastname' => $request->get('lastname'),
-                    'phone' => $request->get('phone'),
                     'region_id' => $request->get('region'),
                     'center_id' => $request->get('center'),
                     'profile_path' => $path
@@ -64,7 +60,6 @@ class EditProfileController extends Controller
                 User::find(Auth::user()->id)->update([
                     'firstname' => $request->get('firstname'),
                     'lastname' => $request->get('lastname'),
-                    'phone' => $request->get('phone'),
                     'region_id' => $request->get('region'),
                     'center_id' => $request->get('center'),
                 ]);
