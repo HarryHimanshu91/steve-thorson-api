@@ -25,7 +25,7 @@
                     <tr>
                         <th>ID</th>
                         <th>English/Swahili Content Title </th>
-                        <th>English/Swahili Audio </th>
+                        <!-- <th>English/Swahili Audio </th> -->
                         <th>Category  </th>
                         <th>Status  </th>
                         <th>Created At</th>
@@ -42,11 +42,11 @@
                         <td>{{ $content->english_title }}
                             <hr>
                             {{ $content->swahili_title }}</td>
-                        <td> 
+                        <!-- <td> 
                             <audio controls><source src="{{ asset($content->audio_english_file) }}" /></audio>
                             <hr>
                             <audio controls><source src="{{ asset($content->audio_swahili_file) }}" /></audio>                           
-                        </td>
+                        </td> -->
                         <td>{{ $content->cat_name }}</td>
                         <td class="{{ $content->status ? 'text-success' : 'text-danger'}}">{{ $content->status ? "Active" : "Inactive" }}</td>
                         <td>{{ $content->created_at }}</td>

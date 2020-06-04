@@ -42,7 +42,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Content Title </label>
+                                    <label>Content Title in English</label>
                                     <input type="text" name="english_title" class="form-control @error('english_title') is-invalid @enderror" value="{{ $content->english_title }}" placeholder="Enter Category Title in English">
                                     @error('english_title')
                                         <span class="invalid-feedback" role="alert">
@@ -53,7 +53,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Content Title </label>
+                                    <label>Content Title in Swahili</label>
                                     <input type="text" name="swahili_title" class="form-control @error('swahili_title') is-invalid @enderror" value="{{ $content->swahili_title }}" placeholder="Enter Category Title in Swahili">
                                     @error('swahili_title')
                                         <span class="invalid-feedback" role="alert">
@@ -66,7 +66,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Content Description </label>
+                                    <label>Content Description in English</label>
                                     <textarea rows="5" name="english_description" class="textarea form-control @error('english_description') is-invalid @enderror"> {{ $content->english_description }}</textarea>
                                     @error('english_description')
                                         <span class="invalid-feedback" role="alert">
@@ -77,7 +77,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Content Description </label>
+                                    <label>Content Description in Swahili</label>
                                     <textarea rows="5" name="swahili_description" class="textarea form-control @error('swahili_description') is-invalid @enderror"> {{ $content->swahili_description }}</textarea>
                                     @error('swahili_description')
                                         <span class="invalid-feedback" role="alert">

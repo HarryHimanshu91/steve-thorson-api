@@ -19,6 +19,9 @@
             </div>
             <div class="card-body">
               {!! $content->english_description !!}
+              <div class="mt-4">
+                <audio controls><source src="{{ asset($content->audio_english_file) }}" /></audio>
+              </div>
             </div>
          </div>   
         </div>
@@ -32,6 +35,9 @@
             </div>
             <div class="card-body">
               {!! $content->swahili_description !!}
+              <div class="mt-4">
+                <audio controls><source src="{{ asset($content->audio_swahili_file) }}" /></audio>
+              </div>
             </div>
           </div>
         </div>

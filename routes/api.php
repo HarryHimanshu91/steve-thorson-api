@@ -31,4 +31,5 @@ Route::middleware('auth:api')->group( function () {
     Route::get('contents','Api\V1\ContentController@contents');
     Route::get('community/{id}','Api\V1\CommunityController@community');
     
+    Route::post('device-token','Api\V1\FCMController@saveToken');
 });

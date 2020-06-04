@@ -34,16 +34,17 @@
         margin: 10px;
         padding: 10px;
       }
-    li.custom-link.active { background: #007bff;}
-    li.custom-link.active a { color: #fff; }
-    span.languagestyles { margin-left: 20px; font-weight: bold; color: #007bff; }
-    .card-header.languagess {background-color: #007bff; color: #fff; }
-    span.err-block { color: #dc3545; }
-    .card-header.customstyle {
-        background-color: #fff;
-        color: #000;
-        border: 1px solid #ccc;
-    }
+      li.custom-link.active { background: #007bff;}
+      li.custom-link.active a { color: #fff; }
+      span.languagestyles { margin-left: 20px; font-weight: bold; color: #007bff; }
+      .card-header.languagess {background-color: #007bff; color: #fff; }
+      span.err-block { color: #dc3545; }
+      .card-header.customstyle {
+          background-color: #fff;
+          color: #000;
+          border: 1px solid #ccc;
+      }
+      .percent { position:absolute; display:inline-block; left:48%; color: #000;}
     </style>
   </head>
   <body class="hold-transition sidebar-mini">
